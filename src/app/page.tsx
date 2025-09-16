@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
 
 const spheres = [
   { id: 1, size: 150, top: '15%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', z: 5, hint: 'abstract shapes' },
@@ -13,39 +12,50 @@ const spheres = [
 ];
 
 export default function Home() {
+  const backgroundSpheres = spheres.filter(s => s.z < 20);
+  const foregroundSpheres = spheres.filter(s => s.z >= 20);
+
+  const renderSpheres = (sphereList: typeof spheres) => {
+    return sphereList.map((sphere) => (
+      <div
+        key={sphere.id}
+        className={'absolute opacity-0'}
+        style={{
+          width: sphere.size,
+          height: sphere.size,
+          top: sphere.top,
+          left: sphere.left,
+          animation: `${sphere.animation} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
+          animationDelay: `${sphere.delay}, 1s`
+        }}
+      >
+        <Image
+          src={`https://picsum.photos/seed/sphere${sphere.id}/${sphere.size}/${sphere.size}`}
+          alt={`Sphere ${sphere.id}`}
+          width={sphere.size}
+          height={sphere.size}
+          className="rounded-full object-cover shadow-2xl border-2 border-white/20 shadow-white/20"
+          data-ai-hint={sphere.hint}
+        />
+      </div>
+    ));
+  }
+
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
+
+      <div className="absolute inset-0 w-full h-full z-10">
+        {renderSpheres(backgroundSpheres)}
+      </div>
+      
       <main className="relative z-20 flex flex-col items-center justify-center text-center">
         <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black tracking-tighter text-foreground uppercase animate-text-fade-in opacity-0">
           Studioo
         </h1>
       </main>
 
-      <div className="absolute inset-0 w-full h-full z-10">
-        {spheres.map((sphere) => (
-          <div
-            key={sphere.id}
-            className={'absolute opacity-0'}
-            style={{
-              width: sphere.size,
-              height: sphere.size,
-              top: sphere.top,
-              left: sphere.left,
-              zIndex: sphere.z,
-              animation: `${sphere.animation} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
-              animationDelay: `${sphere.delay}, 1s`
-            }}
-          >
-            <Image
-              src={`https://picsum.photos/seed/sphere${sphere.id}/${sphere.size}/${sphere.size}`}
-              alt={`Sphere ${sphere.id}`}
-              width={sphere.size}
-              height={sphere.size}
-              className="rounded-full object-cover shadow-2xl border-2 border-white/20 shadow-white/20"
-              data-ai-hint={sphere.hint}
-            />
-          </div>
-        ))}
+      <div className="absolute inset-0 w-full h-full z-30">
+        {renderSpheres(foregroundSpheres)}
       </div>
     </div>
   );
