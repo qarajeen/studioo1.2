@@ -86,7 +86,7 @@ export default function ServicesPage() {
                 <h3 className="text-2xl font-bold text-white">{service.title}</h3>
                 <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 delay-100 overflow-hidden">
                     <p className="mt-2 text-sm md:text-base text-white/80 leading-relaxed">{service.description}</p>
-                    <Button asChild variant="secondary" className="mt-4 w-full">
+                    <Button asChild variant="secondary" className="mt-4 w-full py-2 px-4 h-auto">
                         <Link href="/pricing">
                             Get a Quote
                             <ArrowRight className="ml-2 h-4 w-4" />
