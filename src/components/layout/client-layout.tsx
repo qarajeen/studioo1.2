@@ -11,9 +11,11 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <SideNav />
-      <PageTransition pageKey={pathname}>
-        {children}
-      </PageTransition>
+      <main className="relative w-full flex-1">
+        <PageTransition pageKey={pathname}>
+          {children}
+        </PageTransition>
+      </main>
     </>
   );
 }
