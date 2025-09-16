@@ -664,7 +664,8 @@ export function QuoteCalculator() {
                                 <div className="flex flex-col items-center text-center">
                                     <div className={cn(
                                         `w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-2`,
-                                        index + 1 <= step ? 'bg-primary border-primary text-primary-foreground' : 'bg-secondary border-border'
+                                        index + 1 < step ? 'bg-primary border-primary text-primary-foreground' : 'bg-secondary border-border',
+                                        index + 1 === step ? 'bg-primary border-primary text-primary-foreground' : ''
                                     )}>
                                         {index + 1}
                                     </div>

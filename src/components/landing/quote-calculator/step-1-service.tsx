@@ -79,8 +79,8 @@ export function Step1Service({
                 key={id}
                 onClick={() => handleInputChange("serviceType", id as keyof ServiceOptions)}
                 className={cn(
-                  "p-6 border-2 rounded-lg cursor-pointer transition-all flex flex-col items-center justify-center hover:bg-accent/50",
-                  formData.serviceType === id ? 'border-primary bg-accent text-primary-foreground' : 'border-border'
+                  "p-6 border-2 rounded-lg cursor-pointer transition-all flex flex-col items-center justify-center hover:bg-primary/80",
+                  formData.serviceType === id ? 'border-primary bg-primary text-primary-foreground' : 'border-border'
                 )}
               >
                 {icon}
