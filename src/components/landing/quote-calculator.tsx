@@ -665,8 +665,7 @@ export function QuoteCalculator() {
                                     <div className={cn(
                                         `w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-2`,
                                         index + 1 < step ? 'bg-primary border-primary text-primary-foreground' : 'bg-secondary border-border',
-                                        index + 1 === step ? 'bg-primary border-primary text-primary-foreground animate-[float-2_15s_ease-in-out_infinite]' : '',
-                                        index + 1 === 4 ? '' : ''
+                                        index + 1 === step ? 'bg-primary border-primary text-primary-foreground' : '',
                                     )}>
                                         {index + 1}
                                     </div>
@@ -717,6 +716,8 @@ export function QuoteCalculator() {
       </div>
     );
 }
+
+    
 
     
 
