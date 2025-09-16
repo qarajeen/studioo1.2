@@ -85,7 +85,7 @@ export default function ServicesPage() {
               <div className="absolute inset-0 p-6 flex flex-col justify-end transition-transform duration-500 transform-gpu translate-y-4 group-hover:-translate-y-2">
                 <h3 className="text-2xl font-bold text-white">{service.title}</h3>
                 <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 delay-100 overflow-hidden">
-                    <p className="mt-2 text-white/80 leading-relaxed">{service.description}</p>
+                    <p className="mt-2 text-sm md:text-base text-white/80 leading-relaxed">{service.description}</p>
                     <Button asChild variant="secondary" className="mt-4 w-fit">
                         <Link href="/pricing">
                             Get a Quote
