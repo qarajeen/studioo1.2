@@ -491,8 +491,8 @@ export function QuoteCalculator() {
         
         const textX = margin;
         
-        doc.text("WRH", textX, 18);
-        const wrhWidth = doc.getTextWidth("WRH");
+        doc.text("Studioo", textX, 18);
+        const wrhWidth = doc.getTextWidth("Studioo");
 
         doc.setFont('helvetica', 'normal');
         doc.text("Production", textX + wrhWidth + 2, 18);
@@ -606,9 +606,9 @@ export function QuoteCalculator() {
     
         doc.setFont('helvetica', 'normal');
         doc.text('50% advance payment required to confirm the booking. Quote valid for 30 days.', margin, footerY + 15);
-        doc.text('hi@wrh.ae | +971586583939', pageWidth - margin, footerY + 15, { align: 'right' });
+        doc.text('hi@studioo.ae | +971586583939', pageWidth - margin, footerY + 15, { align: 'right' });
     
-        doc.save("wrh quote.pdf");
+        doc.save("studioo-quote.pdf");
     };
     
     const renderStep = () => {

@@ -1,11 +1,8 @@
-import { ClientQuoteCalculator } from '@/components/landing/client-quote-calculator';
-
 export default function Home() {
   return (
-    <main className="flex flex-col justify-center min-h-screen p-4 md:p-8">
-      <div className="w-full mx-auto">
-        <ClientQuoteCalculator />
-      </div>
+    <main className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-4xl font-bold">Studioo</h1>
+      <p className="text-lg text-muted-foreground">Coming Soon</p>
     </main>
   );
 }
