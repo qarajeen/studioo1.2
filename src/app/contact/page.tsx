@@ -62,7 +62,7 @@ export default function ContactPage() {
                 Our community is the heart of our superpower. If you're an ADHD creative, we invite you to connect, share your story, and explore collaborations.
               </p>
               <Button asChild>
-                <Link href="mailto:connect@studioo.ae">Share Your Story</Link>
+                <Link href="https://wa.me/971586583939" target="_blank" rel="noopener noreferrer">Share Your Story</Link>
               </Button>
             </CardContent>
           </Card>
