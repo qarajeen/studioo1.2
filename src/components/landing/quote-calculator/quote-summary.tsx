@@ -34,7 +34,7 @@ export function QuoteSummary({ quoteDetails, formData }: QuoteSummaryProps) {
 
     if (formData.serviceType) {
       const subType = formData.photographySubType || formData.videoSubType || formData.postSubType || formData.timelapseSubType || formData.toursSubType;
-      items.push({ label: 'Service', value: getServiceName(formData.serviceType, subType) });
+      items.push({ label: 'Service', value: getServiceName(formData.serviceType, String(subType)) });
     }
 
     if(formData.location && formData.serviceType !== 'post') {
@@ -103,5 +103,3 @@ export function QuoteSummary({ quoteDetails, formData }: QuoteSummaryProps) {
     </Card>
   );
 }
-
-    
