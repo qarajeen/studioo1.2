@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "photography-service",
+      "description": "A professional camera on a tripod.",
+      "imageUrl": "https://picsum.photos/seed/photography-service/800/600",
+      "imageHint": "professional camera"
+    },
+    {
+      "id": "videography-service",
+      "description": "A cinema camera setup for a shoot.",
+      "imageUrl": "https://picsum.photos/seed/videography-service/600/400",
+      "imageHint": "cinema camera"
+    },
+    {
+      "id": "post-production-service",
+      "description": "A video editing software interface on a monitor.",
+      "imageUrl": "https://picsum.photos/seed/post-production-service/600/400",
+      "imageHint": "video editing"
+    },
+    {
+      "id": "360-tours-service",
+      "description": "A 360-degree camera on a stand in a modern interior.",
+      "imageUrl": "https://picsum.photos/seed/360-tours-service/600/400",
+      "imageHint": "360 camera"
+    },
+    {
+      "id": "timelapse-service",
+      "description": "A cityscape with light trails from moving traffic.",
+      "imageUrl": "https://picsum.photos/seed/timelapse-service/600/400",
+      "imageHint": "cityscape timelapse"
+    }
+  ]
 }
