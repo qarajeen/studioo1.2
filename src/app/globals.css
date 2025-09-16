@@ -59,11 +59,14 @@
   * {
     @apply border-border;
   }
+  html, body, #__next {
+    @apply h-full min-h-full;
+  }
   html {
     @apply scroll-smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground flex flex-col;
   }
 }
 
