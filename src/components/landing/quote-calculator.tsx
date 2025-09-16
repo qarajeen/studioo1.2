@@ -656,7 +656,7 @@ export function QuoteCalculator() {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-2 w-full">
-            <Card className="w-full relative flex flex-col min-h-[700px] bg-card/50 backdrop-blur-sm border-border">
+            <Card className="w-full relative flex flex-col min-h-[700px] bg-card/75 backdrop-blur-sm border-border">
                 <CardHeader>
                     <div className="flex justify-center items-center mb-4">
                         {stepTitles.map((title, index) => (
