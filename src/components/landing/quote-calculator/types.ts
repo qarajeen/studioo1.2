@@ -18,11 +18,11 @@ export type SubServices = {
 
 // Base Services
 export const serviceOptions: ServiceOptions = {
-    photography: { name: "Photography", icon: {} },
-    video: { name: "Video Production", icon: {} },
-    post: { name: "Post Production", icon: {} },
-    '360tours': { name: "360 Tours", icon: {} },
-    timelapse: { name: "Time Lapse", icon: {} },
+    photography: { name: "Photography", icon: null },
+    video: { name: "Video Production", icon: null },
+    post: { name: "Post Production", icon: null },
+    '360tours': { name: "360 Tours", icon: null },
+    timelapse: { name: "Time Lapse", icon: null },
 };
 
 // Photography Sub-Services
