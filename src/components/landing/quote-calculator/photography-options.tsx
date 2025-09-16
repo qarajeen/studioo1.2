@@ -53,7 +53,7 @@ export function PhotographyOptions({
   return (
     <div className="space-y-4 animate-fade-in-up">
        <div className={cn("p-4 border-2 rounded-lg transition-all card-glowing", validationError ? 'border-destructive' : 'border-transparent')}>
-        <h3 className="font-semibold mb-4 text-lg">Select Photography Type</h3>
+        <h3 className="font-semibold mb-4 text-base sm:text-lg">Select Photography Type</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {Object.entries(photographySubServices).map(([id, { name }]) => (
             <Button
@@ -62,7 +62,7 @@ export function PhotographyOptions({
                 size="lg"
                 onClick={() => handleInputChange("photographySubType", id)}
                 className={cn(
-                "h-auto min-h-[6rem] py-4 text-base transition-all hover:bg-accent/50 text-center justify-center whitespace-normal",
+                "h-auto min-h-[6rem] py-4 text-sm sm:text-base transition-all hover:bg-accent/50 text-center justify-center whitespace-normal",
                 formData.photographySubType === id ? 'border-primary bg-accent' : 'border-border'
                 )}
             >
@@ -74,12 +74,12 @@ export function PhotographyOptions({
 
       {formData.photographySubType === 'event' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold">Event Details</h4>
+          <h4 className="font-semibold text-sm sm:text-base">Event Details</h4>
           <RadioGroup value={formData.photoEventDuration} onValueChange={(v) => handleInputChange("photoEventDuration", v)} className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {['perHour', 'halfDay', 'fullDay'].map(dur => (
               <div className="flex-1" key={dur}>
                 <RadioGroupItem value={dur} id={`photo-event-${dur}`} className="sr-only" />
-                <Label htmlFor={`photo-event-${dur}`} className={cn("flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer w-full transition-colors hover:bg-accent/50 text-base py-4",
+                <Label htmlFor={`photo-event-${dur}`} className={cn("flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer w-full transition-colors hover:bg-accent/50 text-sm sm:text-base py-4",
                   formData.photoEventDuration === dur ? 'border-primary bg-accent' : 'border-border'
                 )}>
                   {dur === 'perHour' ? 'Per Hour' : dur === 'halfDay' ? 'Half Day (4hrs)' : 'Full Day (8hrs)'}
@@ -110,7 +110,7 @@ export function PhotographyOptions({
 
       {formData.photographySubType === 'real_estate' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold">Real Estate Details</h4>
+          <h4 className="font-semibold text-sm sm:text-base">Real Estate Details</h4>
           <div className="space-y-4">
             {formData.photoRealEstateProperties.map((prop, index) => (
                 <div key={prop.id} className="p-4 border rounded-lg space-y-4 relative bg-background/50">
@@ -156,7 +156,7 @@ export function PhotographyOptions({
       )}
       {formData.photographySubType === 'headshots' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold">Headshot Details</h4>
+          <h4 className="font-semibold text-sm sm:text-base">Headshot Details</h4>
           <div>
             <Label>Number of People</Label>
             <div className="flex items-center gap-4 mt-2">
@@ -178,7 +178,7 @@ export function PhotographyOptions({
 
       {(isProduct || isFood) && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold">{isProduct ? 'Product' : 'Food'} Photography Details</h4>
+          <h4 className="font-semibold text-sm sm:text-base">{isProduct ? 'Product' : 'Food'} Photography Details</h4>
           <div className="space-y-4">
             <div>
                 <Label>Number of Photos</Label>
@@ -205,7 +205,7 @@ export function PhotographyOptions({
                 >
                     <div className="flex-1">
                         <RadioGroupItem value="simple" id={`${isProduct ? 'prod' : 'food'}-simple`} className="sr-only" />
-                        <Label htmlFor={`${isProduct ? 'prod' : 'food'}-simple`} className={cn("flex flex-col items-center justify-center rounded-lg border-2 p-4 cursor-pointer w-full transition-colors hover:bg-accent/50 text-base py-4",
+                        <Label htmlFor={`${isProduct ? 'prod' : 'food'}-simple`} className={cn("flex flex-col items-center justify-center rounded-lg border-2 p-4 cursor-pointer w-full transition-colors hover:bg-accent/50 text-sm sm:text-base py-4",
                             (isProduct ? formData.photoProductComplexity : formData.photoFoodComplexity) === 'simple' ? 'border-primary bg-accent' : 'border-border'
                         )}>
                             Simple
@@ -215,7 +215,7 @@ export function PhotographyOptions({
                     </div>
                      <div className="flex-1">
                         <RadioGroupItem value="complex" id={`${isProduct ? 'prod' : 'food'}-complex`} className="sr-only" />
-                        <Label htmlFor={`${isProduct ? 'prod' : 'food'}-complex`} className={cn("flex flex-col items-center justify-center rounded-lg border-2 p-4 cursor-pointer w-full transition-colors hover:bg-accent/50 text-base py-4",
+                        <Label htmlFor={`${isProduct ? 'prod' : 'food'}-complex`} className={cn("flex flex-col items-center justify-center rounded-lg border-2 p-4 cursor-pointer w-full transition-colors hover:bg-accent/50 text-sm sm:text-base py-4",
                              (isProduct ? formData.photoProductComplexity : formData.photoFoodComplexity) === 'complex' ? 'border-primary bg-accent' : 'border-border'
                         )}>
                             Complex
@@ -231,7 +231,7 @@ export function PhotographyOptions({
 
       {(formData.photographySubType === 'fashion' || formData.photographySubType === 'wedding') && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold">{formData.photographySubType === 'fashion' ? 'Fashion/Lifestyle' : 'Wedding'} Package</h4>
+          <h4 className="font-semibold text-sm sm:text-base">{formData.photographySubType === 'fashion' ? 'Fashion/Lifestyle' : 'Wedding'} Package</h4>
            <RadioGroup
             value={formData.photographySubType === 'fashion' ? formData.photoFashionPackage : formData.photoWeddingPackage}
             onValueChange={(v) => handleInputChange(formData.photographySubType === 'fashion' ? 'photoFashionPackage' : 'photoWeddingPackage', v)}
@@ -240,14 +240,14 @@ export function PhotographyOptions({
             {Object.entries(formData.photographySubType === 'fashion' ? fashionPackages : weddingPackages).map(([id, { name, price, description }]) => (
               <div key={id}>
                 <RadioGroupItem value={id} id={`pkg-${id}`} className="sr-only" />
-                <Label htmlFor={`pkg-${id}`} className={cn("flex flex-col justify-between rounded-lg border-2 p-4 cursor-pointer w-full transition-colors hover:bg-accent/50 h-full text-base",
+                <Label htmlFor={`pkg-${id}`} className={cn("flex flex-col justify-between rounded-lg border-2 p-4 cursor-pointer w-full transition-colors hover:bg-accent/50 h-full text-sm sm:text-base",
                   (formData.photographySubType === 'fashion' ? formData.photoFashionPackage : formData.photoWeddingPackage) === id ? 'border-primary bg-accent' : 'border-border'
                 )}>
                   <div>
-                    <h5 className="font-semibold text-lg">{name}</h5>
-                    <p className="text-sm text-muted-foreground mt-1">{description}</p>
+                    <h5 className="font-semibold text-base sm:text-lg">{name}</h5>
+                    <p className="text-xs sm:text-sm text-muted-foreground mt-1">{description}</p>
                   </div>
-                  <p className="font-bold text-xl mt-4">{price}</p>
+                  <p className="font-bold text-lg sm:text-xl mt-4">{price}</p>
                 </Label>
               </div>
             ))}

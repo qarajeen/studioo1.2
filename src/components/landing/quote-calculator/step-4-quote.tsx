@@ -19,15 +19,15 @@ export function Step4Quote({
 
     return (
         <div className="printable-area animate-fade-in-up pb-20 sm:pb-0">
-            <div id="quote-preview" className="p-8 bg-card rounded-lg border-2 border-primary/20">
+            <div id="quote-preview" className="p-6 sm:p-8 bg-card rounded-lg border-2 border-primary/20">
                 <>
-                    <CardTitle className="text-3xl font-bold text-center pb-2">
+                    <CardTitle className="text-2xl sm:text-3xl font-bold text-center pb-2">
                         Your Project Quote
                     </CardTitle>
-                    <CardDescription className="text-center pb-6 min-h-[40px] text-lg">
+                    <CardDescription className="text-center pb-6 min-h-[40px] text-base sm:text-lg">
                         Here is a summary of your quote selections.
                     </CardDescription>
-                    <div className="mt-4 space-y-4 text-base">
+                    <div className="mt-4 space-y-4 text-sm sm:text-base">
                         {quoteDetails.items.map((item, index) => (
                             <div key={index} className="flex justify-between items-center py-2 border-b border-white/10">
                                 <span className="text-muted-foreground">{item.name}</span>
@@ -35,7 +35,7 @@ export function Step4Quote({
                             </div>
                         ))}
                         <Separator className="my-4 bg-primary/30" />
-                        <div className="flex justify-between font-bold text-xl">
+                        <div className="flex justify-between font-bold text-lg sm:text-xl">
                             <span>Total Estimate</span>
                             <span>{quoteDetails.total.toLocaleString()} AED</span>
                         </div>

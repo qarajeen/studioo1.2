@@ -72,7 +72,7 @@ export function Step1Service({
     <div className="space-y-8 animate-fade-in-up">
       {formData.serviceType === '' ? (
         <div>
-          <h3 className="font-semibold mb-4 text-lg">Select Service Type</h3>
+          <h3 className="font-semibold mb-4 text-base sm:text-lg">Select Service Type</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {Object.entries(serviceOptions).map(([id, { name, icon }]) => (
               <div
@@ -84,7 +84,7 @@ export function Step1Service({
                 )}
               >
                 {icon}
-                <span className="font-semibold text-center text-base">{name}</span>
+                <span className="font-semibold text-center text-sm sm:text-base">{name}</span>
               </div>
             ))}
           </div>
