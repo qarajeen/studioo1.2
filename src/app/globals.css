@@ -10,8 +10,8 @@
     --card-foreground: 210 40% 98%;
     --popover: 234 31% 16%;
     --popover-foreground: 210 40% 98%;
-    --primary: 231 53% 60%; /* Brighter Blue for contrast on black */
-    --primary-foreground: 0 0% 0%;
+    --primary: 0 0% 31%; /* #4f4f4f */
+    --primary-foreground: 0 0% 100%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217 33% 17%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 234 31% 25%;
     --input: 234 31% 25%;
-    --ring: 231 53% 60%;
+    --ring: 0 0% 31%; /* #4f4f4f */
     --radius: 0.8rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -38,8 +38,8 @@
     --card-foreground: 210 40% 98%;
     --popover: 234 31% 16%;
     --popover-foreground: 210 40% 98%;
-    --primary: 231 53% 60%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 0 0% 31%; /* #4f4f4f */
+    --primary-foreground: 0 0% 100%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217 33% 17%;
@@ -50,7 +50,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 234 31% 25%;
     --input: 234 31% 25%;
-    --ring: 231 53% 60%;
+    --ring: 0 0% 31%; /* #4f4f4f */
     --radius: 0.8rem;
   }
 }
@@ -96,7 +96,7 @@
     100% { transform: translate(0, 0) scale(1); opacity: 1; }
   }
    @keyframes text-fade-in {
-    0% { opacity: 0; letter-spacing: 0.2em; }
+    0% { opacity: 0; letter-spacing: -0.05em; }
     100% { opacity: 1; letter-spacing: normal; }
   }
   @keyframes float-1 {
