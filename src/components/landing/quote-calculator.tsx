@@ -656,7 +656,7 @@ export function QuoteCalculator() {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-2 w-full">
-            <Card className="w-full relative">
+            <Card className="w-full relative flex flex-col">
                 <CardHeader>
                     <div className="flex justify-center items-center mb-4">
                         {stepTitles.map((title, index) => (
@@ -665,7 +665,8 @@ export function QuoteCalculator() {
                                     <div className={cn(
                                         `w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-2`,
                                         index + 1 < step ? 'bg-primary border-primary text-primary-foreground' : 'bg-secondary border-border',
-                                        index + 1 === step ? 'bg-primary border-primary text-primary-foreground' : ''
+                                        index + 1 === step ? 'bg-primary border-primary text-primary-foreground animate-[float-2_15s_ease-in-out_infinite]' : '',
+                                        index + 1 === 4 ? 'animate-[float-2_15s_ease-in-out_infinite]' : ''
                                     )}>
                                         {index + 1}
                                     </div>
@@ -682,11 +683,11 @@ export function QuoteCalculator() {
                     </div>
                     <CardTitle className="text-3xl md:text-4xl font-bold text-center pt-8">{step === 4 ? 'Your Quote is Ready' : `Step ${step}: ${stepTitles[step-1]}`}</CardTitle>
                 </CardHeader>
-                <CardContent className="min-h-[350px] sm:pb-6">
+                <CardContent className="min-h-[350px] flex-grow">
                     {renderStep()}
                 </CardContent>
                 {(step > 1 || (step === 1 && formData.serviceType)) && (
-                    <CardFooter className="flex items-center justify-between gap-4 p-6 bg-background/80 backdrop-blur-sm sticky -bottom-1 -mx-6 -mb-6 rounded-b-lg border-t mt-6">
+                    <CardFooter className="flex items-center justify-between gap-4 p-6 bg-background/80 backdrop-blur-sm mt-auto border-t">
                         <div className="hidden sm:flex gap-2 w-full sm:w-auto">
                             {step > 1 && (
                                 <Button variant="outline" onClick={prevStep} size="lg" className="w-full sm:w-auto"><ArrowLeft className="mr-2 h-5 w-5"/> Previous</Button>
@@ -716,3 +717,5 @@ export function QuoteCalculator() {
       </div>
     );
 }
+
+    
