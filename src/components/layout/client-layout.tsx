@@ -12,9 +12,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
     <>
       <SideNav />
       <PageTransition pageKey={pathname}>
-        <div className="flex-1">
-            {children}
-        </div>
+        {children}
       </PageTransition>
     </>
   );
