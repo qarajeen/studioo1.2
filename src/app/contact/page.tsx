@@ -45,7 +45,7 @@ export default function ContactPage() {
                     <Label htmlFor="message">Message</Label>
                     <Textarea id="message" placeholder="Tell us about your project..." rows={6} />
                   </div>
-                  <Button type="submit" size="lg" className="w-full sm:w-auto btn-glow-primary">Send Message</Button>
+                  <Button type="submit" size="lg" className="w-full sm:w-auto">Send Message</Button>
                 </form>
               </CardContent>
             </Card>
@@ -69,10 +69,10 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card/50 border-primary/20 card-glowing">
+            <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
-                  <Pencil className="h-6 w-6 text-accent" />
+                  <Pencil className="h-6 w-6 text-primary" />
                   ADHD Creatives Connect
                 </CardTitle>
               </CardHeader>
@@ -80,7 +80,7 @@ export default function ContactPage() {
                 <p className="text-muted-foreground mb-4">
                   Our community is the heart of our superpower. If you're an ADHD creative, we invite you to connect, share your story, and explore collaborations.
                 </p>
-                <Button asChild variant="secondary">
+                <Button asChild>
                   <Link href="mailto:connect@studioo.ae">Share Your Story</Link>
                 </Button>
               </CardContent>

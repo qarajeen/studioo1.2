@@ -656,7 +656,7 @@ export function QuoteCalculator() {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-2 w-full">
-            <Card className="w-full bg-card/80 backdrop-blur-sm border-white/10 relative">
+            <Card className="w-full relative">
                 <CardHeader>
                     <div className="flex justify-center items-center mb-4">
                         {stepTitles.map((title, index) => (
@@ -670,7 +670,7 @@ export function QuoteCalculator() {
                                     </div>
                                     <p className={cn(
                                         `mt-2 text-xs md:text-sm font-medium transition-colors hidden md:block`,
-                                        index + 1 <= step ? 'text-primary-foreground' : 'text-muted-foreground'
+                                        index + 1 <= step ? 'text-foreground' : 'text-muted-foreground'
                                     )}>{title}</p>
                                 </div>
                                 {index < stepTitles.length - 1 && (
@@ -685,7 +685,7 @@ export function QuoteCalculator() {
                     {renderStep()}
                 </CardContent>
                 {(step > 1 || (step === 1 && formData.serviceType)) && (
-                    <CardFooter className="flex items-center justify-between gap-4 p-6 bg-transparent">
+                    <CardFooter className="flex items-center justify-between gap-4 p-6 bg-background/80 backdrop-blur-sm sticky -bottom-1 -mx-6 -mb-6 rounded-b-lg border-t mt-6">
                         <div className="hidden sm:flex gap-2 w-full sm:w-auto">
                             {step > 1 && (
                                 <Button variant="outline" onClick={prevStep} size="lg" className="w-full sm:w-auto"><ArrowLeft className="mr-2 h-5 w-5"/> Previous</Button>
@@ -695,12 +695,12 @@ export function QuoteCalculator() {
                             )}
                         </div>
         
-                        <div className="fixed bottom-0 left-0 right-0 p-4 sm:static sm:p-0 flex items-center justify-center gap-2 w-full sm:w-auto z-20">
+                        <div className="flex items-center justify-center gap-2 w-full sm:w-auto">
                              {step > 1 && (
                                 <Button variant="outline" onClick={prevStep} size="lg" className="flex-1 sm:hidden shadow-lg"><ArrowLeft className="mr-2 h-5 w-5"/> Back</Button>
                             )}
                             {step < 4 ? (
-                                <Button onClick={nextStep} size="lg" className={cn("btn-glow-primary sm:w-auto shadow-lg sm:shadow-none flex-1", step === 1 && 'sm:ml-auto')}>{step === 3 ? 'See Your Quote' : 'Next'} <ArrowRight className="ml-2 h-5 w-5"/></Button>
+                                <Button onClick={nextStep} size="lg" className={cn("sm:w-auto shadow-lg sm:shadow-none flex-1", step === 1 && 'sm:ml-auto')}>{step === 3 ? 'See Your Quote' : 'Next'} <ArrowRight className="ml-2 h-5 w-5"/></Button>
                             ) : (
                                 <Button onClick={handleReset} size="lg" className="w-full sm:w-auto shadow-lg sm:shadow-none"><RotateCcw className="mr-2 h-5 w-5" /> Start New Quote</Button>
                             )}
@@ -709,7 +709,7 @@ export function QuoteCalculator() {
                 )}
             </Card>
         </div>
-        <div className="hidden lg:block lg:col-span-1">
+        <div className="hidden lg:block lg:col-span-1 sticky top-20">
             <QuoteSummary quoteDetails={quoteDetails} formData={formData} />
         </div>
       </div>
