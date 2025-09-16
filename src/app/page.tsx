@@ -34,7 +34,10 @@ export default function Home() {
           alt={`Sphere ${sphere.id}`}
           width={sphere.size}
           height={sphere.size}
-          className="rounded-full object-cover shadow-2xl border-2 border-white/20 shadow-white/20"
+          className="rounded-full object-cover border-2 border-white/20"
+          style={{
+            boxShadow: '0 0 75px -12px rgba(255, 255, 255, 0.3)'
+          }}
           data-ai-hint={sphere.hint}
         />
       </div>
