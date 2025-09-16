@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden -mt-20">
       {/* Background Accent */}
       <div
         aria-hidden="true"
