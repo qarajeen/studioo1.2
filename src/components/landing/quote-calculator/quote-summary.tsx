@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -64,7 +65,7 @@ export function QuoteSummary({ quoteDetails, formData }: QuoteSummaryProps) {
 
 
   return (
-    <Card className="w-full bg-card/80 backdrop-blur-sm border-white/10">
+    <Card className="w-full bg-card/50 backdrop-blur-sm border-border">
       <CardHeader>
         <CardTitle>Quote Summary</CardTitle>
         <CardDescription>Your estimated project total.</CardDescription>
@@ -103,3 +104,5 @@ export function QuoteSummary({ quoteDetails, formData }: QuoteSummaryProps) {
     </Card>
   );
 }
+
+    
