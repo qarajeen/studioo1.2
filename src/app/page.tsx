@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 
 const spheres = [
@@ -36,7 +37,7 @@ export default function Home() {
           height={sphere.size}
           className="rounded-full object-cover border-2 border-white/20"
           style={{
-            boxShadow: '0 0 75px -12px rgba(255, 255, 255, 0.3)'
+            boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.45)'
           }}
           data-ai-hint={sphere.hint}
         />
