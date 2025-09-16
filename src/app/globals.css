@@ -119,6 +119,10 @@
   .animate-float-in-5 { animation: float-in-5 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
   .animate-float-in-6 { animation: float-in-6 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
   .animate-text-fade-in { animation: text-fade-in 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.5s; }
+
+  .animate-float-1 { animation-name: float-1; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+  .animate-float-2 { animation-name: float-2; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+  .animate-float-3 { animation-name: float-3; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
 }
 
 @layer components {
