@@ -16,8 +16,8 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 312 47% 75%; /* #CE93D8 */
-    --accent-foreground: 234 31% 13%;
+    --accent: 250 45% 25%; /* Deep Dark Purple */
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
     --border: 234 31% 25%;
@@ -44,8 +44,8 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 312 47% 75%; /* #CE93D8 */
-    --accent-foreground: 234 31% 13%;
+    --accent: 250 45% 25%; /* Deep Dark Purple */
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
     --border: 234 31% 25%;
