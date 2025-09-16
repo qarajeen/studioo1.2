@@ -40,7 +40,7 @@ export default function Home() {
               alt={`Sphere ${sphere.id}`}
               width={sphere.size}
               height={sphere.size}
-              className="rounded-full object-cover shadow-2xl"
+              className="rounded-full object-cover shadow-2xl border-2 border-white/20 shadow-white/20"
               data-ai-hint={sphere.hint}
             />
           </div>
