@@ -19,8 +19,8 @@ export function SideNav() {
 
   return (
     <TooltipProvider>
-      <nav className="fixed top-1/2 right-4 transform -translate-y-1/2 z-50">
-        <ul className="flex flex-col items-center gap-4">
+      <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-card/80 backdrop-blur-sm border border-border rounded-full shadow-lg">
+        <ul className="flex items-center gap-2 p-2">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Tooltip>
@@ -31,13 +31,13 @@ export function SideNav() {
                       'flex items-center justify-center w-12 h-12 rounded-full transition-colors duration-300',
                       pathname === link.href
                         ? 'bg-primary text-primary-foreground'
-                        : 'bg-card text-muted-foreground hover:bg-primary/80 hover:text-primary-foreground'
+                        : 'bg-transparent text-muted-foreground hover:bg-primary/80 hover:text-primary-foreground'
                     )}
                   >
                     {link.icon}
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent side="left" className="bg-popover text-popover-foreground">
+                <TooltipContent side="top" className="bg-popover text-popover-foreground">
                   <p>{link.label}</p>
                 </TooltipContent>
               </Tooltip>
