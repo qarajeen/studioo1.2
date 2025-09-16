@@ -656,7 +656,7 @@ export function QuoteCalculator() {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-2 w-full">
-            <Card className="w-full relative flex flex-col">
+            <Card className="w-full relative flex flex-col min-h-[700px]">
                 <CardHeader>
                     <div className="flex justify-center items-center mb-4">
                         {stepTitles.map((title, index) => (
@@ -666,7 +666,7 @@ export function QuoteCalculator() {
                                         `w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-2`,
                                         index + 1 < step ? 'bg-primary border-primary text-primary-foreground' : 'bg-secondary border-border',
                                         index + 1 === step ? 'bg-primary border-primary text-primary-foreground animate-[float-2_15s_ease-in-out_infinite]' : '',
-                                        index + 1 === 4 ? 'animate-[float-2_15s_ease-in-out_infinite]' : ''
+                                        index + 1 === 4 ? '' : ''
                                     )}>
                                         {index + 1}
                                     </div>
@@ -683,7 +683,7 @@ export function QuoteCalculator() {
                     </div>
                     <CardTitle className="text-3xl md:text-4xl font-bold text-center pt-8">{step === 4 ? 'Your Quote is Ready' : `Step ${step}: ${stepTitles[step-1]}`}</CardTitle>
                 </CardHeader>
-                <CardContent className="min-h-[350px] flex-grow">
+                <CardContent className="flex-grow">
                     {renderStep()}
                 </CardContent>
                 {(step > 1 || (step === 1 && formData.serviceType)) && (
@@ -717,5 +717,7 @@ export function QuoteCalculator() {
       </div>
     );
 }
+
+    
 
     
