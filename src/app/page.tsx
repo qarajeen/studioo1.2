@@ -37,7 +37,7 @@ export default function Home() {
           height={sphere.size}
           className="rounded-full object-cover border-2 border-white/20"
           style={{
-            boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.45)'
+            boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.75)'
           }}
           data-ai-hint={sphere.hint}
         />
@@ -53,7 +53,10 @@ export default function Home() {
       </div>
       
       <main className="relative z-20 flex flex-col items-center justify-center text-center">
-        <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black tracking-tighter text-foreground uppercase animate-text-fade-in opacity-0">
+        <h1 
+          className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black tracking-tight text-foreground uppercase animate-text-fade-in opacity-0"
+          style={{ textShadow: '8px 8px 0px rgba(0,0,0,0.4)' }}
+        >
           Studioo
         </h1>
       </main>
