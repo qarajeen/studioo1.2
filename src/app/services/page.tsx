@@ -49,7 +49,7 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full py-12 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div className="relative min-h-screen w-full py-12 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden pb-32 sm:pb-20">
       
       <div className="absolute inset-0 w-full h-full z-0">
         {renderSpheres(spheres)}
