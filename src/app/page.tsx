@@ -73,7 +73,7 @@ export default function Home() {
       
       <main className="relative z-20 flex flex-col items-center justify-center text-center">
         <div className="relative">
-          <span className="absolute top-0 left-0 -translate-y-1/2 -translate-x-full/2 text-lg sm:text-xl md:text-2xl text-foreground font-display whitespace-nowrap animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s'}}>
+          <span className="absolute top-0 left-0 -translate-y-1/2 -translate-x-full/2 text-lg sm:text-xl md:text-2xl text-foreground font-display whitespace-nowrap animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Dubai Production
           </span>
           <h1 
@@ -82,7 +82,7 @@ export default function Home() {
           >
             Studioo
           </h1>
-          <span className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display whitespace-nowrap animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s'}}>
+          <span className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display whitespace-nowrap animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Powered by ADHD
           </span>
         </div>
