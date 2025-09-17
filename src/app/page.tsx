@@ -16,8 +16,6 @@ const spheres = [
 ];
 
 export default function Home() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
-  
   const backgroundSpheres = spheres.filter(s => s.z < 20);
   const foregroundSpheres = spheres.filter(s => s.z >= 20);
 
@@ -33,10 +31,7 @@ export default function Home() {
           left: sphere.left,
           animation: `${sphere.animation} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
           animationDelay: `${sphere.delay}, 1s`,
-          animationPlayState: hoveredId === sphere.id ? 'paused' : 'running',
         }}
-        onMouseEnter={() => setHoveredId(sphere.id)}
-        onMouseLeave={() => setHoveredId(null)}
       >
         <div 
           className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20"
@@ -54,10 +49,6 @@ export default function Home() {
               data-ai-hint={sphere.hint}
             />
           </div>
-          {hoveredId === sphere.id && (
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-full transition-opacity duration-300">
-            </div>
-          )}
         </div>
       </div>
     ));
