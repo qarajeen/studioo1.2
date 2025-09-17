@@ -16,7 +16,7 @@ const luckiestGuy = Luckiest_Guy({
 });
 
 export const metadata: Metadata = {
-  title: 'Studioo - Visual Production Agency',
+  title: 'Production House Dubai | Creative Video & Photo | STUDIOO',
   description: 'A visual production agency with a creative superpower.',
 };
 
