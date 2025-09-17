@@ -1,4 +1,7 @@
 
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 
 const spheres = [
@@ -13,6 +16,8 @@ const spheres = [
 ];
 
 export default function Home() {
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  
   const backgroundSpheres = spheres.filter(s => s.z < 20);
   const foregroundSpheres = spheres.filter(s => s.z >= 20);
 
@@ -20,17 +25,21 @@ export default function Home() {
     return sphereList.map((sphere) => (
       <div
         key={sphere.id}
-        className={'absolute opacity-0 rounded-full'}
+        className={'absolute opacity-0 rounded-full cursor-pointer'}
         style={{
           width: sphere.size,
           height: sphere.size,
           top: sphere.top,
           left: sphere.left,
           animation: `${sphere.animation} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
-          animationDelay: `${sphere.delay}, 1s`
+          animationDelay: `${sphere.delay}, 1s`,
+          animationPlayState: hoveredId === sphere.id ? 'paused' : 'running',
         }}
+        onMouseEnter={() => setHoveredId(sphere.id)}
+        onMouseLeave={() => setHoveredId(null)}
       >
-        <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/20"
+        <div 
+          className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20"
           style={{
             boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.75)'
           }}
@@ -40,9 +49,14 @@ export default function Home() {
             alt={`Sphere ${sphere.id}`}
             width={sphere.size}
             height={sphere.size}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full rounded-full"
             data-ai-hint={sphere.hint}
           />
+          {hoveredId === sphere.id && (
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-full transition-opacity duration-300">
+              <span className="text-white text-center text-sm sm:text-base font-semibold capitalize p-4">{sphere.hint}</span>
+            </div>
+          )}
         </div>
       </div>
     ));
