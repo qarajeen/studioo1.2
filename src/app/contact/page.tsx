@@ -39,7 +39,7 @@ export default function ContactPage() {
     return sphereList.map((sphere) => (
       <div
         key={sphere.id}
-        className={'absolute opacity-0'}
+        className={'absolute opacity-0 rounded-full'}
         style={{
           width: sphere.size,
           height: sphere.size,
