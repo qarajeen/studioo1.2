@@ -50,7 +50,7 @@ export default function ContactPage() {
         }}
       >
         <Image
-          src={`https://picsum.photos/seed/contactbubble${sphere.id}/${sphere.size}/${sphere.size}`}
+          src={`/sphere${sphere.id}.png`}
           alt={`Sphere ${sphere.id}`}
           width={sphere.size}
           height={sphere.size}

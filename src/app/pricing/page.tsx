@@ -1,3 +1,4 @@
+
 "use client";
 
 import { ClientQuoteCalculator } from '@/components/landing/client-quote-calculator';
@@ -31,7 +32,7 @@ export default function PricingPage() {
         }}
       >
         <Image
-          src={`https://picsum.photos/seed/pricingbubble${sphere.id}/${sphere.size}/${sphere.size}`}
+          src={`/sphere${sphere.id}.png`}
           alt={`Sphere ${sphere.id}`}
           width={sphere.size}
           height={sphere.size}
