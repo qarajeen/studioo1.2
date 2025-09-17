@@ -1,7 +1,11 @@
 import type {NextConfig} from 'next';
 
+const repoName = 'wrh-quote1';
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  basePath: `/${repoName}`,
+  assetPrefix: `/${repoName}`,
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -9,6 +13,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
