@@ -111,7 +111,34 @@
     0%, 100% { transform: translateY(0) translateX(0); }
     50% { transform: translateY(-10px) translateX(15px); }
   }
-
+  @keyframes move-around-1 {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(40px, -60px) scale(1.1); }
+    50% { transform: translate(-20px, 50px) scale(0.9); }
+    75% { transform: translate(60px, 20px) scale(1.05); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes move-around-2 {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-50px, 30px) scale(0.95); }
+    50% { transform: translate(30px, -40px) scale(1.1); }
+    75% { transform: translate(-40px, -20px) scale(1); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes move-around-3 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20vw, 15vh) rotate(45deg) scale(0.9); }
+    50% { transform: translate(-15vw, -10vh) rotate(-30deg) scale(1.1); }
+    75% { transform: translate(10vw, -20vh) rotate(15deg) scale(1); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  @keyframes move-around-4 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(-25vw, 10vh) rotate(-25deg) scale(1.1); }
+    50% { transform: translate(10vw, -15vh) rotate(35deg) scale(0.9); }
+    75% { transform: translate(-15vw, 20vh) rotate(-10deg) scale(1); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
   .animate-text-fade-in { animation: text-fade-in 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.5s; }
 
 }
