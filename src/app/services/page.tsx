@@ -34,7 +34,7 @@ export default function ServicesPage() {
         }}
       >
         <Image
-          src={`https://picsum.photos/seed/${sphere.id}/${sphere.size}/${sphere.size}`}
+          src={`/sphere${sphere.id}.jpg`}
           alt={`Sphere ${sphere.id}`}
           width={sphere.size}
           height={sphere.size}
