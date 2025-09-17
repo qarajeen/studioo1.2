@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 const spheres = [
   { id: 1, size: 150, top: '15%', left: '10%', animation: 'float-in-1', floatAnimation: 'move-around-1', duration: '18s', delay: '0.1s', z: 5, hint: 'abstract shapes' },
@@ -64,16 +65,16 @@ export default function Home() {
       
       <main className="relative z-20 flex flex-col items-center justify-center text-center">
         <div className="relative">
-          <span className="absolute top-0 left-0 -translate-y-full text-center w-full sm:-translate-y-1/2 sm:-translate-x-1/2 sm:w-auto text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+          <span className="absolute top-0 left-0 -translate-y-full w-full text-center sm:text-left sm:w-auto sm:-translate-y-1/2 sm:-translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_2px_20px_rgba(255,255,255,0.8)]" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Dubai Production
           </span>
           <h1 
-            className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground mix-blend-screen animate-text-fade-in opacity-0"
+            className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground mix-blend-screen animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_4px_40px_rgba(255,255,255,0.7)]"
             style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
           >
             Studioo
           </h1>
-          <span className="absolute bottom-0 right-0 translate-y-full text-center w-full sm:w-auto sm:translate-y-1/2 sm:translate-x-1/2 text-base sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+          <span className="absolute bottom-0 right-0 translate-y-full w-full text-center sm:w-auto sm:text-right sm:translate-y-1/2 sm:translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_2px_20px_rgba(255,255,255,0.8)]" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Powered by ADHD
           </span>
         </div>
@@ -85,3 +86,4 @@ export default function Home() {
     </div>
   );
 }
+
