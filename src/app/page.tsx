@@ -31,7 +31,7 @@ export default function Home() {
         }}
       >
         <Image
-          src={`https://picsum.photos/seed/sphere${sphere.id}/${sphere.size}/${sphere.size}`}
+          src={`/sphere${sphere.id}.png`}
           alt={`Sphere ${sphere.id}`}
           width={sphere.size}
           height={sphere.size}
@@ -54,7 +54,7 @@ export default function Home() {
       
       <main className="relative z-20 flex flex-col items-center justify-center text-center">
         <h1 
-          className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground animate-text-fade-in opacity-0"
+          className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground mix-blend-screen animate-text-fade-in opacity-0"
           style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
         >
           Studioo
