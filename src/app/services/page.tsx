@@ -33,17 +33,20 @@ export default function ServicesPage() {
           animationDelay: `${sphere.delay}, 1s`
         }}
       >
-        <Image
-          src={`/sphere${sphere.id}.jpg`}
-          alt={`Sphere ${sphere.id}`}
-          width={sphere.size}
-          height={sphere.size}
-          className="rounded-full object-cover border-2 border-white/20"
+        <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/20"
           style={{
             boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.75)'
           }}
-          data-ai-hint={sphere.hint}
-        />
+        >
+          <Image
+            src={`/sphere${sphere.id}.jpg`}
+            alt={`Sphere ${sphere.id}`}
+            width={sphere.size}
+            height={sphere.size}
+            className="object-cover w-full h-full"
+            data-ai-hint={sphere.hint}
+          />
+        </div>
       </div>
     ));
   }
