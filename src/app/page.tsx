@@ -44,6 +44,7 @@ export default function Home() {
                         height={sphere.size}
                         className="object-cover w-full h-full rounded-full"
                         data-ai-hint={sphere.hint}
+                        priority={sphere.size > 180}
                     />
                 </div>
             </div>
