@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 
-const repoName = process.env.NODE_ENV === 'production' ? '/wrh-quote1' : '';
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1' : '';
 
 const nextConfig: NextConfig = {
   output: 'export',
