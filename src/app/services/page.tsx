@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Creative Media Production Services in Dubai | STUDIOO',
+  description: 'STUDIOO is a Dubai-based media production house offering video production, photography, post-production, time lapse & 360° tours. Powered by ADHD for unmatched creativity. Contact us',
 };
 
 const spheres = [
