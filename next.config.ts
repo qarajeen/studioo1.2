@@ -1,3 +1,4 @@
+
 import type { NextConfig } from 'next';
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
