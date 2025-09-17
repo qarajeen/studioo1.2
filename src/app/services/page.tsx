@@ -88,11 +88,11 @@ export default function ServicesPage() {
                 data-ai-hint={service.imageHint}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end transition-all duration-300">
-                <h3 className="text-2xl font-bold text-white transition-transform duration-300 transform-gpu group-hover:-translate-y-2">{service.title}</h3>
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col justify-end transition-all duration-300">
+                <h3 className="text-xl md:text-2xl font-bold text-white transition-transform duration-300 transform-gpu group-hover:-translate-y-2">{service.title}</h3>
                 <div className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-40 transition-all duration-500 overflow-hidden">
-                    <p className="mt-2 text-sm md:text-base text-white/80 leading-relaxed">{service.description}</p>
-                    <Button asChild variant="secondary" className="mt-4 w-full py-2 px-4 h-auto">
+                    <p className="mt-2 text-sm text-white/80 leading-relaxed">{service.description}</p>
+                    <Button asChild variant="secondary" className="mt-4 w-full py-2 px-4 h-auto text-sm">
                         <Link href="/pricing">
                             Get a Quote
                             <ArrowRight className="ml-2 h-4 w-4" />
