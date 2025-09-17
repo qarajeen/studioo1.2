@@ -20,7 +20,7 @@ export default function Home() {
     return sphereList.map((sphere) => (
       <div
         key={sphere.id}
-        className={'absolute opacity-0 mix-blend-screen rounded-full'}
+        className={'absolute opacity-0 rounded-full'}
         style={{
           width: sphere.size,
           height: sphere.size,
