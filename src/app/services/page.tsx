@@ -34,7 +34,7 @@ export default function ServicesPage() {
         }}
       >
         <Image
-          src={`/sphere${sphere.id}.png`}
+          src={`https://picsum.photos/seed/${sphere.id}/${sphere.size}/${sphere.size}`}
           alt={`Sphere ${sphere.id}`}
           width={sphere.size}
           height={sphere.size}
@@ -68,7 +68,7 @@ export default function ServicesPage() {
             <div
               key={service.id}
               className={cn(
-                'group relative rounded-xl overflow-hidden backdrop-blur-sm bg-card/50 border border-border',
+                'group relative rounded-xl overflow-hidden',
                 index === 0 ? 'lg:col-span-3' : '',
                 index === 1 ? 'lg:col-span-2' : '',
                 index === 2 ? 'lg:col-span-2' : '',

@@ -31,7 +31,7 @@ export default function Home() {
         }}
       >
         <Image
-          src={`/sphere${sphere.id}.png`}
+          src={`https://picsum.photos/seed/${sphere.id}/${sphere.size}/${sphere.size}`}
           alt={`Sphere ${sphere.id}`}
           width={sphere.size}
           height={sphere.size}
