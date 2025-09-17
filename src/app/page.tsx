@@ -56,7 +56,6 @@ export default function Home() {
           </div>
           {hoveredId === sphere.id && (
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-full transition-opacity duration-300">
-              <span className="text-white text-center text-sm sm:text-base font-semibold capitalize p-4">{sphere.hint}</span>
             </div>
           )}
         </div>
