@@ -35,6 +35,7 @@ export function SideNav() {
                     )}
                   >
                     {link.icon}
+                    <span className="sr-only">{link.label}</span>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent side="top" className="bg-popover text-popover-foreground">
