@@ -61,7 +61,7 @@ export default function ServicesPage() {
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold">Our Services</h1>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-foreground" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             We channel our unique creative energy into a range of visual production services, delivering exceptional results that capture the essence of your story.
           </p>
         </div>
