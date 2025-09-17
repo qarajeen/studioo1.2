@@ -55,7 +55,7 @@ export default function Home() {
       <main className="relative z-20 flex flex-col items-center justify-center text-center">
         <h1 
           className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground animate-text-fade-in opacity-0"
-          style={{ textShadow: '8px 8px 0px rgba(0,0,0,0.4)' }}
+          style={{ textShadow: '4px 4px 15px rgba(0,0,0,0.5)' }}
         >
           Studioo
         </h1>
