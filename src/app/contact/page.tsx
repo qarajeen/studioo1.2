@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Pencil } from 'lucide-react';
+import { Mail, Pencil, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -95,6 +95,10 @@ export default function ContactPage() {
               <div className="flex items-center gap-4">
                 <WhatsAppIcon className="h-6 w-6 text-primary" />
                 <a href="https://wa.me/971586583939" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">+971 58 658 3939</a>
+              </div>
+              <div className="flex items-center gap-4">
+                <Linkedin className="h-6 w-6 text-primary" />
+                <a href="https://www.linkedin.com/company/productionstudioo/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">LinkedIn</a>
               </div>
             </CardContent>
           </Card>
