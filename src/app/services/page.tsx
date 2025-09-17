@@ -5,6 +5,11 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Creative Media Production Services in Dubai | STUDIOO',
+};
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
