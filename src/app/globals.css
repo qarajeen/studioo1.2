@@ -100,44 +100,57 @@
     100% { opacity: 1; letter-spacing: normal; }
   }
   @keyframes float-1 {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-20px) scale(1.05); }
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    25% { transform: translate(5px, 10px) rotate(3deg) scale(1.02); }
+    50% { transform: translate(-5px, -10px) rotate(-3deg) scale(1); }
+    75% { transform: translate(10px, -5px) rotate(5deg) scale(0.98); }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); }
   }
   @keyframes float-2 {
-    0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-    50% { transform: translateY(15px) translateX(-10px) scale(0.95); }
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    25% { transform: translate(-10px, 5px) rotate(-4deg) scale(0.95); }
+    50% { transform: translate(10px, 10px) rotate(4deg) scale(1.05); }
+    75% { transform: translate(5px, -10px) rotate(-2deg) scale(1); }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); }
   }
   @keyframes float-3 {
-    0%, 100% { transform: translateY(0) translateX(0) scale(1.1); }
-    50% { transform: translateY(-10px) translateX(15px) scale(1); }
+    0% { transform: translate(0, 0) rotate(0deg) scale(1.05); }
+    25% { transform: translate(10px, -10px) rotate(-2deg) scale(1); }
+    50% { transform: translate(-10px, 10px) rotate(2deg) scale(1.1); }
+    75% { transform: translate(-5px, 5px) rotate(3deg) scale(1); }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1.05); }
   }
   @keyframes move-around-1 {
-    0% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(40px, -60px) scale(1.1); }
-    50% { transform: translate(-20px, 50px) scale(0.8); }
-    75% { transform: translate(60px, 20px) scale(1.05); }
-    100% { transform: translate(0, 0) scale(1); }
+    0% { transform: translate(0vw, 0vh) scale(1) rotate(0deg); }
+    20% { transform: translate(5vw, -10vh) scale(1.1) rotate(5deg); }
+    40% { transform: translate(-8vw, 8vh) scale(0.9) rotate(-3deg); }
+    60% { transform: translate(10vw, 5vh) scale(1.05) rotate(2deg); }
+    80% { transform: translate(-5vw, -8vh) scale(0.95) rotate(-5deg); }
+    100% { transform: translate(0vw, 0vh) scale(1) rotate(0deg); }
   }
   @keyframes move-around-2 {
-    0% { transform: translate(0, 0) scale(0.9); }
-    25% { transform: translate(-50px, 30px) scale(0.95); }
-    50% { transform: translate(30px, -40px) scale(1.1); }
-    75% { transform: translate(-40px, -20px) scale(1); }
-    100% { transform: translate(0, 0) scale(0.9); }
+    0% { transform: translate(0vw, 0vh) scale(0.95) rotate(0deg); }
+    20% { transform: translate(-6vw, 9vh) scale(1) rotate(-4deg); }
+    40% { transform: translate(7vw, -5vh) scale(1.1) rotate(3deg); }
+    60% { transform: translate(-9vw, -6vh) scale(0.9) rotate(6deg); }
+    80% { transform: translate(4vw, 7vh) scale(1.05) rotate(-2deg); }
+    100% { transform: translate(0vw, 0vh) scale(0.95) rotate(0deg); }
   }
   @keyframes move-around-3 {
-    0% { transform: translate(0, 0) rotate(0deg) scale(0.95); }
-    25% { transform: translate(20vw, 15vh) rotate(15deg) scale(0.8); }
-    50% { transform: translate(-15vw, -10vh) rotate(-10deg) scale(1.1); }
-    75% { transform: translate(10vw, -20vh) rotate(5deg) scale(1); }
-    100% { transform: translate(0, 0) rotate(0deg) scale(0.95); }
+    0% { transform: translate(0vw, 0vh) rotate(0deg) scale(0.9); }
+    20% { transform: translate(8vw, 12vh) rotate(6deg) scale(0.8); }
+    40% { transform: translate(-10vw, -8vh) rotate(-4deg) scale(1.1); }
+    60% { transform: translate(5vw, -10vh) rotate(2deg) scale(1); }
+    80% { transform: translate(-12vw, 5vh) rotate(-5deg) scale(0.95); }
+    100% { transform: translate(0vw, 0vh) rotate(0deg) scale(0.9); }
   }
   @keyframes move-around-4 {
-    0% { transform: translate(0, 0) rotate(0deg) scale(1.05); }
-    25% { transform: translate(-25vw, 10vh) rotate(-10deg) scale(1.1); }
-    50% { transform: translate(10vw, -15vh) rotate(20deg) scale(0.85); }
-    75% { transform: translate(-15vw, 20vh) rotate(-5deg) scale(1); }
-    100% { transform: translate(0, 0) rotate(0deg) scale(1.05); }
+    0% { transform: translate(0vw, 0vh) rotate(0deg) scale(1.1); }
+    20% { transform: translate(-10vw, 8vh) rotate(-5deg) scale(1.15); }
+    40% { transform: translate(8vw, -12vh) rotate(8deg) scale(0.9); }
+    60% { transform: translate(-12vw, 10vh) rotate(-3deg) scale(1.05); }
+    80% { transform: translate(10vw, -5vh) rotate(5deg) scale(1); }
+    100% { transform: translate(0vw, 0vh) rotate(0deg) scale(1.1); }
   }
   .animate-text-fade-in { animation: text-fade-in 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.5s; }
 
