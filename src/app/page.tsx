@@ -73,9 +73,9 @@ export default function Home() {
           >
             Studioo
           </h1>
-          <Link href="/contact" className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display whitespace-nowrap animate-text-fade-in opacity-0 hover:text-primary transition-colors" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+          <span className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display whitespace-nowrap animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Powered by ADHD
-          </Link>
+          </span>
         </div>
       </main>
 
