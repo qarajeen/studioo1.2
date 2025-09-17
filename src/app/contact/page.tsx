@@ -33,6 +33,7 @@ const spheres = [
   { id: 8, size: 90, top: '85%', left: '15%', animation: 'float-in-3', floatAnimation: 'float-2', duration: '10s', delay: '0.7s', hint: 'user portrait' },
 ];
 
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
 
 export default function ContactPage() {
   const renderSpheres = (sphereList: typeof spheres) => {
@@ -55,7 +56,7 @@ export default function ContactPage() {
           }}
         >
           <Image
-            src={`/sphere${sphere.id}.jpg`}
+            src={`${repoName}/sphere${sphere.id}.jpg`}
             alt={`Sphere ${sphere.id}`}
             width={sphere.size}
             height={sphere.size}
