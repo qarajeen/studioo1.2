@@ -70,12 +70,20 @@ export default function Home() {
       </div>
       
       <main className="relative z-20 flex flex-col items-center justify-center text-center">
-        <h1 
-          className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground mix-blend-screen animate-text-fade-in opacity-0"
-          style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
-        >
-          Studioo
-        </h1>
+        <div className="relative">
+          <span className="absolute top-0 left-0 -translate-y-1/2 -translate-x-full/2 text-sm sm:text-base md:text-lg text-muted-foreground font-body whitespace-nowrap animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s'}}>
+            Dubai Production
+          </span>
+          <h1 
+            className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground mix-blend-screen animate-text-fade-in opacity-0"
+            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
+          >
+            Studioo
+          </h1>
+          <span className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 text-sm sm:text-base md:text-lg text-muted-foreground font-body whitespace-nowrap animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s'}}>
+            Powered by ADHD
+          </span>
+        </div>
       </main>
 
       <div className="absolute inset-0 w-full h-full z-30">
