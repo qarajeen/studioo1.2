@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const spheres = [
   { id: 1, size: 150, top: '15%', left: '10%', animation: 'float-in-1', floatAnimation: 'move-around-1', duration: '18s', delay: '0.1s', z: 5, hint: 'abstract shapes' },
@@ -21,36 +22,36 @@ export default function Home() {
 
   const renderSpheres = (sphereList: typeof spheres) => {
     return sphereList.map((sphere) => (
-      <div
-        key={sphere.id}
-        className={'absolute opacity-0 rounded-full cursor-pointer'}
-        style={{
-          width: sphere.size,
-          height: sphere.size,
-          top: sphere.top,
-          left: sphere.left,
-          animation: `${sphere.animation} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
-          animationDelay: `${sphere.delay}, 1s`,
-        }}
-      >
-        <div 
-          className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20"
-          style={{
-            boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.75)'
-          }}
+        <div
+            key={sphere.id}
+            className={'absolute opacity-0 rounded-full cursor-pointer'}
+            style={{
+                width: sphere.size,
+                height: sphere.size,
+                top: sphere.top,
+                left: sphere.left,
+                animation: `${sphere.animation} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
+                animationDelay: `${sphere.delay}, 1s`,
+            }}
         >
-          <div className="w-full h-full rounded-full overflow-hidden">
-            <Image
-              src={`/sphere${sphere.id}.jpg`}
-              alt={`Sphere ${sphere.id}`}
-              width={sphere.size}
-              height={sphere.size}
-              className="object-cover w-full h-full rounded-full"
-              data-ai-hint={sphere.hint}
-            />
-          </div>
+            <div 
+                className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20"
+                style={{
+                    boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.75)'
+                }}
+            >
+                <div className="w-full h-full rounded-full overflow-hidden">
+                    <Image
+                        src={`/sphere${sphere.id}.jpg`}
+                        alt={`Sphere ${sphere.id}`}
+                        width={sphere.size}
+                        height={sphere.size}
+                        className="object-cover w-full h-full rounded-full"
+                        data-ai-hint={sphere.hint}
+                    />
+                </div>
+            </div>
         </div>
-      </div>
     ));
   }
 
@@ -72,9 +73,9 @@ export default function Home() {
           >
             Studioo
           </h1>
-          <span className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display whitespace-nowrap animate-text-fade-in opacity-0" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+          <Link href="/contact" className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display whitespace-nowrap animate-text-fade-in opacity-0 hover:text-primary transition-colors" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Powered by ADHD
-          </span>
+          </Link>
         </div>
       </main>
 
