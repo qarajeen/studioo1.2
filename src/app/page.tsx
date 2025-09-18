@@ -131,7 +131,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
       
-      <main className="relative z-10 flex flex-col items-center justify-center text-center">
+      <main className="relative z-20 flex flex-col items-center justify-center text-center">
         <div className="relative">
           <span className="absolute top-0 left-0 w-full text-center sm:w-auto -translate-y-full sm:-translate-y-1/2 sm:-translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_2px_20px_rgba(255,255,255,0.8)]" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Dubai Production
@@ -156,7 +156,7 @@ export default function Home() {
         )}
       </main>
       
-      <div className="absolute inset-0 w-full h-full z-20">
+      <div className="absolute inset-0 w-full h-full z-10">
         {renderSpheres()}
       </div>
 
