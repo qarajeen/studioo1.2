@@ -103,14 +103,12 @@ export default function Home() {
                     top: sphere.top,
                     left: sphere.left,
                     touchAction: 'none',
+                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.3), 0 10px 30px rgba(0,0,0,0.4)',
                     ...styles,
                 }}
             >
                 <div 
-                    className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20"
-                    style={{
-                        boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.75)'
-                    }}
+                    className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10"
                 >
                     <div className="w-full h-full rounded-full overflow-hidden">
                         <Image
@@ -133,7 +131,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
       
-      <main className="relative z-10 flex flex-col items-center justify-center text-center">
+      <main className="relative z-0 flex flex-col items-center justify-center text-center">
         <div className="relative">
           <span className="absolute top-0 left-0 w-full text-center sm:w-auto -translate-y-full sm:-translate-y-1/2 sm:-translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_2px_20px_rgba(255,255,255,0.8)]" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Dubai Production
