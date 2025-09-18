@@ -74,18 +74,11 @@ export default function ServicesPage() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {services.map((service, index) => (
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service) => (
             <div
               key={service.id}
-              className={cn(
-                'group relative rounded-xl overflow-hidden',
-                index === 0 ? 'lg:col-span-3' : '',
-                index === 1 ? 'lg:col-span-2' : '',
-                index === 2 ? 'lg:col-span-2' : '',
-                index === 3 ? 'lg:col-span-3' : '',
-                index === 4 ? 'lg:col-span-5' : ''
-              )}
+              className='group relative rounded-xl overflow-hidden'
             >
               <Image
                 src={service.imageUrl}
