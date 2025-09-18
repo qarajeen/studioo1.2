@@ -8,9 +8,9 @@ import { useDrag } from '@use-gesture/react';
 import { useRef, useEffect, useState } from 'react';
 
 const spheres = [
-  { id: 1, size: 300, top: '25%', left: '35%', hint: 'abstract shapes' },
-  { id: 2, size: 250, top: '15%', left: '50%', hint: 'data analytics' },
-  { id: 3, size: 300, top: '45%', left: '45%', hint: 'minimalist lamp' },
+  { id: 1, size: 260, top: '25%', left: '35%', hint: 'abstract shapes' },
+  { id: 2, size: 220, top: '15%', left: '50%', hint: 'data analytics' },
+  { id: 3, size: 260, top: '45%', left: '45%', hint: 'minimalist lamp' },
   { id: 4, size: 240, top: '55%', left: '25%', hint: 'code snippet' },
   { id: 5, size: 200, top: '60%', left: '40%', hint: 'wireframe globe' },
   { id: 6, size: 180, top: '40%', left: '65%', hint: 'blurry gradient' },
@@ -131,7 +131,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
       
-      <main className="relative z-0 flex flex-col items-center justify-center text-center">
+      <main className="relative z-10 flex flex-col items-center justify-center text-center">
         <div className="relative">
           <span className="absolute top-0 left-0 w-full text-center sm:w-auto -translate-y-full sm:-translate-y-1/2 sm:-translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_2px_20px_rgba(255,255,255,0.8)]" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Dubai Production
