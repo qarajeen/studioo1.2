@@ -5,8 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSprings, animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useContext } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { NavContext } from '@/contexts/nav-context';
 
 const spheresData = [
   { id: 1, size: 240, top: '25%', left: '35%', hint: 'abstract shapes' },
@@ -31,10 +32,14 @@ export default function Home() {
     const positions = useRef(spheres.map(() => ({ x: 0, y: 0 }))).current;
     const [hasDragged, setHasDragged] = useState(false);
     const [isClient, setIsClient] = useState(false);
+    const { setNavVisible } = useContext(NavContext);
+
 
     useEffect(() => {
         setIsClient(true);
-    }, []);
+        setNavVisible(false); // Initially hide the nav
+        return () => setNavVisible(true); // Show nav on component unmount
+    }, [setNavVisible]);
 
     const [springs, api] = useSprings(spheres.length, i => ({
         x: positions[i].x, 
@@ -77,6 +82,7 @@ export default function Home() {
     const bind = useDrag(({ args: [index], down, movement: [mx, my], first }) => {
         if (first && !hasDragged) {
             setHasDragged(true);
+            setNavVisible(true); // Show nav on first drag
         }
 
         const newX = mx;

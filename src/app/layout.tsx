@@ -1,8 +1,10 @@
+
 import type { Metadata } from 'next';
 import { Inter, Luckiest_Guy } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import { ClientLayout } from '@/components/layout/client-layout';
 import './globals.css';
+import { cn } from '@/lib/utils';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${luckiestGuy.variable}`}>
+      <body className={cn(inter.variable, luckiestGuy.variable, "font-body")}>
         <ClientLayout>{children}</ClientLayout>
         <Toaster />
       </body>
