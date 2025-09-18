@@ -32,7 +32,7 @@ export default function Home() {
     const positions = useRef(spheres.map(() => ({ x: 0, y: 0 }))).current;
     const [hasDragged, setHasDragged] = useState(false);
     const [isClient, setIsClient] = useState(false);
-    const { setNavVisible } = useContext(NavContext);
+    const { navVisible, setNavVisible } = useContext(NavContext);
 
 
     useEffect(() => {
@@ -82,7 +82,9 @@ export default function Home() {
     const bind = useDrag(({ args: [index], down, movement: [mx, my], first }) => {
         if (first && !hasDragged) {
             setHasDragged(true);
-            setNavVisible(true); // Show nav on first drag
+            if (!navVisible) {
+                setNavVisible(true); // Show nav on first drag
+            }
         }
 
         const newX = mx;
