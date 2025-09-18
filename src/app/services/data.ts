@@ -1,9 +1,10 @@
+
 export const services = [
   {
     id: 'photography',
     title: 'Photography',
     description: 'Capturing moments with a unique perspective, our photography service turns the ordinary into the extraordinary.',
-    imageUrl: 'https://picsum.photos/seed/photography-service/800/600',
+    imageUrl: '/studioo1.1/sphere20.jpg',
     imageHint: 'professional camera'
   },
   {
