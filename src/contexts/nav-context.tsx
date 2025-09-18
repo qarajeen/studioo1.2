@@ -10,12 +10,12 @@ type NavContextType = {
 };
 
 export const NavContext = createContext<NavContextType>({
-  navVisible: true,
+  navVisible: false,
   setNavVisible: () => {},
 });
 
 export function NavProvider({ children }: { children: React.ReactNode }) {
-  const [navVisible, setNavVisible] = useState(true);
+  const [navVisible, setNavVisible] = useState(false);
 
   const value = useMemo(() => ({
     navVisible,
