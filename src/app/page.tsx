@@ -8,14 +8,14 @@ import { useDrag } from '@use-gesture/react';
 import { useRef, useEffect } from 'react';
 
 const spheres = [
-  { id: 1, size: 150, top: '15%', left: '10%', hint: 'abstract shapes' },
-  { id: 2, size: 250, top: '10%', left: '60%', hint: 'data analytics' },
-  { id: 3, size: 100, top: '25%', left: '40%', hint: 'minimalist lamp' },
-  { id: 4, size: 120, top: '50%', left: '5%', hint: 'code snippet' },
-  { id: 5, size: 200, top: '60%', left: '30%', hint: 'wireframe globe' },
-  { id: 6, size: 180, top: '45%', left: '75%', hint: 'blurry gradient' },
-  { id: 7, size: 80, top: '75%', left: '85%', hint: 'purple crystal' },
-  { id: 8, size: 90, top: '80%', left: '15%', hint: 'user portrait' },
+  { id: 1, size: 150, top: '25%', left: '35%', hint: 'abstract shapes' },
+  { id: 2, size: 250, top: '15%', left: '50%', hint: 'data analytics' },
+  { id: 3, size: 100, top: '45%', left: '45%', hint: 'minimalist lamp' },
+  { id: 4, size: 120, top: '55%', left: '25%', hint: 'code snippet' },
+  { id: 5, size: 200, top: '60%', left: '40%', hint: 'wireframe globe' },
+  { id: 6, size: 180, top: '40%', left: '65%', hint: 'blurry gradient' },
+  { id: 7, size: 80, top: '75%', left: '75%', hint: 'purple crystal' },
+  { id: 8, size: 90, top: '80%', left: '30%', hint: 'user portrait' },
 ];
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
