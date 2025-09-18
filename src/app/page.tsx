@@ -26,32 +26,67 @@ const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
 export default function Home() {
     const positions = useRef(spheres.map(() => ({ x: 0, y: 0 }))).current;
     const [hasDragged, setHasDragged] = useState(false);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const [springs, api] = useSprings(spheres.length, i => ({
-        x: 0, 
-        y: 0,
+        x: positions[i].x, 
+        y: positions[i].y,
         scale: 1,
         rotateZ: 0,
         config: { mass: 2, tension: 150, friction: 20 }
     }));
+    
+    useEffect(() => {
+        if (isClient) {
+            try {
+                const storedPositions = localStorage.getItem('spherePositions');
+                if (storedPositions) {
+                    const parsedPositions = JSON.parse(storedPositions);
+                    if (Array.isArray(parsedPositions) && parsedPositions.length === spheres.length) {
+                        api.start(i => ({ x: parsedPositions[i].x, y: parsedPositions[i].y, immediate: true }));
+                        positions.forEach((_, i) => {
+                            positions[i] = parsedPositions[i];
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to parse sphere positions from localStorage", error);
+            }
+        }
+    }, [isClient, api, positions]);
+
 
     const bind = useDrag(({ args: [index], down, movement: [mx, my], first }) => {
         if (first && !hasDragged) {
             setHasDragged(true);
         }
-        positions[index] = { x: mx, y: my };
+
+        const newX = mx;
+        const newY = my;
+
         api.start(i => {
             if (index !== i) return;
-            const x = positions[i].x;
-            const y = positions[i].y;
             return {
-                x,
-                y,
+                x: newX,
+                y: newY,
                 scale: down ? 1.1 : 1,
                 rotateZ: down ? (mx / 10) : 0,
                 config: { mass: down ? 1 : 4, tension: down ? 500 : 300, friction: down ? 25 : 30 }
             };
         });
+
+        if (!down) {
+            positions[index] = { x: newX, y: newY };
+            try {
+                localStorage.setItem('spherePositions', JSON.stringify(positions));
+            } catch (error) {
+                console.error("Failed to save sphere positions to localStorage", error);
+            }
+        }
     });
 
   const renderSpheres = () => {
@@ -98,7 +133,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
       
-      <main className="relative z-0 flex flex-col items-center justify-center text-center">
+      <main className="relative z-10 flex flex-col items-center justify-center text-center">
         <div className="relative">
           <span className="absolute top-0 left-0 w-full text-center sm:w-auto -translate-y-full sm:-translate-y-1/2 sm:-translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_2px_20px_rgba(255,255,255,0.8)]" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Dubai Production
@@ -130,4 +165,3 @@ export default function Home() {
     </div>
   );
 }
-
