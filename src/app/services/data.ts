@@ -34,4 +34,11 @@ export const services = [
     imageUrl: 'https://picsum.photos/seed/timelapse-service/600/400',
     imageHint: 'cityscape timelapse'
   },
+  {
+    id: 'photogrammetry',
+    title: 'Photogrammetry',
+    description: 'Creating detailed 3D models from photographs, turning real-world objects and scenes into digital assets.',
+    imageUrl: 'https://picsum.photos/seed/photogrammetry-service/600/400',
+    imageHint: '3d model scan'
+  }
 ];
