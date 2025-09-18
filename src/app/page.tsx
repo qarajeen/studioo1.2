@@ -6,8 +6,9 @@ import Image from 'next/image';
 import { useSprings, animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import { useRef, useEffect, useState } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
-const spheres = [
+const spheresData = [
   { id: 1, size: 240, top: '25%', left: '35%', hint: 'abstract shapes' },
   { id: 2, size: 220, top: '15%', left: '50%', hint: 'data analytics' },
   { id: 3, size: 240, top: '45%', left: '45%', hint: 'minimalist lamp' },
@@ -24,6 +25,9 @@ const spheres = [
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
 
 export default function Home() {
+    const isMobile = useIsMobile();
+    const spheres = spheresData.map(s => ({ ...s, size: isMobile ? s.size / 2 : s.size }));
+
     const positions = useRef(spheres.map(() => ({ x: 0, y: 0 }))).current;
     const [hasDragged, setHasDragged] = useState(false);
     const [isClient, setIsClient] = useState(false);
@@ -57,7 +61,7 @@ export default function Home() {
                 console.error("Failed to parse sphere positions from localStorage", error);
             }
         }
-    }, [isClient, api, positions]);
+    }, [isClient, api, positions, spheres.length]);
 
 
     const bind = useDrag(({ args: [index], down, movement: [mx, my], first }) => {
