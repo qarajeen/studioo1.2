@@ -8,14 +8,14 @@ import { useDrag } from '@use-gesture/react';
 import { useRef, useEffect } from 'react';
 
 const spheres = [
-  { id: 1, size: 150, top: '15%', left: '10%', animation: 'float-in-1', delay: '0.1s', hint: 'abstract shapes' },
-  { id: 2, size: 250, top: '10%', left: '60%', animation: 'float-in-2', delay: '0.3s', hint: 'data analytics' },
-  { id: 3, size: 100, top: '25%', left: '40%', animation: 'float-in-5', delay: '0.5s', hint: 'minimalist lamp' },
-  { id: 4, size: 120, top: '50%', left: '5%', animation: 'float-in-3', delay: '0.2s', hint: 'code snippet' },
-  { id: 5, size: 200, top: '60%', left: '30%', animation: 'float-in-6', delay: '0.4s', hint: 'wireframe globe' },
-  { id: 6, size: 180, top: '45%', left: '75%', animation: 'float-in-4', delay: '0.1s', hint: 'blurry gradient' },
-  { id: 7, size: 80, top: '75%', left: '85%', animation: 'float-in-2', delay: '0.6s', hint: 'purple crystal' },
-  { id: 8, size: 90, top: '80%', left: '15%', animation: 'float-in-3', delay: '0.7s', hint: 'user portrait' },
+  { id: 1, size: 150, top: '15%', left: '10%', hint: 'abstract shapes' },
+  { id: 2, size: 250, top: '10%', left: '60%', hint: 'data analytics' },
+  { id: 3, size: 100, top: '25%', left: '40%', hint: 'minimalist lamp' },
+  { id: 4, size: 120, top: '50%', left: '5%', hint: 'code snippet' },
+  { id: 5, size: 200, top: '60%', left: '30%', hint: 'wireframe globe' },
+  { id: 6, size: 180, top: '45%', left: '75%', hint: 'blurry gradient' },
+  { id: 7, size: 80, top: '75%', left: '85%', hint: 'purple crystal' },
+  { id: 8, size: 90, top: '80%', left: '15%', hint: 'user portrait' },
 ];
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
@@ -24,19 +24,9 @@ export default function Home() {
     const positions = useRef(spheres.map(() => ({ x: 0, y: 0 }))).current;
 
     const [springs, api] = useSprings(spheres.length, i => ({
-        from: { 
-            x: 0, 
-            y: 0,
-            scale: 0.5,
-            opacity: 0,
-        },
-        to: {
-            x: 0,
-            y: 0,
-            scale: 1,
-            opacity: 1,
-        },
-        delay: parseFloat(spheres[i].delay) * 1000 + 500,
+        x: 0, 
+        y: 0,
+        scale: 1,
         config: { mass: 2, tension: 150, friction: 20 }
     }));
 
