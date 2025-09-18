@@ -105,6 +105,30 @@ export default function ServicesPage() {
             </div>
           ))}
         </div>
+        
+        <div className="mt-24">
+            <div className="text-center max-w-3xl mx-auto">
+                <h2 className="text-3xl sm:text-4xl font-bold">Showcase</h2>
+                <p className="mt-4 text-base sm:text-lg text-muted-foreground">A glimpse into our creative world.</p>
+            </div>
+            <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="rounded-xl overflow-hidden shadow-2xl">
+                    <h3 className="font-semibold text-lg p-4 bg-card/80 backdrop-blur-sm">Videography Reel</h3>
+                    <video className="w-full h-auto" autoPlay loop muted playsInline>
+                        <source src={`${repoName}/reel.mp4`} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-2xl">
+                    <h3 className="font-semibold text-lg p-4 bg-card/80 backdrop-blur-sm">Time-Lapse Showcase</h3>
+                    <video className="w-full h-auto" autoPlay loop muted playsInline>
+                        <source src={`${repoName}/tl.mp4`} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+
       </div>
     </div>
   );
