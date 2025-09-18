@@ -16,6 +16,9 @@ const spheres = [
   { id: 6, size: 180, top: '40%', left: '65%', hint: 'blurry gradient' },
   { id: 7, size: 160, top: '55%', left: '75%', hint: 'purple crystal' },
   { id: 8, size: 180, top: '60%', left: '30%', hint: 'user portrait' },
+  { id: 9, size: 140, top: '10%', left: '10%', hint: 'glowing orb' },
+  { id: 10, size: 220, top: '75%', left: '60%', hint: 'network lines' },
+  { id: 11, size: 190, top: '80%', left: '5%', hint: 'geometric pattern' },
 ];
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
@@ -28,6 +31,7 @@ export default function Home() {
         x: 0, 
         y: 0,
         scale: 1,
+        rotateZ: 0,
         config: { mass: 2, tension: 150, friction: 20 }
     }));
 
@@ -44,7 +48,8 @@ export default function Home() {
                 x,
                 y,
                 scale: down ? 1.1 : 1,
-                config: { mass: down ? 1 : 2, tension: 500, friction: down ? 25 : 20 }
+                rotateZ: down ? (mx / 10) : 0,
+                config: { mass: down ? 1 : 4, tension: down ? 500 : 300, friction: down ? 25 : 30 }
             };
         });
     });
@@ -118,10 +123,11 @@ export default function Home() {
         )}
       </main>
       
-      <div className="absolute inset-0 w-full h-full z-10">
+      <div className="absolute inset-0 w-full h-full z-20">
         {renderSpheres()}
       </div>
 
     </div>
   );
 }
+
