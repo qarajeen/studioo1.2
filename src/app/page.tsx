@@ -37,8 +37,7 @@ export default function Home() {
 
     useEffect(() => {
         setIsClient(true);
-        setNavVisible(false); // Initially hide the nav
-        return () => setNavVisible(true); // Show nav on component unmount
+        setNavVisible(true);
     }, [setNavVisible]);
 
     const [springs, api] = useSprings(spheres.length, i => ({
@@ -82,9 +81,6 @@ export default function Home() {
     const bind = useDrag(({ args: [index], down, movement: [mx, my], first }) => {
         if (first && !hasDragged) {
             setHasDragged(true);
-            if (!navVisible) {
-                setNavVisible(true); // Show nav on first drag
-            }
         }
 
         const newX = mx;
