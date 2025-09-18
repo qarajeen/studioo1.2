@@ -4,7 +4,7 @@ export const services = [
     id: 'photography',
     title: 'Photography',
     description: 'Capturing moments with a unique perspective, our photography service turns the ordinary into the extraordinary.',
-    imageUrl: '/sphere20.jpg',
+    imageUrl: '/sphere15.jpg',
     imageHint: 'professional camera'
   },
   {
