@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSprings, animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const spheres = [
   { id: 1, size: 150, top: '25%', left: '35%', hint: 'abstract shapes' },
@@ -22,6 +22,7 @@ const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
 
 export default function Home() {
     const positions = useRef(spheres.map(() => ({ x: 0, y: 0 }))).current;
+    const [hasDragged, setHasDragged] = useState(false);
 
     const [springs, api] = useSprings(spheres.length, i => ({
         x: 0, 
@@ -30,7 +31,10 @@ export default function Home() {
         config: { mass: 2, tension: 150, friction: 20 }
     }));
 
-    const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => {
+    const bind = useDrag(({ args: [index], down, movement: [mx, my], first }) => {
+        if (first && !hasDragged) {
+            setHasDragged(true);
+        }
         positions[index] = { x: mx, y: my };
         api.start(i => {
             if (index !== i) return;
@@ -88,10 +92,6 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
-
-      <div className="absolute inset-0 w-full h-full z-10">
-        {renderSpheres()}
-      </div>
       
       <main className="relative z-0 flex flex-col items-center justify-center text-center">
         <div className="relative">
@@ -108,14 +108,20 @@ export default function Home() {
             Powered by ADHD
           </span>
         </div>
+        {!hasDragged && (
+            <span 
+                className="absolute text-sm text-foreground/50 font-display animate-pulse-subtle opacity-0"
+                style={{ animationDelay: '2s' }}
+            >
+                Drag us
+            </span>
+        )}
       </main>
+      
+      <div className="absolute inset-0 w-full h-full z-10">
+        {renderSpheres()}
+      </div>
 
-       <span 
-        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-sm text-foreground/50 font-display animate-pulse-subtle opacity-0"
-        style={{ animationDelay: '2s' }}
-      >
-        Drag us
-      </span>
     </div>
   );
 }
