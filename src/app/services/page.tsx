@@ -82,7 +82,7 @@ export default function ServicesPage() {
               className='group relative rounded-xl overflow-hidden'
             >
               <Image
-                src={service.imageUrl}
+                src={`${repoName}${service.imageUrl}`}
                 alt={service.title}
                 width={600}
                 height={400}
