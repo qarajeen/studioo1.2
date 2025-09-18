@@ -25,7 +25,7 @@ export const services = [
     id: '360-tours',
     title: '360° Virtual Tours',
     description: 'Immersive and interactive, our 360° tours offer a captivating way to explore spaces from anywhere in the world.',
-    imageUrl: 'https://picsum.photos/seed/360-tours-service/600/400',
+    imageUrl: '/s4.jpg',
     imageHint: '360 camera'
   },
   {
