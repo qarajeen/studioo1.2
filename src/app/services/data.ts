@@ -18,7 +18,7 @@ export const services = [
     id: 'post-production',
     title: 'Post-Production',
     description: 'Our meticulous editing and color grading process refines raw footage into a polished, cinematic final product.',
-    imageUrl: 'https://picsum.photos/seed/post-production-service/600/400',
+    imageUrl: '/s3.jpg',
     imageHint: 'video editing'
   },
   {
