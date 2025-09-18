@@ -41,9 +41,19 @@ export default function Home() {
         y: positions[i].y,
         scale: 1,
         rotateZ: 0,
+        opacity: 0,
         config: { mass: 2, tension: 150, friction: 20 }
     }));
     
+    useEffect(() => {
+      api.start(i => ({
+        opacity: 1,
+        scale: 1,
+        delay: i * 100,
+        config: { mass: 1, tension: 120, friction: 20 }
+      }));
+    }, [api]);
+
     useEffect(() => {
         if (isClient) {
             try {
@@ -168,4 +178,3 @@ export default function Home() {
     </div>
   );
 }
-
