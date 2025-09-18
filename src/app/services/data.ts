@@ -11,7 +11,7 @@ export const services = [
     id: 'videography',
     title: 'Videography',
     description: 'We tell stories through motion, creating compelling visual narratives that resonate deeply with viewers.',
-    imageUrl: 'https://picsum.photos/seed/videography-service/600/400',
+    imageUrl: '/s1.jpg',
     imageHint: 'cinema camera'
   },
   {
