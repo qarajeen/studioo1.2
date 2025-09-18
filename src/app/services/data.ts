@@ -32,7 +32,7 @@ export const services = [
     id: 'timelapse',
     title: 'Time-lapse Videos',
     description: 'We condense time to reveal the beauty of change, from construction projects to natural landscapes.',
-    imageUrl: 'https://picsum.photos/seed/timelapse-service/600/400',
+    imageUrl: '/s2.jpg',
     imageHint: 'cityscape timelapse'
   },
   {
