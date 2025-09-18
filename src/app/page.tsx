@@ -10,17 +10,17 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { NavContext } from '@/contexts/nav-context';
 
 const spheresData = [
-  { id: 1, size: 240, top: '25%', left: '35%', hint: 'abstract shapes' },
-  { id: 2, size: 220, top: '15%', left: '50%', hint: 'data analytics' },
-  { id: 3, size: 240, top: '45%', left: '45%', hint: 'minimalist lamp' },
-  { id: 4, size: 220, top: '55%', left: '25%', hint: 'code snippet' },
-  { id: 5, size: 200, top: '60%', left: '40%', hint: 'wireframe globe' },
-  { id: 6, size: 180, top: '40%', left: '65%', hint: 'blurry gradient' },
-  { id: 7, size: 160, top: '55%', left: '75%', hint: 'purple crystal' },
-  { id: 8, size: 180, top: '60%', left: '30%', hint: 'user portrait' },
-  { id: 9, size: 140, top: '10%', left: '10%', hint: 'glowing orb' },
-  { id: 10, size: 220, top: '75%', left: '60%', hint: 'network lines' },
-  { id: 11, size: 190, top: '80%', left: '5%', hint: 'geometric pattern' },
+  { id: 1, img: 'sphere1.jpg', size: 240, top: '25%', left: '35%', hint: 'abstract shapes' },
+  { id: 2, img: 'sphere2.jpg', size: 220, top: '15%', left: '50%', hint: 'data analytics' },
+  { id: 3, img: 'sphere3.jpg', size: 240, top: '45%', left: '45%', hint: 'minimalist lamp' },
+  { id: 4, img: 'sphere4.jpg', size: 220, top: '55%', left: '25%', hint: 'code snippet' },
+  { id: 5, img: 'sphere5.jpg', size: 200, top: '60%', left: '40%', hint: 'wireframe globe' },
+  { id: 6, img: 'sphere6.jpg', size: 180, top: '40%', left: '65%', hint: 'blurry gradient' },
+  { id: 7, img: 'sphere7.jpg', size: 160, top: '55%', left: '75%', hint: 'purple crystal' },
+  { id: 8, img: 'sphere20.jpg', size: 180, top: '60%', left: '30%', hint: 'user portrait' },
+  { id: 9, img: 'sphere9.jpg', size: 140, top: '10%', left: '10%', hint: 'glowing orb' },
+  { id: 10, img: 'sphere10.jpg', size: 220, top: '75%', left: '60%', hint: 'network lines' },
+  { id: 11, img: 'sphere11.jpg', size: 190, top: '80%', left: '5%', hint: 'geometric pattern' },
 ];
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
@@ -132,7 +132,7 @@ export default function Home() {
                 >
                     <div className="w-full h-full rounded-full overflow-hidden">
                         <Image
-                            src={`${repoName}/sphere${sphere.id}.jpg`}
+                            src={`${repoName}/${sphere.img}`}
                             alt={`Sphere ${sphere.id}`}
                             width={sphere.size}
                             height={sphere.size}
