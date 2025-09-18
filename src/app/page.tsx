@@ -164,7 +164,7 @@ export default function Home() {
 
       {!hasDragged && (
           <span 
-              className="absolute z-20 text-lg text-foreground font-display animate-pulse-subtle opacity-0"
+              className="absolute z-20 text-lg text-foreground font-display animate-pulse-subtle opacity-0 bg-card/50 backdrop-blur-sm border border-border px-4 py-2 rounded-lg"
               style={{ animationDelay: '2s' }}
           >
               Drag us
