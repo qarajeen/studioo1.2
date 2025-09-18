@@ -53,6 +53,7 @@ export default function ServicesPage() {
             height={sphere.size}
             className="object-cover w-full h-full"
             data-ai-hint={sphere.hint}
+            style={{ filter: 'brightness(0.5) blur(4px)' }}
           />
         </div>
       </div>
