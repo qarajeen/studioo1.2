@@ -110,6 +110,12 @@ export default function Home() {
         </div>
       </main>
 
+       <span 
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-sm text-foreground/50 font-display animate-pulse-subtle opacity-0"
+        style={{ animationDelay: '2s' }}
+      >
+        Drag us
+      </span>
     </div>
   );
 }

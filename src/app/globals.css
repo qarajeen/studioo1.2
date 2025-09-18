@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -133,6 +134,14 @@
   }
   .animate-text-fade-in { animation: text-fade-in 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.5s; }
 
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  .animate-pulse-subtle {
+    animation: text-fade-in 1s ease forwards, pulse-subtle 3s ease-in-out infinite 1s;
+  }
 }
 
 @layer components {
