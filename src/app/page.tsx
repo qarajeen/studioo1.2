@@ -3,62 +3,104 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSprings, animated } from '@react-spring/web';
+import { useDrag } from '@use-gesture/react';
+import { useRef, useEffect } from 'react';
 
 const spheres = [
-  { id: 1, size: 150, top: '15%', left: '10%', animation: 'float-in-1', floatAnimation: 'move-around-1', duration: '18s', delay: '0.1s', hint: 'abstract shapes' },
-  { id: 2, size: 250, top: '10%', left: '60%', animation: 'float-in-2', floatAnimation: 'move-around-2', duration: '22s', delay: '0.3s', hint: 'data analytics' },
-  { id: 3, size: 100, top: '25%', left: '40%', animation: 'float-in-5', floatAnimation: 'move-around-3', duration: '25s', delay: '0.5s', hint: 'minimalist lamp' },
-  { id: 4, size: 120, top: '50%', left: '5%', animation: 'float-in-3', floatAnimation: 'move-around-4', duration: '20s', delay: '0.2s', hint: 'code snippet' },
-  { id: 5, size: 200, top: '60%', left: '30%', animation: 'float-in-6', floatAnimation: 'move-around-1', duration: '24s', delay: '0.4s', hint: 'wireframe globe' },
-  { id: 6, size: 180, top: '45%', left: '75%', animation: 'float-in-4', floatAnimation: 'move-around-2', duration: '28s', delay: '0.1s', hint: 'blurry gradient' },
-  { id: 7, size: 80, top: '75%', left: '85%', animation: 'float-in-2', floatAnimation: 'move-around-3', duration: '17s', delay: '0.6s', hint: 'purple crystal' },
-  { id: 8, size: 90, top: '80%', left: '15%', animation: 'float-in-3', floatAnimation: 'move-around-4', duration: '21s', delay: '0.7s', hint: 'user portrait' },
+  { id: 1, size: 150, top: '15%', left: '10%', animation: 'float-in-1', delay: '0.1s', hint: 'abstract shapes' },
+  { id: 2, size: 250, top: '10%', left: '60%', animation: 'float-in-2', delay: '0.3s', hint: 'data analytics' },
+  { id: 3, size: 100, top: '25%', left: '40%', animation: 'float-in-5', delay: '0.5s', hint: 'minimalist lamp' },
+  { id: 4, size: 120, top: '50%', left: '5%', animation: 'float-in-3', delay: '0.2s', hint: 'code snippet' },
+  { id: 5, size: 200, top: '60%', left: '30%', animation: 'float-in-6', delay: '0.4s', hint: 'wireframe globe' },
+  { id: 6, size: 180, top: '45%', left: '75%', animation: 'float-in-4', delay: '0.1s', hint: 'blurry gradient' },
+  { id: 7, size: 80, top: '75%', left: '85%', animation: 'float-in-2', delay: '0.6s', hint: 'purple crystal' },
+  { id: 8, size: 90, top: '80%', left: '15%', animation: 'float-in-3', delay: '0.7s', hint: 'user portrait' },
 ];
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
 
 export default function Home() {
-  const renderSpheres = (sphereList: typeof spheres) => {
-    return sphereList.map((sphere) => (
-        <div
-            key={sphere.id}
-            className={'absolute opacity-0 rounded-full'}
-            style={{
-                width: sphere.size,
-                height: sphere.size,
-                top: sphere.top,
-                left: sphere.left,
-                animation: `${sphere.animation} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
-                animationDelay: `${sphere.delay}, 1s`,
-            }}
-        >
-            <div 
-                className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20"
+    const positions = useRef(spheres.map(() => ({ x: 0, y: 0 }))).current;
+
+    const [springs, api] = useSprings(spheres.length, i => ({
+        from: { 
+            x: 0, 
+            y: 0,
+            scale: 0.5,
+            opacity: 0,
+        },
+        to: {
+            x: 0,
+            y: 0,
+            scale: 1,
+            opacity: 1,
+        },
+        delay: parseFloat(spheres[i].delay) * 1000 + 500,
+        config: { mass: 2, tension: 150, friction: 20 }
+    }));
+
+    const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => {
+        positions[index] = { x: mx, y: my };
+        api.start(i => {
+            if (index !== i) return;
+            const x = positions[i].x;
+            const y = positions[i].y;
+            return {
+                x,
+                y,
+                scale: down ? 1.1 : 1,
+                config: { mass: down ? 1 : 2, tension: 500, friction: down ? 25 : 20 }
+            };
+        });
+    });
+
+  const renderSpheres = () => {
+    return springs.map((styles, index) => {
+        const sphere = spheres[index];
+        return (
+            <animated.div
+                {...bind(index)}
+                key={sphere.id}
+                className={'absolute rounded-full cursor-grab active:cursor-grabbing'}
                 style={{
-                    boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.75)'
+                    width: sphere.size,
+                    height: sphere.size,
+                    top: sphere.top,
+                    left: sphere.left,
+                    touchAction: 'none',
+                    ...styles,
                 }}
             >
-                <div className="w-full h-full rounded-full overflow-hidden">
-                    <Image
-                        src={`${repoName}/sphere${sphere.id}.jpg`}
-                        alt={`Sphere ${sphere.id}`}
-                        width={sphere.size}
-                        height={sphere.size}
-                        className="object-cover w-full h-full rounded-full"
-                        data-ai-hint={sphere.hint}
-                        priority={sphere.size >= 150}
-                    />
+                <div 
+                    className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20"
+                    style={{
+                        boxShadow: '0 0 112px -18px rgba(255, 255, 255, 0.75)'
+                    }}
+                >
+                    <div className="w-full h-full rounded-full overflow-hidden">
+                        <Image
+                            src={`${repoName}/sphere${sphere.id}.jpg`}
+                            alt={`Sphere ${sphere.id}`}
+                            width={sphere.size}
+                            height={sphere.size}
+                            className="object-cover w-full h-full rounded-full"
+                            data-ai-hint={sphere.hint}
+                            priority={sphere.size >= 150}
+                            draggable={false}
+                        />
+                    </div>
                 </div>
-            </div>
-        </div>
-    ));
+            </animated.div>
+        );
+    });
   }
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
 
       <div className="absolute inset-0 w-full h-full z-10">
-        {renderSpheres(spheres)}
+        {renderSpheres()}
       </div>
       
       <main className="relative z-20 flex flex-col items-center justify-center text-center">

@@ -131,38 +131,6 @@
     75% { transform: translate(-5px, 5px) rotate(3deg) scale(1); }
     100% { transform: translate(0, 0) rotate(0deg) scale(1.05); }
   }
-  @keyframes move-around-1 {
-    0% { transform: translate(0vw, 0vh) scale(1) rotate(0deg); }
-    20% { transform: translate(8vw, -12vh) scale(1.2) rotate(8deg); }
-    40% { transform: translate(-10vw, 10vh) scale(0.8) rotate(-5deg); }
-    60% { transform: translate(12vw, 8vh) scale(1.1) rotate(3deg); }
-    80% { transform: translate(-8vw, -10vh) scale(0.9) rotate(-8deg); }
-    100% { transform: translate(0vw, 0vh) scale(1) rotate(0deg); }
-  }
-  @keyframes move-around-2 {
-    0% { transform: translate(0vw, 0vh) scale(0.9) rotate(0deg); }
-    20% { transform: translate(-7vw, 10vh) scale(1.1) rotate(-6deg); }
-    40% { transform: translate(9vw, -6vh) scale(1.2) rotate(5deg); }
-    60% { transform: translate(-11vw, -8vh) scale(0.8) rotate(8deg); }
-    80% { transform: translate(6vw, 9vh) scale(1.05) rotate(-3deg); }
-    100% { transform: translate(0vw, 0vh) scale(0.9) rotate(0deg); }
-  }
-  @keyframes move-around-3 {
-    0% { transform: translate(0vw, 0vh) rotate(0deg) scale(1.1); }
-    20% { transform: translate(10vw, 15vh) rotate(8deg) scale(0.7); }
-    40% { transform: translate(-12vw, -10vh) rotate(-6deg) scale(1.2); }
-    60% { transform: translate(8vw, -12vh) rotate(4deg) scale(0.9); }
-    80% { transform: translate(-15vw, 8vh) rotate(-7deg) scale(1.1); }
-    100% { transform: translate(0vw, 0vh) rotate(0deg) scale(1.1); }
-  }
-  @keyframes move-around-4 {
-    0% { transform: translate(0vw, 0vh) rotate(0deg) scale(1); }
-    20% { transform: translate(-12vw, 10vh) rotate(-7deg) scale(1.2); }
-    40% { transform: translate(10vw, -15vh) rotate(10deg) scale(0.8); }
-    60% { transform: translate(-15vw, 12vh) rotate(-5deg) scale(1.1); }
-    80% { transform: translate(12vw, -8vh) rotate(7deg) scale(0.95); }
-    100% { transform: translate(0vw, 0vh) rotate(0deg) scale(1); }
-  }
   .animate-text-fade-in { animation: text-fade-in 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.5s; }
 
 }
