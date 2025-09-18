@@ -39,7 +39,7 @@ export const services = [
     id: 'photogrammetry',
     title: 'Photogrammetry',
     description: 'Creating detailed 3D models from photographs, turning real-world objects and scenes into digital assets.',
-    imageUrl: 'https://picsum.photos/seed/photogrammetry-service/600/400',
+    imageUrl: '/2.jpg',
     imageHint: '3d model scan'
   }
 ];
