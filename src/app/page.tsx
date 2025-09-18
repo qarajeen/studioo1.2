@@ -8,7 +8,7 @@ import { useDrag } from '@use-gesture/react';
 import { useRef, useEffect, useState } from 'react';
 
 const spheres = [
-  { id: 1, size: 150, top: '25%', left: '35%', hint: 'abstract shapes' },
+  { id: 1, size: 300, top: '25%', left: '35%', hint: 'abstract shapes' },
   { id: 2, size: 250, top: '15%', left: '50%', hint: 'data analytics' },
   { id: 3, size: 200, top: '45%', left: '45%', hint: 'minimalist lamp' },
   { id: 4, size: 240, top: '55%', left: '25%', hint: 'code snippet' },
