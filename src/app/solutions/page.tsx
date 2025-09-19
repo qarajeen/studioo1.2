@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Monitor, Palette, FileType } from 'lucide-react';
+import { ArrowRight, Monitor, Palette } from 'lucide-react';
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -33,12 +33,6 @@ const tools = [
         href: "/solutions/brand-color-checker",
         icon: <Palette className="w-8 h-8 text-primary" />,
     },
-    {
-        title: "PNG to SVG Converter",
-        description: "Convert your PNG images to scalable SVG vectors with AI-powered tracing.",
-        href: "/solutions/png-to-svg-converter",
-        icon: <FileType className="w-8 h-8 text-primary" />,
-    }
 ]
 
 export default function SolutionsPage() {
