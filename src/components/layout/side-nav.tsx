@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from 'react';
@@ -10,7 +11,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 const navLinks = [
   { href: '/', label: 'Home', icon: <Home className="h-5 w-5 sm:h-6 sm:w-6" /> },
   { href: '/services', label: 'Services', icon: <Image className="h-5 w-5 sm:h-6 sm:w-6" /> },
-  { href: '/solutions', label: 'Solutions', icon: <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" /> },
+  { href: '/tools', label: 'Tools', icon: <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" /> },
   { href: '/pricing', label: 'Pricing', icon: <DollarSign className="h-5 w-5 sm:h-6 sm:w-6" /> },
   { href: '/contact', label: 'Contact', icon: <Mail className="h-5 w-5 sm:h-6 sm:w-6" /> },
 ];
