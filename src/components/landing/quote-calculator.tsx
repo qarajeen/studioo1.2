@@ -521,7 +521,6 @@ export function QuoteCalculator() {
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(black[0], black[1], black[2]);
         const serviceName = formData.serviceType ? serviceOptions[formData.serviceType].name : 'Project';
-        const subTypeKey = formData.photographySubType || formData.videoSubType || formData.timelapseSubType || formData.toursSubType || formData.postSubType || formData.photogrammetrySubType;
         
         let subTypeName = '';
         if(formData.serviceType === 'photography' && formData.photographySubType) subTypeName = photographySubServices[formData.photographySubType].name;
@@ -532,8 +531,9 @@ export function QuoteCalculator() {
         else if (formData.serviceType === 'photogrammetry' && formData.photogrammetrySubType) subTypeName = photogrammetrySubServices[formData.photogrammetrySubType].name;
 
         const headingTitle = subTypeName ? `${serviceName}: ${subTypeName}` : serviceName;
-        doc.text(headingTitle, margin, currentY);
-        currentY += 10;
+        const titleLines = doc.splitTextToSize(headingTitle, pageWidth - (margin * 2));
+        doc.text(titleLines, margin, currentY);
+        currentY += (titleLines.length * 8) + 2;
         
         if (formData.message) {
             doc.setFontSize(10);
@@ -740,3 +740,6 @@ export function QuoteCalculator() {
 
     
 
+
+
+    
