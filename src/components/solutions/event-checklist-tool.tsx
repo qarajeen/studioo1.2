@@ -92,7 +92,7 @@ export function EventChecklistTool() {
             head: [['Task', 'Details']],
             body: tableBody,
             theme: 'grid',
-            headStyles: { fillColor: [22, 160, 133], textColor: 255 },
+            headStyles: { fillColor: [74, 58, 255], textColor: 255 },
             styles: {
                 font: 'helvetica',
                 fontSize: 9,
