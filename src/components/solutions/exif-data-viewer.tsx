@@ -132,11 +132,14 @@ export function ExifDataViewer() {
 
     const reader = new FileReader();
     reader.onload = (e) => {
-        setImagePreview(e.target?.result as string);
-        const arrayBuffer = e.target?.result;
-        if (arrayBuffer instanceof ArrayBuffer) {
+        const result = e.target?.result;
+        if (typeof result === 'string') {
+          setImagePreview(result);
+        }
+
+        if (result instanceof ArrayBuffer) {
              try {
-                const tags = ExifReader.load(arrayBuffer);
+                const tags = ExifReader.load(result);
                 // The library nests the actual tags, so we extract them.
                 const allTags = { ...tags['Image'], ...tags['Exif'], ...tags['GPS'], ...tags['Interoperability'] };
                 setExifData(allTags);
@@ -151,7 +154,27 @@ export function ExifDataViewer() {
         setError('Failed to read the file.');
         setIsLoading(false);
     }
-    reader.readAsArrayBuffer(uploadedFile);
+    
+    // Create a separate reader for the ArrayBuffer, as we need both
+    const bufferReader = new FileReader();
+    bufferReader.onload = (e) => {
+        const arrayBuffer = e.target?.result;
+         if (arrayBuffer instanceof ArrayBuffer) {
+             try {
+                const tags = ExifReader.load(arrayBuffer);
+                const allTags = { ...tags['Image'], ...tags['Exif'], ...tags['GPS'], ...tags['Interoperability'] };
+                setExifData(allTags);
+            } catch (err) {
+                setError('Could not parse EXIF data from this image.');
+                setExifData({});
+            }
+        }
+        setIsLoading(false);
+    }
+    bufferReader.readAsArrayBuffer(uploadedFile);
+    reader.readAsDataURL(uploadedFile);
+
+
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
