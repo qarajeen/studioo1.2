@@ -23,6 +23,7 @@ export const serviceOptions: ServiceOptions = {
     post: { name: "Post Production", icon: null },
     '360tours': { name: "360 Tours", icon: null },
     timelapse: { name: "Time Lapse", icon: null },
+    photogrammetry: { name: "Photogrammetry", icon: null },
 };
 
 // Photography Sub-Services
@@ -67,6 +68,15 @@ export const postProductionSubServices: SubServices = {
     photo: { name: 'Photo Editing (Retouching)' },
 };
 
+// Photogrammetry Sub-Services
+export const photogrammetrySubServices: SubServices = {
+    small_scale: { name: 'Small Scale Object' },
+    residential_exterior: { name: 'Single Residential Property (Exterior Only)' },
+    residential_full: { name: 'Single Residential Property (Exterior & Interior)' },
+    commercial: { name: 'Commercial Building' },
+    large_scale: { name: 'Large-Scale Infrastructure' },
+};
+
 export const locationTypeOptions = ["Indoor", "Outdoor", "Studio", "Exhibition Center", "Hotel", "Other"];
 
 export type RealEstateProperty = {
@@ -83,6 +93,7 @@ export type FormData = {
     timelapseSubType: keyof typeof timelapseSubServices | ""; // This can be repurposed or removed
     toursSubType: keyof typeof toursSubServices | "";
     postSubType: keyof typeof postProductionSubServices | '';
+    photogrammetrySubType: keyof typeof photogrammetrySubServices | '';
 
     // Step 1.5: Photography Details
     photoEventDuration: "perHour" | "halfDay" | "fullDay";

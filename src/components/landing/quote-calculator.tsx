@@ -10,7 +10,7 @@ import { ArrowRight, ArrowLeft, RotateCcw, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
-import { FormData, RealEstateProperty, serviceOptions, photographySubServices, videoSubServices, timelapseSubServices, toursSubServices, postProductionSubServices } from './quote-calculator/types';
+import { FormData, RealEstateProperty, serviceOptions, photographySubServices, videoSubServices, timelapseSubServices, toursSubServices, postProductionSubServices, photogrammetrySubServices } from './quote-calculator/types';
 import { Step1Service } from "./quote-calculator/step-1-service";
 import { Step2Details } from "./quote-calculator/step-2-details";
 import { Step3Contact } from "./quote-calculator/step-3-contact";
@@ -24,6 +24,7 @@ const initialFormData: FormData = {
     timelapseSubType: "",
     toursSubType: "",
     postSubType: '',
+    photogrammetrySubType: '',
 
     photoEventDuration: "perHour",
     photoEventHours: 1,
@@ -147,7 +148,8 @@ export function QuoteCalculator() {
                 photography: 'photographySubType',
                 video: 'videoSubType',
                 '360tours': 'toursSubType',
-                post: 'postSubType'
+                post: 'postSubType',
+                photogrammetry: 'photogrammetrySubType'
             };
             
             if (formData.serviceType === 'timelapse') {
@@ -351,7 +353,19 @@ export function QuoteCalculator() {
                 basePrice = formData.postPhotoEditingQuantity * pricePerPhoto;
                 itemName += ` (${formData.postPhotoEditingQuantity} photos @ ${pricePerPhoto} AED/photo)`;
             }
+        } else if (formData.serviceType === 'photogrammetry' && formData.photogrammetrySubType) {
+            const subTypeName = photogrammetrySubServices[formData.photogrammetrySubType].name;
+            itemName = `${serviceName}: ${subTypeName}`;
+            const prices = {
+                small_scale: 1500,
+                residential_exterior: 4000,
+                residential_full: 8000,
+                commercial: 18000,
+                large_scale: 27000,
+            };
+            basePrice = prices[formData.photogrammetrySubType as keyof typeof prices];
         }
+
 
         subtotal += basePrice;
         if (basePrice > 0) {
@@ -507,7 +521,7 @@ export function QuoteCalculator() {
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(black[0], black[1], black[2]);
         const serviceName = formData.serviceType ? serviceOptions[formData.serviceType].name : 'Project';
-        const subTypeKey = formData.photographySubType || formData.videoSubType || formData.timelapseSubType || formData.toursSubType || formData.postSubType;
+        const subTypeKey = formData.photographySubType || formData.videoSubType || formData.timelapseSubType || formData.toursSubType || formData.postSubType || formData.photogrammetrySubType;
         
         let subTypeName = '';
         if(formData.serviceType === 'photography' && formData.photographySubType) subTypeName = photographySubServices[formData.photographySubType].name;
@@ -515,6 +529,7 @@ export function QuoteCalculator() {
         else if (formData.serviceType === 'timelapse') subTypeName = ''; // No sub-type name for timelapse
         else if (formData.serviceType === '360tours' && formData.toursSubType) subTypeName = toursSubServices[formData.toursSubType].name;
         else if (formData.serviceType === 'post' && formData.postSubType) subTypeName = postProductionSubServices[formData.postSubType].name;
+        else if (formData.serviceType === 'photogrammetry' && formData.photogrammetrySubType) subTypeName = photogrammetrySubServices[formData.photogrammetrySubType].name;
 
         const headingTitle = subTypeName ? `${serviceName}: ${subTypeName}` : serviceName;
         doc.text(headingTitle, margin, currentY);
@@ -724,3 +739,4 @@ export function QuoteCalculator() {
     
 
     
+

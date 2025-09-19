@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, Camera, Video, Wand2, Orbit, Hourglass } from 'lucide-react';
+import { ChevronLeft, Camera, Video, Wand2, Orbit, Hourglass, Atom } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { FormData, RealEstateProperty, ServiceOptions } from './types';
 import { PhotographyOptions } from './photography-options';
@@ -8,6 +8,7 @@ import { VideoOptions } from './video-options';
 import { TimelapseOptions } from './timelapse-options';
 import { ToursOptions } from './tours-options';
 import { PostProductionOptions } from './post-production-options';
+import { PhotogrammetryOptions } from './photogrammetry-options';
 
 type Step1ServiceProps = {
   formData: FormData;
@@ -24,6 +25,7 @@ const serviceOptions: ServiceOptions = {
     post: { name: "Post Production", icon: <Wand2 className="w-10 h-10 mb-3" /> },
     '360tours': { name: "360 Tours", icon: <Orbit className="w-10 h-10 mb-3" /> },
     timelapse: { name: "Time Lapse", icon: <Hourglass className="w-10 h-10 mb-3" /> },
+    photogrammetry: { name: "Photogrammetry", icon: <Atom className="w-10 h-10 mb-3" /> },
 };
 
 export function Step1Service({ 
@@ -42,6 +44,7 @@ export function Step1Service({
     handleInputChange('timelapseSubType', '');
     handleInputChange('toursSubType', '');
     handleInputChange('postSubType', '');
+    handleInputChange('photogrammetrySubType', '');
   };
 
   const renderSubServiceOptions = () => {
@@ -63,6 +66,8 @@ export function Step1Service({
         return <ToursOptions formData={formData} handleInputChange={handleInputChange} validationError={validationError} />;
       case 'post':
         return <PostProductionOptions formData={formData} handleInputChange={handleInputChange} validationError={validationError} />;
+      case 'photogrammetry':
+        return <PhotogrammetryOptions formData={formData} handleInputChange={handleInputChange} validationError={validationError} />;
       default:
         return null;
     }
