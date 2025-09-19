@@ -489,37 +489,38 @@ export function QuoteCalculator() {
         const pageWidth = doc.internal.pageSize.getWidth();
         const margin = 15;
         let currentY = 0;
-    
-        // Colors
-        const primaryColor = [48, 63, 159];
-        const lightGray = [248, 248, 250];
-        const darkGray = [100, 100, 100];
-        const black = [0, 0, 0];
+
+        // Colors from your theme (approximated from HSL)
+        const primaryColor = [99, 88, 140]; // hsl(250, 45%, 45%)
+        const accentColor = [121, 111, 160];
+        const backgroundColor = [248, 249, 250]; // A very light gray for background
+        const textColor = [51, 51, 51];
+        const lightTextColor = [100, 100, 100];
+        const white = [255, 255, 255];
+
+        // Set a background color for the whole page
+        doc.setFillColor(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
+        doc.rect(0, 0, pageWidth, pageHeight, 'F');
         
         // -- Header --
         doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-        doc.rect(0, 0, pageWidth, 30, 'F');
-        doc.setFontSize(16);
-        doc.setFont('helvetica', 'bold');
-        doc.setTextColor(255, 255, 255);
+        doc.rect(0, 0, pageWidth, 25, 'F');
         
-        const textX = margin;
-        
-        doc.text("Studioo", textX, 18);
-        const wrhWidth = doc.getTextWidth("Studioo");
-
-        doc.setFont('helvetica', 'normal');
-        doc.text("Production", textX + wrhWidth + 2, 18);
-    
         doc.setFontSize(22);
         doc.setFont('helvetica', 'bold');
-        doc.text("QUOTE", pageWidth - margin, 18, { align: 'right' });
-        currentY = 45;
+        doc.setTextColor(white[0], white[1], white[2]);
+        doc.text("Studioo", margin, 17);
+
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        doc.text("QUOTE", pageWidth - margin, 17, { align: 'right' });
+        
+        currentY = 40;
 
         // --- Heading Title & Project Brief ---
-        doc.setFontSize(24);
+        doc.setFontSize(20);
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(black[0], black[1], black[2]);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
         const serviceName = formData.serviceType ? serviceOptions[formData.serviceType].name : 'Project';
         
         let subTypeName = '';
@@ -533,95 +534,117 @@ export function QuoteCalculator() {
         const headingTitle = subTypeName ? `${serviceName}: ${subTypeName}` : serviceName;
         const titleLines = doc.splitTextToSize(headingTitle, pageWidth - (margin * 2));
         doc.text(titleLines, margin, currentY);
-        currentY += (titleLines.length * 8) + 2;
+        currentY += (titleLines.length * 8) + 8;
         
         if (formData.message) {
-            doc.setFontSize(10);
+            doc.setFontSize(9);
             doc.setFont('helvetica', 'normal');
-            doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-            const briefLines = doc.splitTextToSize(formData.message, pageWidth - (margin * 2));
-            doc.text("Project Brief:", margin, currentY);
-            currentY += 6;
+            doc.setTextColor(lightTextColor[0], lightTextColor[1], lightTextColor[2]);
+            const briefLines = doc.splitTextToSize(`"${formData.message}"`, pageWidth - (margin * 2));
             doc.text(briefLines, margin, currentY);
-            currentY += (briefLines.length * 5) + 5;
+            currentY += (briefLines.length * 4) + 10;
         }
 
         // -- Client & Quote Info --
-        doc.setFontSize(11);
+        currentY += 5;
+        doc.setLineWidth(0.5);
+        doc.setDrawColor(accentColor[0], accentColor[1], accentColor[2]);
+        doc.line(margin, currentY, pageWidth - margin, currentY);
+        currentY += 10;
+
+        doc.setFontSize(10);
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(black[0], black[1], black[2]);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
         doc.text("BILLED TO", margin, currentY);
     
         const quoteDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        const quoteInfoX = pageWidth / 2 + 10;
+        const quoteInfoX = pageWidth / 2 + 30;
         doc.text("QUOTE #", quoteInfoX, currentY);
         doc.text("DATE", quoteInfoX, currentY + 7);
     
         doc.setFont('helvetica', 'normal');
+        doc.setTextColor(lightTextColor[0], lightTextColor[1], lightTextColor[2]);
         if (formData.name) doc.text(formData.name, margin, currentY + 7);
         if (formData.email) doc.text(formData.email, margin, currentY + 14);
         if (formData.phone) doc.text(formData.phone, margin, currentY + 21);
     
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
         doc.text("001", quoteInfoX + 30, currentY);
         doc.text(quoteDate, quoteInfoX + 30, currentY + 7);
     
-        currentY += 35;
+        currentY += 30;
     
         // -- Table Header --
-        doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
+        doc.setFillColor(accentColor[0], accentColor[1], accentColor[2]);
         doc.rect(margin, currentY, pageWidth - (margin * 2), 10, 'F');
         doc.setFontSize(10);
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+        doc.setTextColor(white[0], white[1], white[2]);
         doc.text('DESCRIPTION', margin + 5, currentY + 7);
-        doc.text('AMOUNT', pageWidth - margin - 5, currentY + 7, { align: 'right' });
-        currentY += 15;
+        doc.text('AMOUNT (AED)', pageWidth - margin - 5, currentY + 7, { align: 'right' });
+        currentY += 10;
     
         // -- Table Items --
         doc.setFontSize(10);
         doc.setFont('helvetica', 'normal');
-        doc.setTextColor(black[0], black[1], black[2]);
-        quoteDetails.items.forEach(item => {
-            if (currentY > pageHeight - 80) { // Check for footer space
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+
+        quoteDetails.items.forEach((item, index) => {
+            if (currentY > pageHeight - 60) { // Check for footer space
                 doc.addPage();
+                doc.setFillColor(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
+                doc.rect(0, 0, pageWidth, pageHeight, 'F');
                 currentY = margin;
             }
-            const price = typeof item.price === 'number' ? `${item.price.toLocaleString()} AED` : item.price;
+            
+            const isEven = index % 2 === 0;
+            if(isEven) {
+                doc.setFillColor(white[0], white[1], white[2]);
+                doc.rect(margin, currentY, pageWidth - margin * 2, 12, 'F');
+            }
+
+            const price = typeof item.price === 'number' ? `${item.price.toLocaleString()}` : item.price;
             const itemLines = doc.splitTextToSize(item.name, (pageWidth / 2));
-            doc.text(itemLines, margin + 5, currentY);
-            doc.text(price, pageWidth - margin - 5, currentY, { align: 'right' });
-            currentY += (itemLines.length * 5) + 5;
+
+            const itemLineHeight = (itemLines.length * 5);
+            const yPos = currentY + (12 - itemLineHeight) / 2 + 3;
+
+            doc.text(itemLines, margin + 5, yPos);
+            doc.text(price, pageWidth - margin - 5, yPos, { align: 'right' });
+            currentY += 12;
         });
-    
+
         // -- Total Section --
-        const totalSectionY = Math.max(currentY + 10, pageHeight - 80);
-        if (totalSectionY > pageHeight - 80) {
+        let totalSectionY = currentY + 10;
+        if (totalSectionY > pageHeight - 60) {
             doc.addPage();
-            currentY = margin;
+            doc.setFillColor(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
+            doc.rect(0, 0, pageWidth, pageHeight, 'F');
+            totalSectionY = margin;
         }
 
-        doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
-        doc.rect(pageWidth / 2, totalSectionY, pageWidth / 2 - margin, 20, 'F');
+        doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.rect(pageWidth / 2 - 20, totalSectionY, (pageWidth / 2) + 20 - margin, 20, 'F');
         
         doc.setFontSize(14);
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(black[0], black[1], black[2]);
-        doc.text('Total Estimate', pageWidth / 2 + 10, totalSectionY + 13);
+        doc.setTextColor(white[0], white[1], white[2]);
+        doc.text('Total Estimate', pageWidth / 2 - 10, totalSectionY + 13);
         doc.text(`${quoteDetails.total.toLocaleString()} AED`, pageWidth - margin, totalSectionY + 13, { align: 'right' });
     
         // -- Footer --
-        const footerY = pageHeight - 25;
-        doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-        doc.rect(0, footerY, pageWidth, 25, 'F');
-        doc.setFontSize(9);
-        doc.setTextColor(255, 255, 255);
-        doc.setFont('helvetica', 'bold');
-        doc.text('Terms & Conditions', margin, footerY + 8);
-        doc.text('Contact', pageWidth - margin, footerY + 8, { align: 'right' });
-    
+        const footerY = pageHeight - 30;
+        doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.setLineWidth(0.5);
+        doc.line(margin, footerY, pageWidth - margin, footerY);
+
+        doc.setFontSize(8);
+        doc.setTextColor(lightTextColor[0], lightTextColor[1], lightTextColor[2]);
         doc.setFont('helvetica', 'normal');
-        doc.text('50% advance payment required to confirm the booking. Quote valid for 30 days.', margin, footerY + 15);
-        doc.text('hi@studioo.ae | +971586583939', pageWidth - margin, footerY + 15, { align: 'right' });
+        doc.text('Terms: 50% advance payment to confirm booking. This quote is valid for 30 days.', margin, footerY + 8);
+        
+        doc.setFont('helvetica', 'bold');
+        doc.text('hi@studioo.ae | +971 58 658 3939 | studioo.ae', pageWidth - margin, footerY + 8, { align: 'right' });
     
         doc.save("studioo-quote.pdf");
     };
