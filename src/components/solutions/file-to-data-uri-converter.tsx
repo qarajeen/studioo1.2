@@ -8,6 +8,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { UploadCloud, FileCode, CircleAlert, Copy, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Textarea } from '../ui/textarea';
+import { Label } from '../ui/label';
 
 export function FileToDataUriConverter() {
   const [file, setFile] = useState<File | null>(null);
