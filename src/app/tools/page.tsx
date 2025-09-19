@@ -18,7 +18,7 @@ const spheres = [
   { id: 8, size: 90, top: '85%', left: '15%', animation: 'float-in-3', floatAnimation: 'float-2', duration: '10s', delay: '0.7s', hint: 'user portrait' },
 ];
 
-const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
 
 const tools = [
     {

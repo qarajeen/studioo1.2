@@ -23,7 +23,7 @@ const spheresData = [
   { id: 11, img: 'sphere11.jpg', size: 190, top: '80%', left: '5%', hint: 'geometric pattern' },
 ];
 
-const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
 
 export default function Home() {
     const isMobile = useIsMobile();
