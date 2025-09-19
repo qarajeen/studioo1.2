@@ -56,7 +56,7 @@ export default function PricingPage() {
         <div className="absolute inset-0 w-full h-full z-0 opacity-50">
             {renderSpheres(spheres)}
         </div>
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10 max-w-7xl">
         <ClientQuoteCalculator />
       </div>
     </div>
