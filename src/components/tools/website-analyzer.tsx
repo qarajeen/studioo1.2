@@ -108,9 +108,11 @@ export function WebsiteAnalyzer() {
                     if (entry.entryType === 'layout-shift') {
                         // CLS is cumulative
                         currentMetrics[2].value = (currentMetrics[2].value || 0) + (entry as any).value;
-                        if (currentMetrics[2].value <= 0.1) currentMetrics[2].rating = 'Good';
-                        else if (currentMetrics[2].value <= 0.25) currentMetrics[2].rating = 'Needs Improvement';
-                        else currentMetrics[2].rating = 'Poor';
+                        if (currentMetrics[2].value !== null) {
+                          if (currentMetrics[2].value <= 0.1) currentMetrics[2].rating = 'Good';
+                          else if (currentMetrics[2].value <= 0.25) currentMetrics[2].rating = 'Needs Improvement';
+                          else currentMetrics[2].rating = 'Poor';
+                        }
                     }
                 }
             });
