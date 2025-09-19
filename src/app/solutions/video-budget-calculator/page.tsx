@@ -2,10 +2,8 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Monitor, Palette, Video } from 'lucide-react';
+import { VideoBudgetCalculator } from '@/components/solutions/video-budget-calculator';
+import { Card, CardContent } from '@/components/ui/card';
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -20,28 +18,7 @@ const spheres = [
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
 
-const tools = [
-    {
-        title: "Website Performance Analyzer",
-        description: "Get an AI-powered performance analysis and actionable recommendations for your website.",
-        href: "/solutions/website-analyzer",
-        icon: <Monitor className="w-8 h-8 text-primary" />,
-    },
-    {
-        title: "Brand Color Consistency Checker",
-        description: "Analyze your website's visual content against your brand's color palette.",
-        href: "/solutions/brand-color-checker",
-        icon: <Palette className="w-8 h-8 text-primary" />,
-    },
-    {
-        title: "Marketing Video Budget Calculator",
-        description: "Get an approximate budget for your next marketing video based on your needs.",
-        href: "/solutions/video-budget-calculator",
-        icon: <Video className="w-8 h-8 text-primary" />,
-    }
-]
-
-export default function SolutionsPage() {
+export default function VideoBudgetCalculatorPage() {
   const renderSpheres = (sphereList: typeof spheres) => {
     return sphereList.map((sphere) => (
       <div
@@ -82,32 +59,12 @@ export default function SolutionsPage() {
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold">Solutions</h1>
-          <p className="mt-4 text-lg text-muted-foreground">
-            A collection of online tools to spark creativity and assist with your production workflow.
-          </p>
-        </div>
-
-        <div className="mt-16 max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-          {tools.map(tool => (
-             <Card key={tool.href} className="w-full bg-card/50 backdrop-blur-sm border-border hover:border-primary/80 transition-all group">
-                <CardHeader className="flex flex-row items-start gap-4">
-                    {tool.icon}
-                    <div>
-                        <CardTitle className="text-xl">{tool.title}</CardTitle>
-                        <CardDescription className="pt-2">{tool.description}</CardDescription>
-                    </div>
-                </CardHeader>
-                <CardContent>
-                    <Button asChild className="w-full">
-                        <Link href={tool.href}>
-                            Launch Tool <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                    </Button>
-                </CardContent>
-             </Card>
-          ))}
+        <div className="mt-16 max-w-4xl mx-auto space-y-12">
+          <Card className="w-full bg-card/50 backdrop-blur-sm border-border">
+            <CardContent className="p-6">
+              <VideoBudgetCalculator />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
