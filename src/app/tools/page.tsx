@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -31,12 +32,6 @@ const tools = [
         description: "Get an approximate budget for your next marketing video based on your needs.",
         href: "/tools/video-budget-calculator",
         icon: <Video className="w-8 h-8 text-primary" />,
-    },
-    {
-        title: "Event Photography Checklist",
-        description: "Download our free, comprehensive checklist for marketing and event managers.",
-        href: "/tools/event-checklist",
-        icon: <Download className="w-8 h-8 text-primary" />,
     },
     {
         title: "JPEG to WEBP Converter",

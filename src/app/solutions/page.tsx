@@ -40,12 +40,6 @@ const tools = [
         icon: <Video className="w-8 h-8 text-primary" />,
     },
     {
-        title: "Event Photography Checklist",
-        description: "Download our free, comprehensive checklist for marketing and event managers.",
-        href: "/solutions/event-checklist",
-        icon: <Download className="w-8 h-8 text-primary" />,
-    },
-    {
         title: "JPEG to WEBP Converter",
         description: "Convert your JPEG images to the modern, high-efficiency WEBP format.",
         href: "/solutions/jpeg-to-webp-converter",
@@ -68,12 +62,6 @@ const tools = [
         description: "Find the best natural light for your photos and videos by calculating sun times.",
         href: "/solutions/golden-hour-calculator",
         icon: <Sunrise className="w-8 h-8 text-primary" />,
-    },
-    {
-        title: "EXIF Data Viewer",
-        description: "View detailed metadata from your image files, like camera settings and location.",
-        href: "/solutions/exif-data-viewer",
-        icon: <Camera className="w-8 h-8 text-primary" />,
     },
     {
         title: "Image Compressor",
