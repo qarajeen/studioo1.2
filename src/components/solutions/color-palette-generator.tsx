@@ -12,18 +12,41 @@ import Image from 'next/image';
 
 const Loading = () => <Loader2 className="h-6 w-6 animate-spin text-primary" />;
 
+function PaletteDisplay({ imagePreview, onCopy, copiedColor }: { imagePreview: string; onCopy: (color: string) => void; copiedColor: string | null }) {
+    const { data: colorPalette, loading: paletteLoading } = useColorThief(imagePreview, {
+        format: 'hex',
+        colorCount: 8,
+        quality: 10,
+    });
+
+    if (paletteLoading) {
+        return (
+            <div className="flex items-center justify-center h-24"><Loading/></div>
+        );
+    }
+
+    return (
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {colorPalette?.map((color, index) => (
+                <div key={index} className="space-y-2 group">
+                    <div style={{ backgroundColor: color }} className="h-24 w-full rounded-lg shadow-md border border-white/20"/>
+                    <Button variant="secondary" size="sm" onClick={() => onCopy(color)} className="w-full text-sm">
+                        {copiedColor === color ? <Check className="h-4 w-4 text-green-500"/> : <Copy className="h-4 w-4"/>}
+                        <span className="font-mono ml-2">{color}</span>
+                    </Button>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+
 export function ColorPaletteGenerator() {
   const [file, setFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
   const { toast } = useToast();
-
-  const { data: colorPalette, loading: paletteLoading } = useColorThief(imagePreview, {
-    format: 'hex',
-    colorCount: 8,
-    quality: 10,
-  });
 
   const onDrop = useCallback((acceptedFiles: File[], fileRejections: any[]) => {
     setError(null);
@@ -53,14 +76,6 @@ export function ColorPaletteGenerator() {
     setTimeout(() => setCopiedColor(null), 2000);
   };
   
-  function getTextColor(hex: string): 'text-black' | 'text-white' {
-    const r = parseInt(hex.substring(1, 3), 16);
-    const g = parseInt(hex.substring(3, 5), 16);
-    const b = parseInt(hex.substring(5, 7), 16);
-    const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-    return (yiq >= 128) ? 'text-black' : 'text-white';
-  }
-
   return (
     <div className="w-full">
       <CardHeader className="px-0 pt-0 text-center">
@@ -100,20 +115,7 @@ export function ColorPaletteGenerator() {
               </div>
               <div className="w-full md:w-2/3">
                  <h3 className="font-semibold text-lg mb-4 text-center md:text-left">Extracted Palette</h3>
-                 {paletteLoading && <div className="flex items-center justify-center h-24"><Loading/></div>}
-                 {colorPalette && (
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        {colorPalette.map((color, index) => (
-                            <div key={index} className="space-y-2 group">
-                                <div style={{ backgroundColor: color }} className="h-24 w-full rounded-lg shadow-md border border-white/20"/>
-                                <Button variant="secondary" size="sm" onClick={() => handleCopy(color)} className="w-full text-sm">
-                                    {copiedColor === color ? <Check className="h-4 w-4 text-green-500"/> : <Copy className="h-4 w-4"/>}
-                                    <span className="font-mono ml-2">{color}</span>
-                                </Button>
-                            </div>
-                        ))}
-                    </div>
-                 )}
+                 <PaletteDisplay imagePreview={imagePreview} onCopy={handleCopy} copiedColor={copiedColor} />
               </div>
             </div>
             <div className="flex justify-center">
