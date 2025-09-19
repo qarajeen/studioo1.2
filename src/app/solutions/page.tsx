@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush, Sunrise, Camera, Shrink, FileCode, Film, Hourglass } from 'lucide-react';
+import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush, Sunrise, Camera, Shrink, FileCode, Film, Hourglass, Clapperboard } from 'lucide-react';
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -98,6 +98,12 @@ const tools = [
         description: "Calculate shooting intervals and storage needs for your time-lapse projects.",
         href: "/solutions/timelapse-calculator",
         icon: <Hourglass className="w-8 h-8 text-primary" />,
+    },
+    {
+        title: "Animated GIF Generator",
+        description: "Create a high-quality animated GIF from a short video clip, right in your browser.",
+        href: "/solutions/gif-generator",
+        icon: <Clapperboard className="w-8 h-8 text-primary" />,
     }
 ]
 
