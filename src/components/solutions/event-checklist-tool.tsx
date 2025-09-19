@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { generateEventChecklist, EventChecklistOutput } from '@/ai/flows/generate-event-checklist-flow';
 import { Loader2, Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -28,6 +27,55 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+const checklistData = {
+  introduction: "A successful event is a story told through compelling visuals. This checklist, crafted by the experts at STUDIOO, is your guide to ensuring every critical moment is captured with intent and creativity. Use it to align with your photographer and guarantee a final gallery that exceeds expectations and extends the life of your event.",
+  conclusion: "Your event is more than just a gathering; it's a strategic investment. Don't leave its visual legacy to chance. At STUDIOO, we combine technical expertise with creative storytelling to produce photography that drives engagement and amplifies your brand. Ready to create something unforgettable? Visit studioo.ae or book a free consultation with our production experts today.",
+  sections: [
+    {
+      title: "Phase 1: Pre-Event Strategy & Briefing",
+      items: [
+        { title: "Define Core Objectives", description: "What is the primary goal of the photography? (e.g., social media content, press release, internal use).", category: "Planning" },
+        { title: "Create a 'Must-Have' Shot List", description: "List all key speakers, VIPs, sponsors, and specific moments that must be captured.", category: "Planning" },
+        { title: "Develop a Mood Board", description: "Share visual examples of the style, tone, and composition you're looking for.", category: "Creative" },
+        { title: "Confirm Brand Guidelines", description: "Provide the photographer with logos, brand colors, and guidelines on how to represent the brand.", category: "Planning" },
+        { title: "Share the Official Event Schedule", description: "Include timings for keynotes, panels, breaks, and any special announcements.", category: "Logistics" },
+        { title: "Discuss Deliverables & Deadlines", description: "Agree on the number of photos, editing style, and delivery dates for previews and final gallery.", category: "Post-Event" }
+      ]
+    },
+    {
+      title: "Phase 2: On-Site Logistics & Technical Prep",
+      items: [
+        { title: "Conduct a Venue Walkthrough", description: "Scout the location with the photographer to identify key photo spots and lighting challenges.", category: "Logistics" },
+        { title: "Secure Necessary Credentials", description: "Ensure the photographer has the required passes for all-access, including backstage and VIP areas.", category: "Logistics" },
+        { title: "Establish a Communication Plan", description: "Designate a single point of contact on-site for the photographer for any urgent requests.", category: "Logistics" },
+        { title: "Verify Internet Access for Live Uploads", description: "If immediate social media content is needed, confirm Wi-Fi details and reliability.", category: "Technical" },
+        { title: "Review Power & Charging Stations", description: "Identify secure locations where the photographer can charge batteries and equipment.", category: "Technical" }
+      ]
+    },
+    {
+      title: "Phase 3: During The Event - Capturing The Story",
+      items: [
+        { title: "Capture the Venue & Ambiance", description: "Wide shots of the setup before guests arrive, including branding, decor, and staging.", category: "Creative" },
+        { title: "Photograph Speakers & Panels", description: "Dynamic shots of presenters on stage, as well as audience engagement and reactions.", category: "Creative" },
+        { title: "Focus on Attendee Interaction", description: "Candid moments of networking, collaboration, and guests enjoying the experience.", category: "Creative" },
+        { title: "Showcase Sponsor & Exhibitor Presence", description: "Clear shots of sponsor logos, booths, and interactions at exhibitor stands.", category: "Planning" },
+        { title: "Detail Shots of Food & Beverage", description: "Artistic shots of catering, coffee breaks, and dining experiences.", category: "Creative" },
+        { title: "Behind-the-Scenes Moments", description: "Capture the event team, production crew, and candid moments that tell a larger story.", category: "Creative" }
+      ]
+    },
+    {
+      title: "Phase 4: Post-Event Workflow & Delivery",
+      items: [
+        { title: "Confirm Receipt of Preview Photos", description: "Ensure a small batch of highlight photos is delivered within 24 hours for immediate PR/social use.", category: "Post-Event" },
+        { title: "Review the Full Edited Gallery", description: "Check the final selection for quality, consistency, and adherence to the brief.", category: "Post-Event" },
+        { title: "Obtain All High-Resolution Files", description: "Secure the final, high-resolution images via the agreed-upon delivery method (e.g., online gallery, hard drive).", category: "Post-Event" },
+        { title: "Clarify Image Usage Rights", description: "Re-confirm the usage rights for marketing, commercial, and promotional activities as per the contract.", category: "Planning" },
+        { title: "Provide Feedback to the Photographer", description: "Share constructive feedback to build a strong relationship for future events.", category: "Post-Event" }
+      ]
+    }
+  ]
+};
+
 export function EventChecklistTool() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -39,7 +87,7 @@ export function EventChecklistTool() {
     },
   });
 
-  const handleGeneratePdf = (checklistData: EventChecklistOutput) => {
+  const handleGeneratePdf = () => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const margin = 15;
@@ -142,12 +190,10 @@ export function EventChecklistTool() {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsLoading(true);
     try {
-      console.log("Submitting email:", data.email);
-      // Here you would typically send the email to your backend/service
-      // For now, we just simulate success.
+      // Simulate a small delay to feel like work is being done
+      await new Promise(resolve => setTimeout(resolve, 500));
       
-      const checklistData = await generateEventChecklist();
-      handleGeneratePdf(checklistData);
+      handleGeneratePdf();
 
       toast({
         title: "Success!",
