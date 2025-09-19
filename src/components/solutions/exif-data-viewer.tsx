@@ -64,7 +64,7 @@ const tagCategories: Record<string, { name: string, icon: React.ReactNode, tags:
 
 const ExifDisplay = ({ tags }: { tags: Record<string, any> }) => {
     if (Object.keys(tags).length === 0) {
-        return <p className="text-muted-foreground text-center">No EXIF data found in this image.</p>;
+        return <p className="text-muted-foreground text-center py-10">No EXIF data found in this image.</p>;
     }
 
     const allCategorizedTags = new Set(Object.values(tagCategories).flatMap(cat => cat.tags));
@@ -130,32 +130,19 @@ export function ExifDataViewer() {
     setFile(uploadedFile);
     setIsLoading(true);
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
+    const dataUrlReader = new FileReader();
+    dataUrlReader.onload = (e) => {
         const result = e.target?.result;
         if (typeof result === 'string') {
           setImagePreview(result);
         }
-
-        if (result instanceof ArrayBuffer) {
-             try {
-                const tags = ExifReader.load(result);
-                // The library nests the actual tags, so we extract them.
-                const allTags = { ...tags['Image'], ...tags['Exif'], ...tags['GPS'], ...tags['Interoperability'] };
-                setExifData(allTags);
-            } catch (err) {
-                setError('Could not parse EXIF data from this image.');
-                setExifData({}); // Set to empty object to show message
-            }
-        }
-        setIsLoading(false);
     };
-    reader.onerror = () => {
-        setError('Failed to read the file.');
+    dataUrlReader.onerror = () => {
+        setError('Failed to read the file for preview.');
         setIsLoading(false);
     }
+    dataUrlReader.readAsDataURL(uploadedFile);
     
-    // Create a separate reader for the ArrayBuffer, as we need both
     const bufferReader = new FileReader();
     bufferReader.onload = (e) => {
         const arrayBuffer = e.target?.result;
@@ -163,17 +150,25 @@ export function ExifDataViewer() {
              try {
                 const tags = ExifReader.load(arrayBuffer);
                 const allTags = { ...tags['Image'], ...tags['Exif'], ...tags['GPS'], ...tags['Interoperability'] };
-                setExifData(allTags);
+                // Check if any tags were actually found
+                if(Object.keys(allTags).length > 0) {
+                    setExifData(allTags);
+                } else {
+                    setExifData({}); // Set to empty object to signify no data found
+                }
             } catch (err) {
-                setError('Could not parse EXIF data from this image.');
+                // This catch block will now mostly handle truly corrupt files
+                console.warn("EXIF parsing failed:", err);
                 setExifData({});
             }
         }
         setIsLoading(false);
     }
+     bufferReader.onerror = () => {
+        setError('Failed to read file buffer for EXIF parsing.');
+        setIsLoading(false);
+    }
     bufferReader.readAsArrayBuffer(uploadedFile);
-    reader.readAsDataURL(uploadedFile);
-
 
   }, []);
 
@@ -226,7 +221,7 @@ export function ExifDataViewer() {
             <div className="flex flex-col md:flex-row gap-8 items-start">
               <div className="w-full md:w-1/3 flex-shrink-0 space-y-4">
                  {imagePreview && <Image src={imagePreview} alt="Uploaded preview" width={300} height={300} className="rounded-lg mx-auto shadow-lg object-contain" />}
-                 {isLoading && <Skeleton className="w-full h-64" />}
+                 {isLoading && !imagePreview && <Skeleton className="w-full h-64" />}
                  <p className="text-sm text-muted-foreground text-center">{file.name}</p>
               </div>
               <div className="w-full md:w-2/3">
