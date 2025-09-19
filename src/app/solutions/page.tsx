@@ -2,15 +2,9 @@
 'use client';
 
 import Image from 'next/image';
-import type { Metadata } from 'next';
 import { WebsiteAnalyzer } from '@/components/solutions/website-analyzer';
 import { BrandColorChecker } from '@/components/solutions/brand-color-checker';
-import { Separator } from '@/components/ui/separator';
-
-// export const metadata: Metadata = {
-//   title: 'Creative Solutions & Tools | STUDIOO',
-//   description: 'Explore online tools and creative solutions offered by STUDIOO to help with your media production needs.',
-// };
+import { Card, CardContent } from '@/components/ui/card';
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -74,9 +68,16 @@ export default function SolutionsPage() {
         </div>
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
-          <WebsiteAnalyzer />
-          <Separator />
-          <BrandColorChecker />
+          <Card className="w-full bg-card/50 backdrop-blur-sm border-border">
+            <CardContent className="p-6">
+              <WebsiteAnalyzer />
+            </CardContent>
+          </Card>
+          <Card className="w-full bg-card/50 backdrop-blur-sm border-border">
+            <CardContent className="p-6">
+              <BrandColorChecker />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

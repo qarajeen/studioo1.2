@@ -208,12 +208,12 @@ export function WebsiteAnalyzer() {
   }
 
   return (
-    <Card className="w-full bg-card/50 backdrop-blur-sm border-border">
-      <CardHeader>
+    <div className="w-full">
+      <CardHeader className="px-0 pt-0">
         <CardTitle className="text-2xl font-bold">Website Performance Analyzer</CardTitle>
         <CardDescription>Enter a URL to get an AI-powered performance analysis and actionable recommendations.</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-0 pb-0">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -344,6 +344,6 @@ export function WebsiteAnalyzer() {
           </div>
         )}
       </CardContent>
-    </Card>
+    </div>
   );
 }
