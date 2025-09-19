@@ -3,7 +3,6 @@
 
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import useColorThief from 'color-thief-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Loader2, UploadCloud, Copy, Check, Palette, CircleAlert } from 'lucide-react';
@@ -12,16 +11,108 @@ import Image from 'next/image';
 
 const Loading = () => <Loader2 className="h-6 w-6 animate-spin text-primary" />;
 
-function PaletteDisplay({ imagePreview, onCopy, copiedColor }: { imagePreview: string; onCopy: (color: string) => void; copiedColor: string | null }) {
-    const { data: colorPalette, loading: paletteLoading } = useColorThief(imagePreview, {
-        format: 'hex',
-        colorCount: 8,
-        quality: 10,
+function quantize(pixels: number[][], maxColors: number) {
+    if (!pixels || pixels.length === 0 || maxColors < 2 || maxColors > 256) {
+        return null;
+    }
+
+    const pixelCount = pixels.length;
+    const sigbits = 5;
+    const rshift = 8 - sigbits;
+    const vbox = {
+        r1: 0, r2: 255,
+        g1: 0, g2: 255,
+        b1: 0, b2: 255,
+        histo: [] as number[],
+    };
+
+    const histo = new Int32Array(1 << (3 * sigbits));
+    pixels.forEach(pixel => {
+        const rval = pixel[0] >> rshift;
+        const gval = pixel[1] >> rshift;
+        const bval = pixel[2] >> rshift;
+        const index = (rval << (2 * sigbits)) + (gval << sigbits) + bval;
+        histo[index] = (histo[index] || 0) + 1;
     });
 
-    if (paletteLoading) {
+    const fractByPopulations: number[] = [];
+    histo.forEach(val => {
+        if(val > 0) fractByPopulations.push(Math.sqrt(val));
+    });
+
+    // Simple implementation: just take the most prominent colors. A full median cut algorithm is more complex.
+    const sortedHisto = [];
+    for(let i=0; i< histo.length; i++) {
+        if (histo[i] > 0) {
+            const bval = i & ((1 << sigbits) - 1);
+            const gval = (i >> sigbits) & ((1 << sigbits) - 1);
+            const rval = (i >> (2 * sigbits)) & ((1 << sigbits) - 1);
+            sortedHisto.push({
+                color: [rval << rshift, gval << rshift, bval << rshift],
+                count: histo[i]
+            })
+        }
+    }
+
+    sortedHisto.sort((a,b) => b.count - a.count);
+    
+    return sortedHisto.slice(0, maxColors).map(item => item.color);
+}
+
+
+function getPalette(img: HTMLImageElement, colorCount = 8) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+
+    const width = canvas.width = img.width;
+    const height = canvas.height = img.height;
+
+    ctx.drawImage(img, 0, 0, width, height);
+    const data = ctx.getImageData(0, 0, width, height).data;
+    const pixels: number[][] = [];
+    for (let i = 0; i < data.length; i += 4 * 10) { // quality = 10
+        pixels.push([data[i], data[i+1], data[i+2]]);
+    }
+    
+    const cmap = quantize(pixels, colorCount);
+    if (!cmap) return null;
+
+    return cmap.map(color => {
+        const [r, g, b] = color;
+        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    });
+}
+
+
+function PaletteDisplay({ imagePreview, onCopy, copiedColor }: { imagePreview: string; onCopy: (color: string) => void; copiedColor: string | null }) {
+    const [colorPalette, setColorPalette] = useState<string[] | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    React.useEffect(() => {
+        if (!imagePreview) return;
+        setLoading(true);
+        const img = document.createElement('img');
+        img.src = imagePreview;
+        img.onload = () => {
+            const palette = getPalette(img, 8);
+            setColorPalette(palette);
+            setLoading(false);
+        }
+        img.onerror = () => {
+            setLoading(false);
+        }
+    }, [imagePreview]);
+
+    if (loading) {
         return (
             <div className="flex items-center justify-center h-24"><Loading/></div>
+        );
+    }
+    
+    if (!colorPalette) {
+        return (
+            <div className="flex items-center justify-center h-24 text-muted-foreground">Could not extract palette.</div>
         );
     }
 
