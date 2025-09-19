@@ -22,12 +22,6 @@ const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.1' : '';
 
 const tools = [
     {
-        title: "Website Performance Analyzer",
-        description: "Get an AI-powered performance analysis and actionable recommendations for your website.",
-        href: "/solutions/website-analyzer",
-        icon: <Monitor className="w-8 h-8 text-primary" />,
-    },
-    {
         title: "Brand Color Consistency Checker",
         description: "Analyze your website's visual content against your brand's color palette.",
         href: "/solutions/brand-color-checker",
