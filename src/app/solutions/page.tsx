@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush, Sunrise, Camera, Shrink } from 'lucide-react';
+import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush, Sunrise, Camera, Shrink, FileCode } from 'lucide-react';
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -80,6 +80,12 @@ const tools = [
         description: "Optimize your JPEG or PNG images with an adjustable quality slider.",
         href: "/solutions/image-compressor",
         icon: <Shrink className="w-8 h-8 text-primary" />,
+    },
+    {
+        title: "File to Data URI Converter",
+        description: "Convert any file into a Data URI string for embedding in web pages.",
+        href: "/solutions/file-to-data-uri-converter",
+        icon: <FileCode className="w-8 h-8 text-primary" />,
     }
 ]
 
