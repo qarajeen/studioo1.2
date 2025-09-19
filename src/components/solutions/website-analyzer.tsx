@@ -10,7 +10,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { analyzeWebsite, WebsiteAnalysisOutput } from '@/ai/flows/analyze-website-flow';
-import { Loader2, Search, TrendingUp, TrendingDown, Minus, CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+import { Loader2, Search, CheckCircle, XCircle, AlertTriangle, Timer, Pointer, ChevronsDownUp, PictureInPicture2, Hourglass, ShieldCheck } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 
@@ -21,12 +23,12 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const metricIcons: { [key: string]: React.ReactNode } = {
-  'Largest Contentful Paint': <TrendingDown className="h-5 w-5 text-red-400" />,
-  'Interaction to Next Paint': <TrendingDown className="h-5 w-5 text-red-400" />,
-  'Cumulative Layout Shift': <TrendingDown className="h-5 w-5 text-red-400" />,
-  'First Contentful Paint': <TrendingUp className="h-5 w-5 text-green-400" />,
-  'Time to First Byte': <TrendingUp className="h-5 w-5 text-green-400" />,
-  'Speed Index': <TrendingUp className="h-5 w-5 text-green-400" />,
+  'Largest Contentful Paint': <PictureInPicture2 className="h-5 w-5" />,
+  'Interaction to Next Paint': <Pointer className="h-5 w-5" />,
+  'Cumulative Layout Shift': <ChevronsDownUp className="h-5 w-5" />,
+  'First Contentful Paint': <Timer className="h-5 w-5" />,
+  'Time to First Byte': <ShieldCheck className="h-5 w-5" />,
+  'Speed Index': <Hourglass className="h-5 w-5" />,
 };
 
 const ratingIcons: { [key: string]: React.ReactNode } = {
@@ -130,19 +132,30 @@ export function WebsiteAnalyzer() {
               {analysis.metrics.map((metric) => (
                 <Card key={metric.name} className="bg-background/30 flex flex-col">
                   <CardHeader>
-                    <CardTitle className="flex items-center justify-between text-lg">
+                    <CardTitle className="flex items-center gap-3 text-lg">
+                      <span className="text-primary">{metricIcons[metric.name]}</span>
                       <span>{metric.name}</span>
-                      {ratingIcons[metric.rating]}
                     </CardTitle>
-                    <CardDescription className="text-3xl font-bold pt-2">
-                        {metric.value}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4 flex-grow flex flex-col">
-                    <div className="flex-grow">
-                        <p className="text-sm"><span className="font-semibold">What it is:</span> {metric.explanation}</p>
-                        <p className="text-sm mt-2"><span className="font-semibold">Recommendation:</span> {metric.recommendation}</p>
+                    <div className="flex items-baseline justify-between pt-2">
+                        <CardDescription className="text-3xl font-bold">
+                            {metric.value}
+                        </CardDescription>
+                         <div className="flex items-center gap-2">
+                            {ratingIcons[metric.rating]}
+                            <span className="text-sm font-medium">{metric.rating}</span>
+                        </div>
                     </div>
+                  </CardHeader>
+                  <CardContent className="flex-grow flex flex-col">
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="item-1" className="border-b-0">
+                        <AccordionTrigger className="text-sm py-2 hover:no-underline">View Details</AccordionTrigger>
+                        <AccordionContent className="space-y-3 pt-2">
+                           <p className="text-sm"><span className="font-semibold text-muted-foreground">What it is:</span> {metric.explanation}</p>
+                           <p className="text-sm"><span className="font-semibold text-muted-foreground">Recommendation:</span> {metric.recommendation}</p>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
                   </CardContent>
                 </Card>
               ))}
