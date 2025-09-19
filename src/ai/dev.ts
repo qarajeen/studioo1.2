@@ -3,3 +3,5 @@
 // import './flows/summarize-quote-flow';
 import './flows/analyze-website-flow';
 import './flows/brand-color-checker-flow';
+import './flows/generate-event-checklist-flow';
+
