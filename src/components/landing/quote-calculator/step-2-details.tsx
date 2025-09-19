@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -45,7 +46,7 @@ export function Step2Details({ formData, handleInputChange }: Step2DetailsProps)
           {!isPhotogrammetry && (
             <div>
               <h3 className="font-semibold mb-4 text-base sm:text-lg">Location Type</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {locationTypeOptions.map((type) => (
                   <Button
                     key={type}
@@ -106,3 +107,5 @@ export function Step2Details({ formData, handleInputChange }: Step2DetailsProps)
     </div>
   );
 }
+
+    

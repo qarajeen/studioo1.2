@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -24,7 +25,7 @@ export function PostProductionOptions({ formData, handleInputChange, validationE
     return (
         <div className="space-y-4 animate-fade-in-up">
             <div className={cn("p-4 border-2 rounded-lg transition-all", validationError ? 'border-destructive' : 'border-transparent')}>
-                <h3 className="font-semibold mb-4 text-base sm:text-lg">Select Post-Production Type</h3>
+                <h3 className="font-semibold mb-4 text-lg sm:text-xl">Select Post-Production Type</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {Object.entries(postProductionSubServices).map(([id, { name }]) => (
                         <Button
@@ -39,6 +40,7 @@ export function PostProductionOptions({ formData, handleInputChange, validationE
                                 }
                             }}
                             className={cn("h-auto py-4 text-sm sm:text-base transition-all hover:bg-accent/50 text-center justify-center",
+                                "min-h-[6rem]",
                                 formData.postSubType === id ? 'border-primary bg-accent' : 'border-border'
                             )}
                         >
@@ -50,7 +52,7 @@ export function PostProductionOptions({ formData, handleInputChange, validationE
 
             {formData.postSubType === 'video' && (
                 <div className="pt-4 space-y-4 animate-fade-in-up">
-                    <h4 className="font-semibold text-sm sm:text-base">Video Editing Details</h4>
+                    <h4 className="font-semibold text-base sm:text-lg">Video Editing Details</h4>
                     <RadioGroup value={formData.postVideoEditingType} onValueChange={(v) => handleInputChange('postVideoEditingType', v)} className="grid md:grid-cols-3 gap-4">
                          {['perHour', 'perMinute', 'social'].map(type => (
                              <div key={type}>
@@ -135,7 +137,7 @@ export function PostProductionOptions({ formData, handleInputChange, validationE
 
             {formData.postSubType === 'photo' && (
                 <div className="pt-4 space-y-4 animate-fade-in-up">
-                    <h4 className="font-semibold text-sm sm:text-base">Photo Editing Details</h4>
+                    <h4 className="font-semibold text-base sm:text-lg">Photo Editing Details</h4>
                      <RadioGroup
                         value={formData.postPhotoEditingType}
                         onValueChange={(v) => {
@@ -180,3 +182,5 @@ export function PostProductionOptions({ formData, handleInputChange, validationE
         </div>
     )
 }
+
+    

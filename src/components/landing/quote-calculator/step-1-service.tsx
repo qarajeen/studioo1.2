@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, Camera, Video, Wand2, Orbit, Hourglass, Atom } from 'lucide-react';
@@ -77,14 +78,15 @@ export function Step1Service({
     <div className="space-y-8 animate-fade-in-up">
       {formData.serviceType === '' ? (
         <div>
-          <h3 className="font-semibold mb-4 text-base sm:text-lg">Select Service Type</h3>
+          <h3 className="font-semibold mb-4 text-lg sm:text-xl">Select Service Type</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {Object.entries(serviceOptions).map(([id, { name, icon }]) => (
               <div
                 key={id}
                 onClick={() => handleInputChange("serviceType", id as keyof ServiceOptions)}
                 className={cn(
-                  "p-6 border-2 rounded-lg cursor-pointer transition-all flex flex-col items-center justify-center hover:bg-primary/80",
+                  "p-4 sm:p-6 border-2 rounded-lg cursor-pointer transition-all flex flex-col items-center justify-center hover:bg-primary/80",
+                  "min-h-[8rem] sm:min-h-[10rem]",
                   formData.serviceType === id ? 'border-primary bg-primary text-primary-foreground' : 'border-border'
                 )}
               >
@@ -107,3 +109,5 @@ export function Step1Service({
     </div>
   );
 }
+
+    

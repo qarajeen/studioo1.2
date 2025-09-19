@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -21,8 +22,8 @@ export function VideoOptions({ formData, handleInputChange, validationError }: V
   return (
     <div className="space-y-4 animate-fade-in-up">
       <div className={cn("p-4 border-2 rounded-lg transition-all", validationError ? 'border-destructive' : 'border-transparent')}>
-        <h3 className="font-semibold mb-4 text-base sm:text-lg">Select Video Production Type</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <h3 className="font-semibold mb-4 text-lg sm:text-xl">Select Video Production Type</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {Object.entries(videoSubServices).map(([id, { name }]) => (
             <Button
               key={id}
@@ -42,7 +43,7 @@ export function VideoOptions({ formData, handleInputChange, validationError }: V
 
       {formData.videoSubType === 'event' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">Event Details</h4>
+          <h4 className="font-semibold text-base sm:text-lg">Event Details</h4>
           <RadioGroup value={formData.videoEventDuration} onValueChange={(v) => handleInputChange("videoEventDuration", v)} className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {['perHour', 'halfDay', 'fullDay'].map(dur => (
               <div className="flex-1" key={dur}>
@@ -78,7 +79,7 @@ export function VideoOptions({ formData, handleInputChange, validationError }: V
 
       {formData.videoSubType === 'corporate' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">Corporate Video Details (Basic Package: AED 3,000)</h4>
+          <h4 className="font-semibold text-base sm:text-lg">Corporate Video Details (Basic Package: AED 3,000)</h4>
           <div className="space-y-3">
             <div>
               <Label>Extended Filming</Label>
@@ -121,7 +122,7 @@ export function VideoOptions({ formData, handleInputChange, validationError }: V
 
       {formData.videoSubType === 'promo' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">Promotional Video Details (Foundation Package: AED 8,000)</h4>
+          <h4 className="font-semibold text-base sm:text-lg">Promotional Video Details (Foundation Package: AED 8,000)</h4>
           <div className="space-y-3">
             <div className={cn("flex items-center justify-between p-4 border rounded-lg", formData.videoPromoFullDay ? 'border-primary bg-accent' : 'border-border' )}>
               <Label htmlFor="videoPromoFullDay" className="cursor-pointer flex-grow text-sm sm:text-base">Additional Full-Day Production (+ AED 5,000)</Label>
@@ -165,7 +166,7 @@ export function VideoOptions({ formData, handleInputChange, validationError }: V
 
       {formData.videoSubType === 'real_estate' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">Real Estate Details</h4>
+          <h4 className="font-semibold text-base sm:text-lg">Real Estate Details</h4>
           <div>
             <Label htmlFor="videoRealEstatePropertyType">Property Type</Label>
             <Select value={formData.videoRealEstatePropertyType} onValueChange={(v) => handleInputChange("videoRealEstatePropertyType", v)}>
@@ -186,7 +187,7 @@ export function VideoOptions({ formData, handleInputChange, validationError }: V
       
       {formData.videoSubType === 'wedding' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">Wedding Videography Details</h4>
+          <h4 className="font-semibold text-base sm:text-lg">Wedding Videography Details</h4>
           <div>
             <Label>Base Price (AED 3,000 - 10,000)</Label>
             <div className="flex items-center gap-4 mt-2">
@@ -208,3 +209,5 @@ export function VideoOptions({ formData, handleInputChange, validationError }: V
     </div>
   );
 }
+
+    

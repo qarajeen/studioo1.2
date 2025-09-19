@@ -727,7 +727,7 @@ export function QuoteCalculator() {
                             </React.Fragment>
                         ))}
                     </div>
-                    <CardTitle className="text-3xl md:text-4xl font-bold text-center pt-8">{step === 4 ? 'Your Quote is Ready' : `Step ${step}: ${stepTitles[step-1]}`}</CardTitle>
+                    <CardTitle className="text-2xl md:text-4xl font-bold text-center pt-8">{step === 4 ? 'Your Quote is Ready' : `Step ${step}: ${stepTitles[step-1]}`}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
                     {renderStep()}
@@ -763,5 +763,7 @@ export function QuoteCalculator() {
       </div>
     );
 }
+
+    
 
     

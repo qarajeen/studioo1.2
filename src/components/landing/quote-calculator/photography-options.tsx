@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -53,8 +54,8 @@ export function PhotographyOptions({
   return (
     <div className="space-y-4 animate-fade-in-up">
        <div className={cn("p-4 border-2 rounded-lg transition-all card-glowing", validationError ? 'border-destructive' : 'border-transparent')}>
-        <h3 className="font-semibold mb-4 text-base sm:text-lg">Select Photography Type</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <h3 className="font-semibold mb-4 text-lg sm:text-xl">Select Photography Type</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {Object.entries(photographySubServices).map(([id, { name }]) => (
             <Button
                 key={id}
@@ -74,7 +75,7 @@ export function PhotographyOptions({
 
       {formData.photographySubType === 'event' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">Event Details</h4>
+          <h4 className="font-semibold text-base sm:text-lg">Event Details</h4>
           <RadioGroup value={formData.photoEventDuration} onValueChange={(v) => handleInputChange("photoEventDuration", v)} className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {['perHour', 'halfDay', 'fullDay'].map(dur => (
               <div className="flex-1" key={dur}>
@@ -110,7 +111,7 @@ export function PhotographyOptions({
 
       {formData.photographySubType === 'real_estate' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">Real Estate Details</h4>
+          <h4 className="font-semibold text-base sm:text-lg">Real Estate Details</h4>
           <div className="space-y-4">
             {formData.photoRealEstateProperties.map((prop, index) => (
                 <div key={prop.id} className="p-4 border rounded-lg space-y-4 relative bg-background/50">
@@ -156,7 +157,7 @@ export function PhotographyOptions({
       )}
       {formData.photographySubType === 'headshots' && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">Headshot Details</h4>
+          <h4 className="font-semibold text-base sm:text-lg">Headshot Details</h4>
           <div>
             <Label>Number of People</Label>
             <div className="flex items-center gap-4 mt-2">
@@ -178,7 +179,7 @@ export function PhotographyOptions({
 
       {(isProduct || isFood) && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">{isProduct ? 'Product' : 'Food'} Photography Details</h4>
+          <h4 className="font-semibold text-base sm:text-lg">{isProduct ? 'Product' : 'Food'} Photography Details</h4>
           <div className="space-y-4">
             <div>
                 <Label>Number of Photos</Label>
@@ -231,7 +232,7 @@ export function PhotographyOptions({
 
       {(formData.photographySubType === 'fashion' || formData.photographySubType === 'wedding') && (
         <div className="pt-4 space-y-4 animate-fade-in-up">
-          <h4 className="font-semibold text-sm sm:text-base">{formData.photographySubType === 'fashion' ? 'Fashion/Lifestyle' : 'Wedding'} Package</h4>
+          <h4 className="font-semibold text-base sm:text-lg">{formData.photographySubType === 'fashion' ? 'Fashion/Lifestyle' : 'Wedding'} Package</h4>
            <RadioGroup
             value={formData.photographySubType === 'fashion' ? formData.photoFashionPackage : formData.photoWeddingPackage}
             onValueChange={(v) => handleInputChange(formData.photographySubType === 'fashion' ? 'photoFashionPackage' : 'photoWeddingPackage', v)}
@@ -257,3 +258,5 @@ export function PhotographyOptions({
     </div>
   );
 }
+
+    

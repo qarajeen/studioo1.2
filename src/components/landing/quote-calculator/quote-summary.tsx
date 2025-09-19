@@ -95,7 +95,7 @@ export function QuoteSummary({ quoteDetails, formData }: QuoteSummaryProps) {
       <CardFooter>
         <div className='w-full'>
             <Separator className="my-4 bg-primary/30" />
-            <div className="flex justify-between font-bold text-xl">
+            <div className="flex justify-between font-bold text-lg sm:text-xl">
                 <span>Total Estimate</span>
                 <span>{quoteDetails.total.toLocaleString()} AED</span>
             </div>
@@ -104,5 +104,7 @@ export function QuoteSummary({ quoteDetails, formData }: QuoteSummaryProps) {
     </Card>
   );
 }
+
+    
 
     
