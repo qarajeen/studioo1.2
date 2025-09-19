@@ -41,6 +41,9 @@ const prompt = ai.definePrompt({
   name: 'analyzeWebsitePrompt',
   input: {schema: WebsiteAnalysisInputSchema},
   output: {schema: WebsiteAnalysisOutputSchema},
+  config: {
+    temperature: 0,
+  },
   prompt: `You are a world-class web performance analyst. Your task is to provide a detailed performance report for the given URL: {{{url}}}. The analysis should be for a *{{{deviceType}}}* device.
 
 You cannot access external websites, so you must generate a *realistic, plausible analysis* based on your expert knowledge of web development, common performance issues, and the metrics involved for the specified device type. For example, mobile metrics are often slightly worse than desktop. Do not state that you cannot access the URL. Proceed with generating a believable report as if you had analyzed it.
