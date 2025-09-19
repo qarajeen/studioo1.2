@@ -12,7 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { analyzeImageQuality, ImageQualityOutput } from '@/ai/flows/analyze-image-quality-flow';
-import { Loader2, Search, ArrowRight, Image as ImageIcon, FileWarning, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+import { Loader2, Search, ArrowRight, Image as ImageIcon, FileWarning, AlertTriangle } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 
@@ -57,16 +57,17 @@ export function ImageQualityGrader() {
   };
   
   const issueIcon = (issue: string) => {
-    if (issue.toLowerCase().includes('size') || issue.toLowerCase().includes('large')) {
-        return <FileWarning className="h-5 w-5 text-yellow-500" />;
+    const lowercasedIssue = issue.toLowerCase();
+    if (lowercasedIssue.includes('size') || lowercasedIssue.includes('large')) {
+        return <FileWarning className="h-5 w-5 text-yellow-500 flex-shrink-0" />;
     }
-    if (issue.toLowerCase().includes('format')) {
-        return <AlertTriangle className="h-5 w-5 text-orange-500" />;
+    if (lowercasedIssue.includes('format')) {
+        return <AlertTriangle className="h-5 w-5 text-orange-500 flex-shrink-0" />;
     }
-    if (issue.toLowerCase().includes('resolution')) {
-        return <ImageIcon className="h-5 w-5 text-blue-500" />;
+    if (lowercasedIssue.includes('resolution')) {
+        return <ImageIcon className="h-5 w-5 text-blue-500 flex-shrink-0" />;
     }
-    return <AlertTriangle className="h-5 w-5 text-muted-foreground" />;
+    return <AlertTriangle className="h-5 w-5 text-muted-foreground flex-shrink-0" />;
   }
 
   return (
@@ -134,22 +135,26 @@ export function ImageQualityGrader() {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                            <TableHead>Image</TableHead>
-                            <TableHead>Size</TableHead>
-                            <TableHead>Format</TableHead>
+                            <TableHead className="w-[150px] sm:w-[200px]">Image</TableHead>
+                            <TableHead>Details</TableHead>
                             <TableHead>Issue</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {analysis.imageBreakdown.map((image, index) => (
                             <TableRow key={index}>
-                                <TableCell className="font-medium">{image.imageName}</TableCell>
-                                <TableCell>{image.size}</TableCell>
-                                <TableCell>{image.format}</TableCell>
+                                <TableCell className="font-medium truncate">{image.imageName}</TableCell>
+                                <TableCell>
+                                    <div className="flex flex-col sm:flex-row gap-x-4 gap-y-1 text-xs">
+                                        <span><span className="font-semibold">Size:</span> {image.size}</span>
+                                        <span><span className="font-semibold">Format:</span> {image.format}</span>
+                                        <span><span className="font-semibold">Res:</span> {image.resolution}</span>
+                                    </div>
+                                </TableCell>
                                 <TableCell>
                                     <div className="flex items-center gap-2">
                                         {issueIcon(image.issue)}
-                                        <span>{image.issue}</span>
+                                        <span className="hidden sm:inline">{image.issue}</span>
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -180,3 +185,5 @@ export function ImageQualityGrader() {
     </Card>
   );
 }
+
+    
