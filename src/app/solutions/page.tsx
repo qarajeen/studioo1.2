@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio } from 'lucide-react';
+import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush } from 'lucide-react';
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -56,6 +56,12 @@ const tools = [
         description: "Calculate aspect ratios and resolutions for your videos and images.",
         href: "/solutions/aspect-ratio-calculator",
         icon: <Ratio className="w-8 h-8 text-primary" />,
+    },
+    {
+        title: "Color Palette From Image",
+        description: "Upload an image to automatically generate a palette of its most prominent colors.",
+        href: "/solutions/color-palette-generator",
+        icon: <Paintbrush className="w-8 h-8 text-primary" />,
     }
 ]
 
