@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { UploadCloud, Music, CircleAlert, Loader2, Video, Download } from 'lucide-react';
+import { UploadCloud, Music, CircleAlert, Loader2, Video, Download, StopCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Label } from '../ui/label';
 
@@ -26,11 +26,23 @@ export function AudioVisualizer() {
 
   const cleanup = React.useCallback(() => {
     if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-    if (sourceRef.current) sourceRef.current.disconnect();
-    if (audioContextRef.current && audioContextRef.current.state !== 'closed') audioContextRef.current.close();
+    if (sourceRef.current) {
+        try {
+            sourceRef.current.stop();
+        } catch (e) {}
+        sourceRef.current.disconnect();
+    }
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+        audioContextRef.current.close().catch(console.error);
+    }
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+        mediaRecorderRef.current.stop();
+    }
+
     audioContextRef.current = null;
     analyserRef.current = null;
     sourceRef.current = null;
+    mediaRecorderRef.current = null;
   }, []);
   
   React.useEffect(() => {
@@ -119,6 +131,19 @@ export function AudioVisualizer() {
     animationFrameRef.current = requestAnimationFrame(draw);
   }, []);
 
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
+      mediaRecorderRef.current.stop();
+    }
+    if (sourceRef.current) {
+        try {
+           sourceRef.current.stop();
+        } catch (e) {
+            console.warn("Audio source could not be stopped, it might have already finished.", e);
+        }
+    }
+  };
+
   const startRecording = () => {
     if (status !== 'ready' || !canvasRef.current || !audioContextRef.current || !sourceRef.current) return;
     
@@ -149,11 +174,14 @@ export function AudioVisualizer() {
       const url = URL.createObjectURL(blob);
       setVideoUrl(url);
       setStatus('finished');
-      cleanup();
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     };
 
     sourceRef.current.onended = () => {
-      mediaRecorderRef.current?.stop();
+        // This will be called naturally when the audio finishes, or when we call stop()
+        if (mediaRecorderRef.current?.state === 'recording') {
+            mediaRecorderRef.current.stop();
+        }
     };
 
     sourceRef.current.start(0);
@@ -225,10 +253,16 @@ export function AudioVisualizer() {
             )}
             
             {status === 'recording' && (
-              <div className="flex items-center justify-center gap-2 text-lg font-semibold text-primary">
-                <Loader2 className="h-6 w-6 animate-spin" />
-                Recording...
-              </div>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div className="flex items-center gap-2 text-lg font-semibold text-primary">
+                        <Loader2 className="h-6 w-6 animate-spin" />
+                        Recording...
+                    </div>
+                    <Button onClick={stopRecording} variant="destructive" size="lg">
+                        <StopCircle className="mr-2 h-5 w-5" />
+                        Stop
+                    </Button>
+                </div>
             )}
             
             {(status === 'processing' || status === 'finished') && (
