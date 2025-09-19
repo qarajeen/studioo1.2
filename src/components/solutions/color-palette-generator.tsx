@@ -3,7 +3,7 @@
 
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useColorThief } from 'color-thief-react';
+import useColorThief from 'color-thief-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Loader2, UploadCloud, Copy, Check, Palette, CircleAlert } from 'lucide-react';
