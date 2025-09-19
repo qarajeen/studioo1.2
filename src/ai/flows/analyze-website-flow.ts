@@ -13,6 +13,7 @@ import {z} from 'genkit';
 
 const WebsiteAnalysisInputSchema = z.object({
   url: z.string().url().describe('The URL of the website to analyze.'),
+  deviceType: z.enum(['desktop', 'mobile']).describe("The type of device to simulate for the analysis ('desktop' or 'mobile').")
 });
 export type WebsiteAnalysisInput = z.infer<typeof WebsiteAnalysisInputSchema>;
 
@@ -40,9 +41,9 @@ const prompt = ai.definePrompt({
   name: 'analyzeWebsitePrompt',
   input: {schema: WebsiteAnalysisInputSchema},
   output: {schema: WebsiteAnalysisOutputSchema},
-  prompt: `You are a world-class web performance analyst. Your task is to provide a detailed performance report for the given URL: {{{url}}}.
+  prompt: `You are a world-class web performance analyst. Your task is to provide a detailed performance report for the given URL: {{{url}}}. The analysis should be for a *{{{deviceType}}}* device.
 
-You cannot access external websites, so you must generate a *realistic, plausible analysis* based on your expert knowledge of web development, common performance issues, and the metrics involved. Do not state that you cannot access the URL. Proceed with generating a believable report as if you had analyzed it.
+You cannot access external websites, so you must generate a *realistic, plausible analysis* based on your expert knowledge of web development, common performance issues, and the metrics involved for the specified device type. For example, mobile metrics are often slightly worse than desktop. Do not state that you cannot access the URL. Proceed with generating a believable report as if you had analyzed it.
 
 Your analysis must cover the following metrics:
 - Largest Contentful Paint (LCP)
@@ -55,8 +56,8 @@ Your analysis must cover the following metrics:
 Based on your simulated analysis of these metrics, you must:
 1.  Provide a rating ('Good', 'Needs Improvement', 'Poor') for each individual metric.
 2.  Provide a concise explanation and an actionable recommendation for each metric.
-3.  Calculate an overall performance score out of 10. The score should logically reflect the ratings of the individual metrics. A site with mostly 'Poor' ratings should not get a high score.
-4.  Write a high-level summary of the site's performance.
+3.  Calculate an overall performance score out of 10. The score should logically reflect the ratings of the individual metrics and the selected device type.
+4.  Write a high-level summary of the site's performance, mentioning that the analysis was for a {{{deviceType}}} device.
 
 Generate a detailed, helpful, and realistic report. Structure your entire response according to the provided JSON schema.`,
 });
