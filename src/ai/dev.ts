@@ -4,4 +4,6 @@
 import './flows/analyze-website-flow';
 import './flows/brand-color-checker-flow';
 import './flows/generate-event-checklist-flow';
+import './flows/jpeg-to-webp-flow';
+
 
