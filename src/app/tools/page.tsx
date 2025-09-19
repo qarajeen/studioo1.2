@@ -22,12 +22,6 @@ const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
 
 const tools = [
     {
-        title: "Brand Color Consistency Checker",
-        description: "Analyze your website's visual content against your brand's color palette.",
-        href: "/tools/brand-color-checker",
-        icon: <Paintbrush className="w-8 h-8 text-primary" />,
-    },
-    {
         title: "Marketing Video Budget Calculator",
         description: "Get an approximate budget for your next marketing video based on your needs.",
         href: "/tools/video-budget-calculator",
