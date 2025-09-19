@@ -5,15 +5,21 @@ import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { UploadCloud, Music, CircleAlert, Loader2, Video, Download, StopCircle } from 'lucide-react';
+import { UploadCloud, Music, CircleAlert, Loader2, Video, Download, StopCircle, BarChart, Waves, Circle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Label } from '../ui/label';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { cn } from '@/lib/utils';
+
+type VisualizationType = 'bars' | 'circle' | 'wave';
 
 export function AudioVisualizer() {
   const [file, setFile] = React.useState<File | null>(null);
   const [error, setError] = React.useState<string | null>(null);
   const [status, setStatus] = React.useState<'idle' | 'analyzing' | 'ready' | 'recording' | 'processing' | 'finished'>('idle');
   const [videoUrl, setVideoUrl] = React.useState<string | null>(null);
+  const [visualizationType, setVisualizationType] = React.useState<VisualizationType>('bars');
+
   const { toast } = useToast();
 
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
@@ -82,7 +88,7 @@ export function AudioVisualizer() {
         sourceRef.current = source;
         
         setStatus('ready');
-        toast({ title: 'Audio ready!', description: "Press 'Record Video' to start." });
+        toast({ title: 'Audio ready!', description: "Choose a style and press 'Record Video' to start." });
       } catch (err) {
         setError('Failed to decode audio file. It might be corrupt or an unsupported format.');
         setStatus('idle');
@@ -107,29 +113,64 @@ export function AudioVisualizer() {
 
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
-    analyser.getByteFrequencyData(dataArray);
-
+    
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const barWidth = (canvas.width / bufferLength) * 2;
-    let barHeight;
-    let x = 0;
+    switch(visualizationType) {
+        case 'bars':
+            analyser.getByteFrequencyData(dataArray);
+            const barWidth = (canvas.width / bufferLength) * 2;
+            let barHeight;
+            let x = 0;
+            for (let i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i] * 1.5;
+                const g = 100 + (barHeight / 2);
+                const b = 150 + barHeight;
+                ctx.fillStyle = `rgb(80, ${g}, ${b})`;
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                x += barWidth + 1;
+            }
+            break;
+        case 'circle':
+            analyser.getByteFrequencyData(dataArray);
+            const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
+            const radius = 50 + (avg * 0.7);
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, radius, 0, 2 * Math.PI);
+            
+            const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 10, canvas.width / 2, canvas.height / 2, radius);
+            gradient.addColorStop(0, 'hsl(250, 45%, 60%)');
+            gradient.addColorStop(1, 'hsl(250, 45%, 35%)');
+            
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            break;
+        case 'wave':
+            analyser.getByteTimeDomainData(dataArray); // Use time domain data for wave
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = `hsl(250, 45%, 55%)`;
+            ctx.beginPath();
+            const sliceWidth = canvas.width * 1.0 / bufferLength;
+            let xPos = 0;
+            for(let i = 0; i < bufferLength; i++) {
+                const v = dataArray[i] / 128.0;
+                const y = v * canvas.height/2;
 
-    for (let i = 0; i < bufferLength; i++) {
-      barHeight = dataArray[i] * 1.5;
-      
-      const g = 100 + (barHeight / 2);
-      const b = 150 + barHeight;
-
-      ctx.fillStyle = `rgb(80, ${g}, ${b})`;
-      ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-      x += barWidth + 1;
+                if(i === 0) {
+                    ctx.moveTo(xPos, y);
+                } else {
+                    ctx.lineTo(xPos, y);
+                }
+                xPos += sliceWidth;
+            }
+            ctx.lineTo(canvas.width, canvas.height/2);
+            ctx.stroke();
+            break;
     }
     
     animationFrameRef.current = requestAnimationFrame(draw);
-  }, []);
+  }, [visualizationType]);
 
   const stopRecording = () => {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
@@ -244,7 +285,33 @@ export function AudioVisualizer() {
             )}
             
             {status === 'ready' && (
-              <div className="flex justify-center">
+              <div className="flex flex-col items-center gap-6">
+                <div className="w-full max-w-lg">
+                  <Label className="text-center block mb-4 font-semibold">Visualization Style</Label>
+                  <RadioGroup value={visualizationType} onValueChange={(v) => setVisualizationType(v as VisualizationType)} className="grid grid-cols-3 gap-4">
+                      <div>
+                          <RadioGroupItem value="bars" id="vis-bars" className="sr-only" />
+                          <Label htmlFor="vis-bars" className={cn("flex flex-col items-center justify-center rounded-lg border-2 p-4 cursor-pointer", visualizationType === 'bars' ? 'border-primary bg-accent' : 'border-border')}>
+                              <BarChart className="h-6 w-6 mb-2"/>
+                              Bars
+                          </Label>
+                      </div>
+                      <div>
+                          <RadioGroupItem value="circle" id="vis-circle" className="sr-only" />
+                          <Label htmlFor="vis-circle" className={cn("flex flex-col items-center justify-center rounded-lg border-2 p-4 cursor-pointer", visualizationType === 'circle' ? 'border-primary bg-accent' : 'border-border')}>
+                              <Circle className="h-6 w-6 mb-2"/>
+                              Circle
+                          </Label>
+                      </div>
+                      <div>
+                          <RadioGroupItem value="wave" id="vis-wave" className="sr-only" />
+                          <Label htmlFor="vis-wave" className={cn("flex flex-col items-center justify-center rounded-lg border-2 p-4 cursor-pointer", visualizationType === 'wave' ? 'border-primary bg-accent' : 'border-border')}>
+                              <Waves className="h-6 w-6 mb-2"/>
+                              Wave
+                          </Label>
+                      </div>
+                  </RadioGroup>
+                </div>
                 <Button onClick={startRecording} size="lg">
                   <Video className="mr-2 h-5 w-5" />
                   Record Video
