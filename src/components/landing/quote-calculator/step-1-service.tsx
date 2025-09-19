@@ -91,7 +91,7 @@ export function Step1Service({
                 )}
               >
                 {icon}
-                <span className="font-semibold text-center text-sm sm:text-base">{name}</span>
+                <span className="font-semibold text-center text-xs sm:text-sm">{name}</span>
               </div>
             ))}
           </div>
