@@ -490,6 +490,15 @@ export function QuoteCalculator() {
         const margin = 15;
         let currentY = 0;
 
+        // --- Quote Number Generation ---
+        const now = new Date();
+        const year = now.getFullYear().toString().slice(-1);
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const quoteNo = `${year}${month}${day}${hours}${minutes}`;
+
         // Colors from your theme (approximated from HSL)
         const primaryColor = [99, 88, 140]; // hsl(250, 45%, 45%)
         const accentColor = [121, 111, 160];
@@ -569,7 +578,7 @@ export function QuoteCalculator() {
         if (formData.phone) doc.text(formData.phone, margin, currentY + 21);
     
         doc.setTextColor(textColor[0], textColor[1], textColor[2]);
-        doc.text("001", quoteInfoX + 30, currentY);
+        doc.text(quoteNo, quoteInfoX + 30, currentY);
         doc.text(quoteDate, quoteInfoX + 30, currentY + 7);
     
         currentY += 30;
@@ -754,15 +763,5 @@ export function QuoteCalculator() {
       </div>
     );
 }
-
-    
-
-    
-
-    
-
-    
-
-
 
     
