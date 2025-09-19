@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush } from 'lucide-react';
+import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush, Sunrise } from 'lucide-react';
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -62,6 +62,12 @@ const tools = [
         description: "Upload an image to automatically generate a palette of its most prominent colors.",
         href: "/solutions/color-palette-generator",
         icon: <Palette className="w-8 h-8 text-primary" />,
+    },
+    {
+        title: "Golden Hour Calculator",
+        description: "Find the best natural light for your photos and videos by calculating sun times.",
+        href: "/solutions/golden-hour-calculator",
+        icon: <Sunrise className="w-8 h-8 text-primary" />,
     }
 ]
 
