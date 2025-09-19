@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { WebsiteAnalyzer } from '@/components/solutions/website-analyzer';
+import { ImageQualityGrader } from '@/components/solutions/image-quality-grader';
 import { Separator } from '@/components/ui/separator';
 
 // export const metadata: Metadata = {
@@ -74,6 +75,8 @@ export default function SolutionsPage() {
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
           <WebsiteAnalyzer />
+          <Separator className="my-8" />
+          <ImageQualityGrader />
         </div>
       </div>
     </div>
