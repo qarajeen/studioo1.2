@@ -22,6 +22,7 @@ export function Step2Details({ formData, handleInputChange }: Step2DetailsProps)
     (formData.serviceType === 'video' && (vSubType === 'event' || vSubType === 'wedding'));
   const isTimelapse = formData.serviceType === 'timelapse';
   const isPostProduction = formData.serviceType === 'post';
+  const isPhotogrammetry = formData.serviceType === 'photogrammetry';
 
   return (
     <div className="space-y-8 animate-fade-in-up">
@@ -41,23 +42,25 @@ export function Step2Details({ formData, handleInputChange }: Step2DetailsProps)
               </SelectContent>
             </Select>
           </div>
-          <div>
-            <h3 className="font-semibold mb-4 text-base sm:text-lg">Location Type</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {locationTypeOptions.map((type) => (
-                <Button
-                  key={type}
-                  variant="outline"
-                  onClick={() => handleInputChange("locationType", type)}
-                  className={cn("h-auto py-4 text-sm sm:text-base transition-all hover:bg-accent/50",
-                    formData.locationType === type ? 'border-primary bg-accent' : 'border-border'
-                  )}
-                >
-                  {type}
-                </Button>
-              ))}
+          {!isPhotogrammetry && (
+            <div>
+              <h3 className="font-semibold mb-4 text-base sm:text-lg">Location Type</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {locationTypeOptions.map((type) => (
+                  <Button
+                    key={type}
+                    variant="outline"
+                    onClick={() => handleInputChange("locationType", type)}
+                    className={cn("h-auto py-4 text-sm sm:text-base transition-all hover:bg-accent/50",
+                      formData.locationType === type ? 'border-primary bg-accent' : 'border-border'
+                    )}
+                  >
+                    {type}
+                  </Button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </>
       ) : (
         <p className="text-muted-foreground text-center py-10">No location or add-ons required for this service.</p>
