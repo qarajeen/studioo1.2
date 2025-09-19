@@ -79,7 +79,7 @@ export default function ServicesPage() {
           {services.map((service) => (
             <div
               key={service.id}
-              className='group relative rounded-xl overflow-hidden'
+              className='group relative rounded-xl overflow-hidden h-64'
             >
               <Image
                 src={`${repoName}${service.imageUrl}`}
