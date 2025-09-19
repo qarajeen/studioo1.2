@@ -35,6 +35,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+   webpack: (config, { isServer }) => {
+    // This is a workaround for a bug in ffmpeg.wasm.
+    // It prevents the library from trying to load a worker on the server.
+    if (isServer) {
+      config.externals.push('@ffmpeg/ffmpeg', '@ffmpeg/util');
+    }
+    
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      path: false,
+    };
+    
+    config.experiments = {
+        ...config.experiments,
+        asyncWebAssembly: true,
+    }
+
+    return config;
+  },
 };
 
 export default nextConfig;

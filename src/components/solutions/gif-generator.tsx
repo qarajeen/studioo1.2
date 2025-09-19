@@ -61,6 +61,7 @@ export function GifGenerator() {
     };
 
     const loadFFmpeg = async () => {
+        if (typeof window === "undefined") return;
         const ffmpeg = ffmpegRef.current;
         if (ffmpeg.loaded) return;
         
