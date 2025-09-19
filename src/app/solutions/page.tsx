@@ -118,7 +118,7 @@ export default function SolutionsPage() {
           height: sphere.size,
           top: sphere.top,
           left: sphere.left,
-          animation: `${sphere.animation} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
+          animation: `1s cubic-bezier(0.25, 1, 0.5, 1) forwards ${sphere.animation}, ${sphere.floatAnimation} ${sphere.duration} ease-in-out infinite`,
           animationDelay: `${sphere.delay}, 1s`
         }}
       >
@@ -155,23 +155,25 @@ export default function SolutionsPage() {
           </p>
         </div>
 
-        <div className="mt-16 max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {tools.map(tool => (
-             <Card key={tool.href} className="w-full bg-card/50 backdrop-blur-sm border-border hover:border-primary/80 transition-all group">
-                <CardHeader className="flex flex-row items-start gap-4">
-                    {tool.icon}
-                    <div>
-                        <CardTitle className="text-xl">{tool.title}</CardTitle>
-                        <CardDescription className="pt-2">{tool.description}</CardDescription>
+             <Card key={tool.href} className="w-full bg-card/50 backdrop-blur-sm border-border hover:border-primary/80 transition-all group flex flex-col">
+                <CardHeader className="flex flex-row items-center gap-4">
+                    <div className="p-3 bg-primary/10 rounded-full border border-primary/20">
+                      {tool.icon}
                     </div>
+                    <CardTitle className="text-xl leading-tight">{tool.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-grow">
+                    <CardDescription>{tool.description}</CardDescription>
+                </CardContent>
+                <div className="p-6 pt-0">
                     <Button asChild className="w-full">
                         <Link href={tool.href}>
                             Launch Tool <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
-                </CardContent>
+                </div>
              </Card>
           ))}
         </div>
