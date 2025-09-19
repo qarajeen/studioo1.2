@@ -6,7 +6,7 @@ import { useDropzone } from 'react-dropzone';
 import { useColorThief } from 'color-thief-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Loader2, UploadCloud, Copy, Check, Paintbrush, CircleAlert } from 'lucide-react';
+import { Loader2, UploadCloud, Copy, Check, Palette, CircleAlert } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
 
@@ -65,7 +65,7 @@ export function ColorPaletteGenerator() {
     <div className="w-full">
       <CardHeader className="px-0 pt-0 text-center">
         <div className="mx-auto bg-primary/20 p-3 rounded-full w-fit">
-          <Paintbrush className="h-8 w-8 text-primary" />
+          <Palette className="h-8 w-8 text-primary" />
         </div>
         <CardTitle className="text-2xl font-bold mt-4">Color Palette Generator</CardTitle>
         <CardDescription>Upload an image to extract its dominant colors.</CardDescription>

@@ -31,7 +31,7 @@ const tools = [
         title: "Brand Color Consistency Checker",
         description: "Analyze your website's visual content against your brand's color palette.",
         href: "/solutions/brand-color-checker",
-        icon: <Palette className="w-8 h-8 text-primary" />,
+        icon: <Paintbrush className="w-8 h-8 text-primary" />,
     },
     {
         title: "Marketing Video Budget Calculator",
@@ -61,7 +61,7 @@ const tools = [
         title: "Color Palette From Image",
         description: "Upload an image to automatically generate a palette of its most prominent colors.",
         href: "/solutions/color-palette-generator",
-        icon: <Paintbrush className="w-8 h-8 text-primary" />,
+        icon: <Palette className="w-8 h-8 text-primary" />,
     }
 ]
 
