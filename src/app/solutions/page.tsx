@@ -3,9 +3,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush, Sunrise, Camera, Shrink, FileCode, Film, Hourglass, Music } from 'lucide-react';
+import { ArrowRight, Monitor, Palette, Video, Download, FileImage, Ratio, Paintbrush, Sunrise, Camera, Shrink, FileCode, Film, Hourglass, Music, Clapperboard } from 'lucide-react';
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -167,13 +167,13 @@ export default function SolutionsPage() {
                 <CardContent className="flex-grow">
                     <CardDescription>{tool.description}</CardDescription>
                 </CardContent>
-                <div className="p-6 pt-0">
+                <CardFooter>
                     <Button asChild className="w-full">
                         <Link href={tool.href}>
                             Launch Tool <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
-                </div>
+                </CardFooter>
              </Card>
           ))}
         </div>
