@@ -17,6 +17,7 @@ import { Loader2, Search, CheckCircle, XCircle, AlertTriangle, Timer, Pointer, C
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { Label } from '../ui/label';
 
 const formSchema = z.object({
   url: z.string().url({ message: "Please enter a valid URL." }),
