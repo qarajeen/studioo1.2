@@ -4,6 +4,8 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { WebsiteAnalyzer } from '@/components/solutions/website-analyzer';
+import { ImageQualityGrader } from '@/components/solutions/image-quality-grader';
+import { Separator } from '@/components/ui/separator';
 
 // export const metadata: Metadata = {
 //   title: 'Creative Solutions & Tools | STUDIOO',
@@ -71,8 +73,10 @@ export default function SolutionsPage() {
           </p>
         </div>
 
-        <div className="mt-16 max-w-4xl mx-auto">
+        <div className="mt-16 max-w-4xl mx-auto space-y-12">
           <WebsiteAnalyzer />
+          <Separator className="my-12 bg-border" />
+          <ImageQualityGrader />
         </div>
       </div>
     </div>
