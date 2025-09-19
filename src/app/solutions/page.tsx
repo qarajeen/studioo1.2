@@ -1,11 +1,14 @@
 
+'use client';
+
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { WebsiteAnalyzer } from '@/components/solutions/website-analyzer';
 
-export const metadata: Metadata = {
-  title: 'Creative Solutions & Tools | STUDIOO',
-  description: 'Explore online tools and creative solutions offered by STUDIOO to help with your media production needs.',
-};
+// export const metadata: Metadata = {
+//   title: 'Creative Solutions & Tools | STUDIOO',
+//   description: 'Explore online tools and creative solutions offered by STUDIOO to help with your media production needs.',
+// };
 
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
@@ -68,11 +71,8 @@ export default function SolutionsPage() {
           </p>
         </div>
 
-        <div className="mt-16 max-w-4xl mx-auto text-center">
-            <div className="p-8 border border-dashed border-border rounded-lg bg-card/50 backdrop-blur-sm">
-                <h2 className="text-2xl font-semibold text-foreground">Tools Coming Soon</h2>
-                <p className="mt-2 text-muted-foreground">We're building a suite of helpful online utilities. Check back later!</p>
-            </div>
+        <div className="mt-16 max-w-4xl mx-auto">
+          <WebsiteAnalyzer />
         </div>
       </div>
     </div>
