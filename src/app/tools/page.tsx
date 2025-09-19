@@ -64,12 +64,6 @@ const tools = [
         icon: <Sunrise className="w-8 h-8 text-primary" />,
     },
     {
-        title: "EXIF Data Viewer",
-        description: "View detailed metadata from your image files, like camera settings and location.",
-        href: "/tools/exif-data-viewer",
-        icon: <Camera className="w-8 h-8 text-primary" />,
-    },
-    {
         title: "Image Compressor",
         description: "Optimize your JPEG or PNG images with an adjustable quality slider.",
         href: "/tools/image-compressor",
