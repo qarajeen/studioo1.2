@@ -10,21 +10,34 @@ import { Loader2, Sunrise, Sunset, LocateFixed, Sun, Moon, Sparkles, AlertTriang
 import { Skeleton } from '../ui/skeleton';
 
 type SunTimes = {
-  [key: string]: Date;
+  sunrise: Date;
+  sunriseEnd: Date;
+  goldenHourEnd: Date;
+  solarNoon: Date;
+  goldenHour: Date;
+  sunsetStart: Date;
+  sunset: Date;
+  dusk: Date;
+  nauticalDusk: Date;
+  night: Date;
+  nadir: Date;
+  nightEnd: Date;
+  nauticalDawn: Date;
+  dawn: Date;
 };
 
 type LocationState = 'idle' | 'loading' | 'success' | 'error';
 type ErrorType = 'permission' | 'unavailable' | 'timeout' | 'generic';
 
 const timePhases = [
-  { name: 'Dawn', key: 'dawn', icon: <Sunrise className="text-pink-400" />, description: 'Start of morning twilight.' },
-  { name: 'Sunrise', key: 'sunrise', icon: <Sunrise className="text-orange-400" />, description: 'Top of the sun appears.' },
-  { name: 'Golden Hour End', key: 'goldenHourEnd', icon: <Sun className="text-yellow-400" />, description: 'Warm, soft morning light.' },
-  { name: 'Solar Noon', key: 'solarNoon', icon: <Sun className="text-yellow-300" />, description: 'Sun is at its highest point.' },
-  { name: 'Golden Hour Start', key: 'goldenHour', icon: <Sun className="text-yellow-400" />, description: 'Warm, soft evening light.' },
-  { name: 'Sunset', key: 'sunset', icon: <Sunset className="text-orange-400" />, description: 'Sun disappears below horizon.' },
-  { name: 'Dusk', key: 'dusk', icon: <Sunset className="text-purple-400" />, description: 'End of evening twilight.' },
-  { name: 'Night', key: 'night', icon: <Moon className="text-blue-300" />, description: 'Darkness begins.' },
+  { name: 'Dawn', key: 'dawn' as keyof SunTimes, icon: <Sunrise className="text-pink-400" />, description: 'Start of morning twilight.' },
+  { name: 'Sunrise', key: 'sunrise' as keyof SunTimes, icon: <Sunrise className="text-orange-400" />, description: 'Top of the sun appears.' },
+  { name: 'Golden Hour End', key: 'goldenHourEnd' as keyof SunTimes, icon: <Sun className="text-yellow-400" />, description: 'Warm, soft morning light.' },
+  { name: 'Solar Noon', key: 'solarNoon' as keyof SunTimes, icon: <Sun className="text-yellow-300" />, description: 'Sun is at its highest point.' },
+  { name: 'Golden Hour Start', key: 'goldenHour' as keyof SunTimes, icon: <Sun className="text-yellow-400" />, description: 'Warm, soft evening light.' },
+  { name: 'Sunset', key: 'sunset' as keyof SunTimes, icon: <Sunset className="text-orange-400" />, description: 'Sun disappears below horizon.' },
+  { name: 'Dusk', key: 'dusk' as keyof SunTimes, icon: <Sunset className="text-purple-400" />, description: 'End of evening twilight.' },
+  { name: 'Night', key: 'night' as keyof SunTimes, icon: <Moon className="text-blue-300" />, description: 'Darkness begins.' },
 ];
 
 export function GoldenHourCalculator() {
@@ -46,7 +59,7 @@ export function GoldenHourCalculator() {
       (position) => {
         const { latitude, longitude } = position.coords;
         const times = SunCalc.getTimes(date, latitude, longitude);
-        setSunTimes(times);
+        setSunTimes(times as SunTimes);
         setLocationState('success');
       },
       (error) => {
