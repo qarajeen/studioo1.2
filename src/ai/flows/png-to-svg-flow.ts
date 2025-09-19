@@ -38,7 +38,9 @@ const prompt = ai.definePrompt({
   },
   prompt: `You are an expert in graphic design and image vectorization. Your task is to convert the given PNG image into a clean, optimized, and accurate SVG format.
 
-Analyze the provided image and generate a complete SVG markup string that represents it. The SVG should be well-structured and scalable. Do not include any explanation, only the raw SVG string in the output field.
+Analyze the provided image and generate a complete SVG markup string that represents it. The SVG should be well-structured and scalable.
+
+Structure your response to fit the provided JSON output schema, placing the SVG markup within the 'svgString' field.
 
 Image for conversion: {{media url=imageDataUri}}`,
 });
@@ -54,3 +56,4 @@ const pngToSvgFlow = ai.defineFlow(
     return output!;
   }
 );
+
