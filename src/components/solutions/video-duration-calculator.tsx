@@ -53,9 +53,10 @@ export function VideoDurationCalculator() {
   };
   
   React.useEffect(() => {
-    const rate = parseInt(frameRate, 10);
+    const rate = parseFloat(frameRate);
+    if(isNaN(rate)) return;
     const totalFrames = timecodes.reduce((acc, tc) => acc + timecodeToFrames(tc.value, rate), 0);
-    setTotalTimecode(framesToTimecode(totalFrames, rate));
+    setTotalTimecode(framesToTimecode(Math.round(totalFrames), rate));
   }, [timecodes, frameRate]);
   
   return (
@@ -84,7 +85,7 @@ export function VideoDurationCalculator() {
                   <SelectItem value="29.97">29.97 (NTSC)</SelectItem>
                   <SelectItem value="30">30</SelectItem>
                   <SelectItem value="50">50</SelectItem>
-                  <SelectItem value="59.94">59.94</to_frames></SelectItem>
+                  <SelectItem value="59.94">59.94</SelectItem>
                   <SelectItem value="60">60</SelectItem>
                 </SelectContent>
               </Select>
