@@ -23,8 +23,6 @@ const spheresData = [
   { id: 11, img: 'sphere11.jpg', size: 190, top: '80%', left: '5%', hint: 'geometric pattern' },
 ];
 
-const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
-
 export default function Home() {
     const isMobile = useIsMobile();
     const spheres = spheresData.map(s => ({ ...s, size: isMobile ? s.size / 2 : s.size }));
@@ -130,7 +128,7 @@ export default function Home() {
                 >
                     <div className="w-full h-full rounded-full overflow-hidden">
                         <Image
-                            src={`${repoName}/${sphere.img}`}
+                            src={`/${sphere.img}`}
                             alt={`Sphere ${sphere.id}`}
                             width={sphere.size}
                             height={sphere.size}

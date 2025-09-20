@@ -23,8 +23,6 @@ const spheres = [
   { id: 8, size: 90, top: '85%', left: '15%', animation: 'float-in-3', floatAnimation: 'float-2', duration: '10s', delay: '0.7s', hint: 'user portrait' },
 ];
 
-const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
-
 export default function ServicesPage() {
 
   const renderSpheres = (sphereList: typeof spheres) => {
@@ -47,7 +45,7 @@ export default function ServicesPage() {
           }}
         >
           <Image
-            src={`${repoName}/sphere${sphere.id}.jpg`}
+            src={`/sphere${sphere.id}.jpg`}
             alt={`Sphere ${sphere.id}`}
             width={sphere.size}
             height={sphere.size}
@@ -82,7 +80,7 @@ export default function ServicesPage() {
               className='group relative rounded-xl overflow-hidden h-64'
             >
               <Image
-                src={`${repoName}${service.imageUrl}`}
+                src={`${service.imageUrl}`}
                 alt={service.title}
                 width={600}
                 height={400}
@@ -115,14 +113,14 @@ export default function ServicesPage() {
                 <div className="rounded-xl overflow-hidden shadow-2xl">
                     <h3 className="font-semibold text-lg p-4 bg-card/80 backdrop-blur-sm">Videography Reel</h3>
                     <video className="w-full h-auto" autoPlay loop muted playsInline>
-                        <source src={`${repoName}/reel.mp4`} type="video/mp4" />
+                        <source src={`/reel.mp4`} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-2xl">
                     <h3 className="font-semibold text-lg p-4 bg-card/80 backdrop-blur-sm">Time-Lapse Showcase</h3>
                     <video className="w-full h-auto" autoPlay loop muted playsInline>
-                        <source src={`${repoName}/tl.mp4`} type="video/mp4" />
+                        <source src={`/tl.mp4`} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
