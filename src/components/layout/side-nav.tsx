@@ -4,7 +4,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Image, DollarSign, Mail, Sparkles } from 'lucide-react';
+import { Home, Image, DollarSign, Mail, Sparkles, LogIn } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
@@ -14,6 +14,7 @@ const navLinks = [
   { href: '/solutions', label: 'Solutions', icon: <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" /> },
   { href: '/pricing', label: 'Pricing', icon: <DollarSign className="h-5 w-5 sm:h-6 sm:w-6" /> },
   { href: '/contact', label: 'Contact', icon: <Mail className="h-5 w-5 sm:h-6 sm:w-6" /> },
+  { href: '/signin', label: 'Sign In', icon: <LogIn className="h-5 w-5 sm:h-6 sm:w-6" /> },
 ];
 
 export function SideNav() {
