@@ -729,7 +729,7 @@ export function QuoteCalculator() {
                     </div>
                     <CardTitle className="text-2xl md:text-3xl font-bold text-center pt-4 sm:pt-8">{step === 4 ? 'Your Quote is Ready' : `Step ${step}: ${stepTitles[step-1]}`}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow p-4 sm:p-6">
+                <CardContent className="flex-grow p-2 sm:p-6">
                     {renderStep()}
                 </CardContent>
                 {(step > 1 || (step === 1 && formData.serviceType)) && (
