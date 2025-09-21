@@ -8,24 +8,6 @@ import { Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-1.5c-.83 0-1.5.67-1.5 1.5V12h3l-.5 3h-2.5v6.8c4.56-.93 8-4.96 8-9.8z"/>
-  </svg>
-);
-
-
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
   { id: 2, size: 250, top: '15%', left: '70%', animation: 'float-in-2', floatAnimation: 'float-2', duration: '10s', delay: '0.3s', hint: 'data analytics' },
@@ -106,20 +88,6 @@ export default function SignInPage() {
               </div>
               <Button type="submit" className="w-full" size="lg">Sign In</Button>
             </form>
-
-            <div className="relative my-6">
-              <Separator />
-              <span className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground">
-                OR
-              </span>
-            </div>
-
-            <div className="space-y-4">
-              <Button variant="outline" className="w-full">
-                <GoogleIcon className="mr-2 h-5 w-5" />
-                Sign in with Google
-              </Button>
-            </div>
 
             <div className="mt-6 text-center text-sm">
               Don't have an account?{' '}
