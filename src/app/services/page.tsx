@@ -68,7 +68,7 @@ export default function ServicesPage() {
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold">Our Services</h1>
-          <p className="mt-4 text-base sm:text-lg text-foreground" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+          <p className="mt-4 text-sm sm:text-lg text-foreground" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Welcome to STUDIOO. Our tagline, Powered by ADHD, isn't a gimmick; it's our methodology. It’s the engine behind our unfiltered creativity, our relentless energy on set, and our obsessive focus on detail in the editing suite. In a world of repetitive content, our unique perspective allows us to see the angles others miss and craft visual stories that demand attention. We channel that energy to create powerful, polished, and unforgettable media for brands in Dubai and across the UAE.
           </p>
         </div>

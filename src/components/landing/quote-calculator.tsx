@@ -704,36 +704,36 @@ export function QuoteCalculator() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
         <div className="lg:col-span-3 w-full">
             <Card className="w-full relative flex flex-col min-h-[700px] bg-card/75 backdrop-blur-sm border-border">
-                <CardHeader>
+                <CardHeader className="p-4 sm:p-6">
                     <div className="flex justify-center items-center mb-4">
                         {stepTitles.map((title, index) => (
                             <React.Fragment key={index}>
-                                <div className="flex flex-col items-center text-center">
+                                <div className="flex flex-col items-center text-center px-1">
                                     <div className={cn(
-                                        `w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-2`,
+                                        `w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 border-2`,
                                         index + 1 < step ? 'bg-primary border-primary text-primary-foreground' : 'bg-secondary border-border',
                                         index + 1 === step ? 'bg-primary border-primary text-primary-foreground' : '',
                                     )}>
                                         {index + 1}
                                     </div>
                                     <p className={cn(
-                                        `mt-2 text-xs md:text-sm font-medium transition-colors hidden md:block`,
+                                        `mt-2 text-xs font-medium transition-colors hidden md:block`,
                                         index + 1 <= step ? 'text-foreground' : 'text-muted-foreground'
                                     )}>{title}</p>
                                 </div>
                                 {index < stepTitles.length - 1 && (
-                                    <div className={`flex-1 h-0.5 mx-2 transition-colors duration-300 ${index + 1 < step ? 'bg-primary' : 'bg-border'}`} />
+                                    <div className={`flex-1 h-0.5 mx-1 sm:mx-2 transition-colors duration-300 ${index + 1 < step ? 'bg-primary' : 'bg-border'}`} />
                                 )}
                             </React.Fragment>
                         ))}
                     </div>
-                    <CardTitle className="text-2xl md:text-4xl font-bold text-center pt-8">{step === 4 ? 'Your Quote is Ready' : `Step ${step}: ${stepTitles[step-1]}`}</CardTitle>
+                    <CardTitle className="text-2xl md:text-3xl font-bold text-center pt-4 sm:pt-8">{step === 4 ? 'Your Quote is Ready' : `Step ${step}: ${stepTitles[step-1]}`}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow">
+                <CardContent className="flex-grow p-4 sm:p-6">
                     {renderStep()}
                 </CardContent>
                 {(step > 1 || (step === 1 && formData.serviceType)) && (
-                    <CardFooter className="flex items-center justify-between gap-4 p-6 bg-background/80 backdrop-blur-sm mt-auto border-t">
+                    <CardFooter className="flex items-center justify-between gap-4 p-4 sm:p-6 bg-background/80 backdrop-blur-sm mt-auto border-t">
                         <div className="hidden sm:flex gap-2 w-full sm:w-auto">
                             {step > 1 && (
                                 <Button variant="outline" onClick={prevStep} size="lg" className="w-full sm:w-auto"><ArrowLeft className="mr-2 h-5 w-5"/> Previous</Button>
@@ -763,7 +763,3 @@ export function QuoteCalculator() {
       </div>
     );
 }
-
-    
-
-    

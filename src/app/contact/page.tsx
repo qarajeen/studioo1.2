@@ -76,12 +76,12 @@ export default function ContactPage() {
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold">Get In Touch</h1>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground">
             Have a project in mind or just want to say hello? We'd love to hear from you.
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <Card className="backdrop-blur-sm bg-card/50 border border-border">
             <CardHeader>
               <CardTitle>Contact Details</CardTitle>
@@ -89,28 +89,28 @@ export default function ContactPage() {
             <CardContent className="space-y-4">
               <div className="flex items-center gap-4">
                 <Mail className="h-6 w-6 text-primary" />
-                <a href="mailto:hi@studioo.ae" className="text-muted-foreground hover:text-foreground">hi@studioo.ae</a>
+                <a href="mailto:hi@studioo.ae" className="text-muted-foreground hover:text-foreground text-sm sm:text-base">hi@studioo.ae</a>
               </div>
               <div className="flex items-center gap-4">
                 <WhatsAppIcon className="h-6 w-6 text-primary" />
-                <a href="https://wa.me/971586583939" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">+971 58 658 3939</a>
+                <a href="https://wa.me/971586583939" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground text-sm sm:text-base">+971 58 658 3939</a>
               </div>
               <div className="flex items-center gap-4">
                 <Linkedin className="h-6 w-6 text-primary" />
-                <a href="https://www.linkedin.com/company/productionstudioo/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">LinkedIn</a>
+                <a href="https://www.linkedin.com/company/productionstudioo/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground text-sm sm:text-base">LinkedIn</a>
               </div>
             </CardContent>
           </Card>
 
           <Card className="backdrop-blur-sm bg-card/50 border border-border">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3">
+              <CardTitle className="flex items-center gap-3 text-xl sm:text-2xl">
                 <Pencil className="h-6 w-6 text-primary" />
                 ADHD Creatives Connect
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-muted-foreground mb-4 text-sm sm:text-base">
                 Our community is the heart of our superpower. If you're an ADHD creative, we invite you to connect, share your story, and explore collaborations.
               </p>
               <Button asChild>

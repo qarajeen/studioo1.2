@@ -126,19 +126,19 @@ export default function SolutionsPage() {
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold">Solutions</h1>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground">
             A collection of online tools to spark creativity and assist with your production workflow.
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {tools.map(tool => (
              <Card key={tool.href} className="w-full bg-card/50 backdrop-blur-sm border-border hover:border-primary/80 transition-all group flex flex-col">
                 <CardHeader className="flex flex-row items-center gap-4">
                     <div className="p-3 bg-primary/10 rounded-full border border-primary/20">
                       {tool.icon}
                     </div>
-                    <CardTitle className="text-xl leading-tight">{tool.title}</CardTitle>
+                    <CardTitle className="text-lg sm:text-xl leading-tight">{tool.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
                     <CardDescription>{tool.description}</CardDescription>
