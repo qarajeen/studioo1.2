@@ -50,7 +50,7 @@ export default function PricingPage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full flex items-center py-12 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div className="relative min-h-screen w-full flex items-center py-12 sm:py-20 px-2 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0 opacity-50">
             {renderSpheres(spheres)}
         </div>
