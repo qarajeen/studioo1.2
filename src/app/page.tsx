@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useContext, useEffect } from 'react';
@@ -46,7 +45,7 @@ export default function Home() {
         </div>
       </main>
 
-      <div className="relative z-10 w-full flex items-center justify-center mt-8 h-96">
+      <div className="relative z-10 w-full flex items-center justify-center -mt-8 h-96">
         <Carousel3D items={spheresData} />
       </div>
 
