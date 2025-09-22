@@ -14,7 +14,7 @@ interface Carousel3DProps {
   radius?: number;
 }
 
-export function Carousel3D({ items, width = 120, height = 160, radius = 14 }: Carousel3DProps) {
+export function Carousel3D({ items, width = 120, height = 160, radius = 7 }: Carousel3DProps) {
   const [{ rotateY }, api] = useSpring(() => ({
     rotateY: 0,
     config: { mass: 1, tension: 120, friction: 26 },
