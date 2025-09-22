@@ -14,7 +14,7 @@ interface Carousel3DProps {
   radius?: number;
 }
 
-export function Carousel3D({ items, width = 40, height = 52.5, radius = 14 }: Carousel3DProps) {
+export function Carousel3D({ items, width = 120, height = 160, radius = 14 }: Carousel3DProps) {
   const [{ rotateY }, api] = useSpring(() => ({
     rotateY: 0,
     config: { mass: 1, tension: 120, friction: 26 },
@@ -44,7 +44,7 @@ export function Carousel3D({ items, width = 40, height = 52.5, radius = 14 }: Ca
           <div
             key={item.id}
             className="absolute w-full h-full backface-hidden"
-            style={{ transform: `rotateY(${i * angleStep}deg) translateZ(${radius}px)` }}
+            style={{ transform: `rotateY(${i * angleStep}deg) translateZ(${radius}rem)` }}
           >
             <div
               className={cn(
