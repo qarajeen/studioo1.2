@@ -15,15 +15,28 @@ interface Carousel3DProps {
 }
 
 export function Carousel3D({ items, width = 120, height = 160, radius = 7 }: Carousel3DProps) {
-  const [{ rotateY }, api] = useSpring(() => ({
-    rotateY: 0,
+  const [isDragging, setIsDragging] = React.useState(false);
+
+  const { rotateY } = useSpring({
+    from: { rotateY: 0 },
+    to: { rotateY: 360 },
+    loop: !isDragging,
+    config: { duration: 30000, easing: t => t },
+    reset: true,
+  });
+  
+  const [{ manualRotateY }, api] = useSpring(() => ({
+    manualRotateY: 0,
     config: { mass: 1, tension: 120, friction: 26 },
   }));
 
-  const bind = useDrag(({ down, movement: [mx] }) => {
-    api.start({ rotateY: down ? -mx / 2 : 0 });
+  const bind = useDrag(({ down, movement: [mx], first }) => {
+    if (first) setIsDragging(true);
+    if (!down) setTimeout(() => setIsDragging(false), 0);
+    
+    api.start({ manualRotateY: down ? -mx / 2 : 0 });
   }, {
-    from: () => [-rotateY.get() * 2, 0],
+    from: () => [-manualRotateY.get() * 2, 0],
     bounds: { left: -Infinity, right: Infinity },
     rubberband: true,
   });
@@ -38,7 +51,11 @@ export function Carousel3D({ items, width = 120, height = 160, radius = 7 }: Car
     >
       <animated.div
         className="relative w-full h-full transform-style-3d"
-        style={{ transform: rotateY.to(r => `rotateY(${r}deg)`) }}
+        style={{ 
+          transform: isDragging 
+            ? manualRotateY.to(r => `rotateY(${r}deg)`)
+            : rotateY.to(r => `rotateY(${r}deg)`)
+        }}
       >
         {items.map((item, i) => (
           <div
