@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -19,9 +20,8 @@ export function Carousel3D({ items, width = 120, height = 160, radius = 7 }: Car
   const { rotateY } = useSpring({
     from: { rotateY: 0 },
     to: { rotateY: 360 },
-    loop: !isDragging,
+    loop: true,
     config: { duration: 30000, easing: t => t },
-    reset: true,
     pause: isDragging,
   });
   
@@ -30,9 +30,9 @@ export function Carousel3D({ items, width = 120, height = 160, radius = 7 }: Car
     config: { mass: 1, tension: 120, friction: 26 },
   }));
 
-  const bind = useDrag(({ down, movement: [mx], first }) => {
+  const bind = useDrag(({ down, movement: [mx], first, last }) => {
     if (first) setIsDragging(true);
-    if (!down) setTimeout(() => setIsDragging(false), 0);
+    if (last) setTimeout(() => setIsDragging(false), 0);
     
     api.start({ manualRotateY: down ? -mx / 2 : 0 });
   }, {
