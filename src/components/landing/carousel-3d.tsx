@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -23,6 +22,7 @@ export function Carousel3D({ items, width = 120, height = 160, radius = 7 }: Car
     loop: !isDragging,
     config: { duration: 30000, easing: t => t },
     reset: true,
+    pause: isDragging,
   });
   
   const [{ manualRotateY }, api] = useSpring(() => ({
