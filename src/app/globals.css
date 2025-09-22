@@ -72,6 +72,19 @@
 }
 
 @layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .reflect-below {
+    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004);
+  }
+
   .sr-only {
     position: absolute;
     width: 1px;
