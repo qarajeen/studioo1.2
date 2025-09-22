@@ -46,8 +46,8 @@ export default function Home() {
         </div>
       </main>
 
-      <div className="absolute inset-0 z-10 w-full h-full flex items-end justify-end pointer-events-none mt-48 pb-0 pr-8">
-        <div className="h-96 pointer-events-auto">
+      <div className="absolute inset-0 z-0 w-full h-full flex items-center justify-center">
+        <div className="h-96 w-96 pointer-events-auto">
             <Carousel3D items={spheresData} />
         </div>
       </div>
