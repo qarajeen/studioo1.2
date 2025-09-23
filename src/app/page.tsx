@@ -53,9 +53,9 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="h-96 w-full flex items-center justify-center lg:justify-end">
+          <div className="h-96 w-full flex items-center justify-center lg:justify-end mt-24 lg:mt-0">
             <div className="h-96 w-96">
-              <Carousel3D items={spheresData} radius={14}/>
+              <Carousel3D items={spheresData} radius={7}/>
             </div>
           </div>
         </div>
