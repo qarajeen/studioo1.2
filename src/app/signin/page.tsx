@@ -13,6 +13,8 @@ import { Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
+
 const formSchema = z.object({
   email: z.string().email({ message: 'Invalid email address.' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
@@ -64,7 +66,7 @@ export default function SignInPage() {
           }}
         >
           <Image
-            src={`/sphere${sphere.id}.jpg`}
+            src={`${repoName}/sphere${sphere.id}.jpg`}
             alt={`Sphere ${sphere.id}`}
             width={sphere.size}
             height={sphere.size}

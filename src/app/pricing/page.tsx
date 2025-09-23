@@ -4,6 +4,8 @@
 import { ClientQuoteCalculator } from '@/components/landing/client-quote-calculator';
 import Image from 'next/image';
 
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
+
 const spheres = [
   { id: 1, size: 150, top: '5%', left: '10%', animation: 'float-in-1', floatAnimation: 'float-1', duration: '8s', delay: '0.1s', hint: 'abstract shapes' },
   { id: 2, size: 250, top: '15%', left: '70%', animation: 'float-in-2', floatAnimation: 'float-2', duration: '10s', delay: '0.3s', hint: 'data analytics' },
@@ -37,7 +39,7 @@ export default function PricingPage() {
           }}
         >
           <Image
-            src={`/sphere${sphere.id}.jpg`}
+            src={`${repoName}/sphere${sphere.id}.jpg`}
             alt={`Sphere ${sphere.id}`}
             width={sphere.size}
             height={sphere.size}

@@ -7,6 +7,8 @@ import { useDrag } from '@use-gesture/react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
+
 interface Carousel3DProps {
   items: { id: number; img: string; hint: string }[];
   width?: number;
@@ -23,6 +25,7 @@ export function Carousel3D({ items, width = 120, height = 160, radius = 7 }: Car
     loop: true,
     config: { duration: 30000, easing: t => t },
     pause: isDragging,
+    reset: isDragging,
   });
   
   const [{ manualRotateY }, api] = useSpring(() => ({
@@ -71,7 +74,7 @@ export function Carousel3D({ items, width = 120, height = 160, radius = 7 }: Car
               style={{ width: `${width}px`, height: `${height}px` }}
             >
               <Image
-                src={`/${item.img}`}
+                src={`${repoName}/${item.img}`}
                 alt={`Carousel image ${item.id}`}
                 fill
                 className="object-cover"

@@ -5,6 +5,8 @@ import { Mail, Pencil, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
+
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +56,7 @@ export default function ContactPage() {
           }}
         >
           <Image
-            src={`/sphere${sphere.id}.jpg`}
+            src={`${repoName}/sphere${sphere.id}.jpg`}
             alt={`Sphere ${sphere.id}`}
             width={sphere.size}
             height={sphere.size}

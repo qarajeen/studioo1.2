@@ -7,6 +7,8 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
 
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
+
 export const metadata: Metadata = {
   title: 'Creative Media Production Services in Dubai | STUDIOO',
   description: 'STUDIOO is a Dubai-based media production house offering video production, photography, post-production, time lapse & 360° tours. Powered by ADHD for unmatched creativity. Contact us',
@@ -45,7 +47,7 @@ export default function ServicesPage() {
           }}
         >
           <Image
-            src={`/sphere${sphere.id}.jpg`}
+            src={`${repoName}/sphere${sphere.id}.jpg`}
             alt={`Sphere ${sphere.id}`}
             width={sphere.size}
             height={sphere.size}
@@ -113,14 +115,14 @@ export default function ServicesPage() {
                 <div className="rounded-xl overflow-hidden shadow-2xl">
                     <h3 className="font-semibold text-lg p-4 bg-card/80 backdrop-blur-sm">Videography Reel</h3>
                     <video className="w-full h-auto" autoPlay loop muted playsInline>
-                        <source src={`/reel.mp4`} type="video/mp4" />
+                        <source src={`${repoName}/reel.mp4`} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-2xl">
                     <h3 className="font-semibold text-lg p-4 bg-card/80 backdrop-blur-sm">Time-Lapse Showcase</h3>
                     <video className="w-full h-auto" autoPlay loop muted playsInline>
-                        <source src={`/tl.mp4`} type="video/mp4" />
+                        <source src={`${repoName}/tl.mp4`} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
