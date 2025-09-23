@@ -1,9 +1,10 @@
-
 'use client';
 
 import { useContext, useEffect } from 'react';
 import { NavContext } from '@/contexts/nav-context';
 import { Carousel3D } from '@/components/landing/carousel-3d';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const spheresData = [
   { id: 1, img: 'sphere1.jpg', hint: 'abstract shapes' },
@@ -28,30 +29,37 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background p-4">
-      
-      <main className="relative z-10 flex flex-col items-center justify-center text-center">
-        <div className="relative">
-          <span className="absolute top-0 left-0 w-full text-center sm:w-auto -translate-y-full sm:-translate-y-1/2 sm:-translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_2px_20px_rgba(255,255,255,0.8)]" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
-            Dubai Production
-          </span>
-          <h1 
-            className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground mix-blend-screen animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_4px_40px_rgba(255,255,255,0.7)]"
-            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
-          >
-            Studioo
-          </h1>
-          <span className="absolute bottom-0 right-0 w-full text-center sm:w-auto translate-y-full sm:translate-y-1/2 sm:translate-x-1/2 text-lg sm:text-xl md:text-2xl text-foreground font-display animate-text-fade-in opacity-0 transition-all duration-300 hover:[text-shadow:0_2px_20px_rgba(255,2_55,255,0.8)]" style={{ animationDelay: '0.8s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
-            Powered by ADHD
-          </span>
+      <main className="relative z-10 w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="text-center lg:text-left">
+            <h1 
+              className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black text-foreground animate-text-fade-in opacity-0"
+              style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
+            >
+              Studioo
+            </h1>
+            <p 
+              className="mt-4 text-lg sm:text-xl md:text-2xl text-muted-foreground animate-text-fade-in opacity-0"
+              style={{ animationDelay: '0.5s' }}
+            >
+              A Dubai-based creative production house, where ADHD is our superpower. We craft unforgettable visual stories that demand attention.
+            </p>
+            <div 
+              className="mt-8 animate-text-fade-in opacity-0"
+              style={{ animationDelay: '0.8s' }}
+            >
+              <Button asChild size="lg">
+                <Link href="/pricing">Get a Quote</Link>
+              </Button>
+            </div>
+          </div>
+          <div className="h-96 w-full flex items-center justify-center lg:justify-end">
+            <div className="h-96 w-96">
+              <Carousel3D items={spheresData} radius={14}/>
+            </div>
+          </div>
         </div>
       </main>
-
-      <div className="absolute inset-0 z-0 w-full h-full flex items-center justify-center">
-        <div className="h-96 w-96 pointer-events-auto">
-            <Carousel3D items={spheresData} />
-        </div>
-      </div>
-
     </div>
   );
 }
