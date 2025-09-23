@@ -5,6 +5,7 @@ import { NavContext } from '@/contexts/nav-context';
 import { Carousel3D } from '@/components/landing/carousel-3d';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 const spheresData = [
   { id: 1, img: 'sphere1.jpg', hint: 'abstract shapes' },
@@ -45,11 +46,14 @@ export default function Home() {
               A Dubai-based creative production house, where ADHD is our superpower. We craft unforgettable visual stories that demand attention.
             </p>
             <div 
-              className="mt-8 animate-text-fade-in opacity-0"
+              className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-text-fade-in opacity-0"
               style={{ animationDelay: '0.8s' }}
             >
               <Button asChild size="lg">
                 <Link href="/pricing">Get a Quote</Link>
+              </Button>
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/services">View Services <ArrowRight className="ml-2 h-5 w-5" /></Link>
               </Button>
             </div>
           </div>
