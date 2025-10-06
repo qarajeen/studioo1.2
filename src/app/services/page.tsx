@@ -88,7 +88,7 @@ export default function ServicesPage() {
 
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl font-bold" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+            <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent animate-shine bg-[200%_auto]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
                 You have the vision.. <br /> We tell the story..
             </h1>
             <Card className="mt-6 bg-card/50 backdrop-blur-sm border-border p-4 sm:p-6">

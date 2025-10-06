@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -91,6 +92,10 @@ export default {
         'text-fade-in': {
           '0%': { opacity: '0', letterSpacing: '-0.05em' },
           '100%': { opacity: '1', letterSpacing: 'normal' },
+        },
+        'shine': {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
         }
       },
       animation: {
@@ -98,6 +103,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out',
         'text-fade-in': 'text-fade-in 1s cubic-bezier(0.215, 0.61, 0.355, 1) forwards',
+        'shine': 'shine 5s linear infinite',
       },
     },
   },
