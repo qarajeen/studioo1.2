@@ -42,5 +42,20 @@ export const services = [
     description: 'Creating detailed 3D models from photographs, turning real-world objects and scenes into digital assets.',
     imageUrl: `${repoName}/2.jpg`,
     imageHint: '3d model scan'
+  },
+  {
+    id: 'training',
+    title: 'Training',
+    description: 'Empowering the next generation of creators with hands-on workshops and personalized mentorship.',
+    imageUrl: `${repoName}/training.jpg`,
+    imageHint: 'workshop training'
+  },
+  {
+    id: 'digital-solutions',
+    title: 'Digital Solutions',
+    description: 'From interactive web experiences to custom software, we build the tools to bring your ideas to life.',
+    imageUrl: `${repoName}/digital-solutions.jpg`,
+    imageHint: 'web design'
   }
 ];
+
