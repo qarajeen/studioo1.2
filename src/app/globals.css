@@ -145,7 +145,10 @@
     75% { transform: translate(-5px, 5px) rotate(3deg) scale(1); }
     100% { transform: translate(0, 0) rotate(0deg) scale(1.05); }
   }
-  .animate-text-fade-in { animation: text-fade-in 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.5s; }
+  .animate-text-fade-in {
+    animation: text-fade-in 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+    animation-delay: 0.2s;
+   }
 
   @keyframes pulse-subtle {
     0%, 100% { opacity: 1; transform: scale(1); }

@@ -88,11 +88,16 @@ export default {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        'text-fade-in': {
+          '0%': { opacity: '0', letterSpacing: '-0.05em' },
+          '100%': { opacity: '1', letterSpacing: 'normal' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out',
+        'text-fade-in': 'text-fade-in 1s cubic-bezier(0.215, 0.61, 0.355, 1) forwards',
       },
     },
   },
