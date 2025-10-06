@@ -86,7 +86,7 @@ export default function Home() {
             A Dubai-based creative production house, where ADHD is our superpower. We craft unforgettable visual stories that demand attention.
           </p>
           <div 
-            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center animate-text-fade-in opacity-0"
+            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center animate-text-fade-in opacity-0 sm:max-w-md mx-auto"
             style={{ animationDelay: '0.8s' }}
           >
             <Button asChild size="lg">
