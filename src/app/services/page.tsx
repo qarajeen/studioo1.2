@@ -69,9 +69,11 @@ export default function ServicesPage() {
 
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold">Our Services</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold">You have the vision.. We tell the story..</h1>
           <p className="mt-4 text-sm sm:text-lg text-foreground" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
-            Welcome to STUDIOO. Our tagline, Powered by ADHD, isn't a gimmick; it's our methodology. It’s the engine behind our unfiltered creativity, our relentless energy on set, and our obsessive focus on detail in the editing suite. In a world of repetitive content, our unique perspective allows us to see the angles others miss and craft visual stories that demand attention. We channel that energy to create powerful, polished, and unforgettable media for brands in Dubai and across the UAE.
+We know the story because we live it too. You’re here in Dubai, building something that matters, pouring every dirham and late night into an exceptional product. You have a world-class vision, but the budget for a world-class visual identity isn't quite there yet. This gap, between a brilliant idea and the resources to show it off, is the most frustrating place to be..
+
+It’s also where we do our best work. We didn’t start this company to be just another studio. We built it to be the creative partner we wished we had.. A dedicated team that’s as invested in your journey as you are. We’re here to grow with you, from launch day to your Series A..
           </p>
         </div>
 
