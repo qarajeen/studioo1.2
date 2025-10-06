@@ -5,7 +5,7 @@ import { google } from 'googleapis';
 import type { SaveQuoteInput } from '@/components/landing/quote-calculator/types';
 
 const SPREADSHEET_ID = '10YHrE5cRsQVj5lhUWWLO8HYmxDUoYUy5hgGuJj3layI';
-const SHEET_NAME = 'Sheet1'; // Make sure this is the name of your sheet
+const SHEET_NAME = 'Quotes'; // Make sure this is the name of your sheet
 
 /**
  * Appends a quote to a Google Sheet.
