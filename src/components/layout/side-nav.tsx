@@ -22,7 +22,7 @@ export function SideNav() {
 
   return (
     <TooltipProvider>
-      <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-[#4f4f4f]/80 backdrop-blur-sm border border-border rounded-full shadow-lg">
+      <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-black/30 backdrop-blur-lg border border-white/20 rounded-full shadow-2xl">
         <ul className="flex items-center gap-1 sm:gap-2 p-1 sm:p-2">
           {navLinks.map((link) => (
             <li key={link.href}>
