@@ -23,6 +23,7 @@ export function Step2Details({ formData, handleInputChange }: Step2DetailsProps)
     (formData.serviceType === 'video' && (vSubType === 'event' || vSubType === 'wedding'));
   const isTimelapse = formData.serviceType === 'timelapse';
   const isPostProduction = formData.serviceType === 'post';
+  const isTraining = formData.serviceType === 'training';
   const isPhotogrammetry = formData.serviceType === 'photogrammetry';
 
   return (
@@ -82,7 +83,7 @@ export function Step2Details({ formData, handleInputChange }: Step2DetailsProps)
               <Switch id="timelapseExtraCamera" checked={formData.timelapseExtraCamera} onCheckedChange={(v) => handleInputChange('timelapseExtraCamera', v)} />
             </div>
           )}
-          {!isPostProduction && (
+          {!isPostProduction && !isTraining && (
             <div>
               <Label className="font-semibold text-sm sm:text-base">Delivery Timeline</Label>
               <RadioGroup value={formData.deliveryTimeline} onValueChange={(v) => handleInputChange("deliveryTimeline", v)} className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
@@ -107,5 +108,3 @@ export function Step2Details({ formData, handleInputChange }: Step2DetailsProps)
     </div>
   );
 }
-
-    
