@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview A flow for saving a quote from the pricing calculator to a data store.
@@ -5,6 +6,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { appendToSheet } from '@/services/google-sheets';
 
 // Defines the input data structure for the quote.
 export const SaveQuoteInputSchema = z.object({
@@ -22,18 +24,31 @@ export const SaveQuoteInputSchema = z.object({
 });
 export type SaveQuoteInput = z.infer<typeof SaveQuoteInputSchema>;
 
-// This is the main flow function. For now, it just logs the input.
-// In the next step, we will add the logic to send this data to Google Sheets.
+// Tool to save the data to Google Sheets.
+const saveToSheetTool = ai.defineTool(
+  {
+    name: 'saveToSheet',
+    description: 'Saves the quote data to a Google Sheet.',
+    inputSchema: SaveQuoteInputSchema,
+    outputSchema: z.void(),
+  },
+  async (input) => {
+    await appendToSheet(input);
+  }
+);
+
+
+// This is the main flow function.
 export const saveQuoteFlow = ai.defineFlow(
   {
     name: 'saveQuoteFlow',
     inputSchema: SaveQuoteInputSchema,
     outputSchema: z.object({ success: z.boolean() }),
+    tools: [saveToSheetTool]
   },
   async (input) => {
-    console.log('Received quote to save:', JSON.stringify(input, null, 2));
     
-    // TODO: Add tool to save to Google Sheet.
+    await saveToSheetTool(input);
     
     return { success: true };
   }
