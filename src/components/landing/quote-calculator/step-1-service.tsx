@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, Camera, Video, Wand2, Orbit, Hourglass, Atom } from 'lucide-react';
+import { ChevronLeft, Camera, Video, Wand2, Orbit, Hourglass, Atom, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { FormData, RealEstateProperty, ServiceOptions } from './types';
 import { PhotographyOptions } from './photography-options';
@@ -10,6 +10,7 @@ import { TimelapseOptions } from './timelapse-options';
 import { ToursOptions } from './tours-options';
 import { PostProductionOptions } from './post-production-options';
 import { PhotogrammetryOptions } from './photogrammetry-options';
+import { TrainingOptions } from './training-options';
 
 type Step1ServiceProps = {
   formData: FormData;
@@ -27,6 +28,7 @@ const serviceOptions: ServiceOptions = {
     '360tours': { name: "360 Tours", icon: <Orbit className="w-10 h-10 mb-3" /> },
     timelapse: { name: "Time Lapse", icon: <Hourglass className="w-10 h-10 mb-3" /> },
     photogrammetry: { name: "Photogrammetry", icon: <Atom className="w-10 h-10 mb-3" /> },
+    training: { name: "Training", icon: <Users className="w-10 h-10 mb-3" /> },
 };
 
 export function Step1Service({ 
@@ -46,6 +48,7 @@ export function Step1Service({
     handleInputChange('toursSubType', '');
     handleInputChange('postSubType', '');
     handleInputChange('photogrammetrySubType', '');
+    handleInputChange('trainingSubType', '');
   };
 
   const renderSubServiceOptions = () => {
@@ -69,6 +72,8 @@ export function Step1Service({
         return <PostProductionOptions formData={formData} handleInputChange={handleInputChange} validationError={validationError} />;
       case 'photogrammetry':
         return <PhotogrammetryOptions formData={formData} handleInputChange={handleInputChange} validationError={validationError} />;
+      case 'training':
+        return <TrainingOptions formData={formData} handleInputChange={handleInputChange} validationError={validationError} />;
       default:
         return null;
     }
@@ -79,7 +84,7 @@ export function Step1Service({
       {formData.serviceType === '' ? (
         <div>
           <h3 className="font-semibold mb-4 text-lg sm:text-xl">Select Service Type</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {Object.entries(serviceOptions).map(([id, { name, icon }]) => (
               <div
                 key={id}
@@ -109,5 +114,3 @@ export function Step1Service({
     </div>
   );
 }
-
-    

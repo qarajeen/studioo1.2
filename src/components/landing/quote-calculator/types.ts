@@ -1,3 +1,4 @@
+
 export type ServiceOption = {
     name: string;
     icon: React.ReactNode;
@@ -24,6 +25,7 @@ export const serviceOptions: ServiceOptions = {
     '360tours': { name: "360 Tours", icon: null },
     timelapse: { name: "Time Lapse", icon: null },
     photogrammetry: { name: "Photogrammetry", icon: null },
+    training: { name: "Training", icon: null },
 };
 
 // Photography Sub-Services
@@ -77,6 +79,12 @@ export const photogrammetrySubServices: SubServices = {
     large_scale: { name: 'Large-Scale Infrastructure' },
 };
 
+// Training Sub-Services
+export const trainingSubServices: SubServices = {
+    'one-on-one': { name: 'One-on-One' },
+    groups: { name: 'Groups' },
+};
+
 export const locationTypeOptions = ["Indoor", "Outdoor", "Studio", "Exhibition Center", "Hotel", "Other"];
 
 export type RealEstateProperty = {
@@ -94,6 +102,7 @@ export type FormData = {
     toursSubType: keyof typeof toursSubServices | "";
     postSubType: keyof typeof postProductionSubServices | '';
     photogrammetrySubType: keyof typeof photogrammetrySubServices | '';
+    trainingSubType: keyof typeof trainingSubServices | '';
 
     // Step 1.5: Photography Details
     photoEventDuration: "perHour" | "halfDay" | "fullDay";
@@ -142,6 +151,12 @@ export type FormData = {
     postPhotoEditingType: 'basic' | 'advanced' | 'restoration';
     postPhotoEditingQuantity: number;
     postPhotoEditingPrice: number;
+    
+    // Step 1.10: Training Details
+    trainingHours: number;
+    trainingOneOnOneCameraRental: boolean;
+    trainingOneOnOneClassroomRental: boolean;
+    trainingGroupsClassroomRental: boolean;
 
     // Step 2: Location & Add-ons
     location: string;

@@ -10,7 +10,7 @@ import { ArrowRight, ArrowLeft, RotateCcw, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
-import { FormData, RealEstateProperty, serviceOptions, photographySubServices, videoSubServices, timelapseSubServices, toursSubServices, postProductionSubServices, photogrammetrySubServices } from './quote-calculator/types';
+import { FormData, RealEstateProperty, serviceOptions, photographySubServices, videoSubServices, timelapseSubServices, toursSubServices, postProductionSubServices, photogrammetrySubServices, trainingSubServices } from './quote-calculator/types';
 import { Step1Service } from "./quote-calculator/step-1-service";
 import { Step2Details } from "./quote-calculator/step-2-details";
 import { Step3Contact } from "./quote-calculator/step-3-contact";
@@ -27,6 +27,7 @@ const initialFormData: FormData = {
     toursSubType: "",
     postSubType: '',
     photogrammetrySubType: '',
+    trainingSubType: '',
 
     photoEventDuration: "perHour",
     photoEventHours: 1,
@@ -69,6 +70,11 @@ const initialFormData: FormData = {
     postPhotoEditingType: 'basic',
     postPhotoEditingQuantity: 1,
     postPhotoEditingPrice: 20,
+
+    trainingHours: 1,
+    trainingOneOnOneCameraRental: false,
+    trainingOneOnOneClassroomRental: false,
+    trainingGroupsClassroomRental: false,
 
     location: "dubai",
     locationType: "Indoor",
@@ -151,7 +157,8 @@ export function QuoteCalculator() {
                 video: 'videoSubType',
                 '360tours': 'toursSubType',
                 post: 'postSubType',
-                photogrammetry: 'photogrammetrySubType'
+                photogrammetry: 'photogrammetrySubType',
+                training: 'trainingSubType'
             };
             
             if (formData.serviceType === 'timelapse') {
@@ -366,6 +373,16 @@ export function QuoteCalculator() {
                 large_scale: 27000,
             };
             basePrice = prices[formData.photogrammetrySubType as keyof typeof prices];
+        } else if (formData.serviceType === 'training' && formData.trainingSubType) {
+            const subTypeName = trainingSubServices[formData.trainingSubType].name;
+            itemName = `${serviceName}: ${subTypeName}`;
+            if (formData.trainingSubType === 'one-on-one') {
+                basePrice = formData.trainingHours * 400;
+                itemName += ` (${formData.trainingHours} hr/s)`;
+            } else { // groups
+                basePrice = formData.trainingHours * 600;
+                itemName += ` (${formData.trainingHours} hr/s)`;
+            }
         }
 
 
@@ -421,6 +438,28 @@ export function QuoteCalculator() {
                 const price = basePrice; // +100%
                 items.push({ name: 'Extra Camera', price });
                 subtotal += price;
+            }
+        }
+        
+        // Training Add-ons
+        if (formData.serviceType === 'training') {
+            if (formData.trainingSubType === 'one-on-one') {
+                if (formData.trainingOneOnOneCameraRental) {
+                    const price = 150 * formData.trainingHours;
+                    subtotal += price;
+                    items.push({ name: 'Camera Rental', price });
+                }
+                if (formData.trainingOneOnOneClassroomRental) {
+                    const price = 150 * formData.trainingHours;
+                    subtotal += price;
+                    items.push({ name: 'Classroom Rental', price });
+                }
+            } else { // groups
+                if (formData.trainingGroupsClassroomRental) {
+                    const price = 250 * formData.trainingHours;
+                    subtotal += price;
+                    items.push({ name: 'Classroom Rental', price });
+                }
             }
         }
         
@@ -534,6 +573,7 @@ export function QuoteCalculator() {
         else if (formData.serviceType === '360tours' && formData.toursSubType) subTypeName = toursSubServices[formData.toursSubType].name;
         else if (formData.serviceType === 'post' && formData.postSubType) subTypeName = postProductionSubServices[formData.postSubType].name;
         else if (formData.serviceType === 'photogrammetry' && formData.photogrammetrySubType) subTypeName = photogrammetrySubServices[formData.photogrammetrySubType].name;
+        else if (formData.serviceType === 'training' && formData.trainingSubType) subTypeName = trainingSubServices[formData.trainingSubType].name;
 
         const headingTitle = subTypeName ? `${serviceName}: ${subTypeName}` : serviceName;
         const titleLines = doc.splitTextToSize(headingTitle, pageWidth - (margin * 2));
