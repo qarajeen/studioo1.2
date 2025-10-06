@@ -30,7 +30,6 @@ export const saveQuoteFlow = ai.defineFlow(
     name: 'saveQuoteFlow',
     inputSchema: SaveQuoteInputSchema,
     outputSchema: z.object({ success: z.boolean() }),
-    tools: [saveToSheetTool]
   },
   async (input) => {
     
