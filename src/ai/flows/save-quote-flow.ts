@@ -7,22 +7,8 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import { appendToSheet } from '@/services/google-sheets';
-
-// Defines the input data structure for the quote.
-export const SaveQuoteInputSchema = z.object({
-    serviceType: z.string().describe("The main service selected (e.g., Photography, Video)."),
-    subType: z.string().describe("The specific sub-service chosen (e.g., Event, Corporate)."),
-    total: z.number().describe("The total estimated price of the quote."),
-    name: z.string().describe("The customer's name."),
-    email: z.string().email().describe("The customer's email address."),
-    phone: z.string().describe("The customer's phone number."),
-    message: z.string().optional().describe("An optional message from the customer."),
-    breakdown: z.array(z.object({
-        name: z.string(),
-        price: z.union([z.string(), z.number()]),
-    })).describe("A detailed breakdown of the quote items and their prices."),
-});
-export type SaveQuoteInput = z.infer<typeof SaveQuoteInputSchema>;
+import { SaveQuoteInputSchema } from '@/components/landing/quote-calculator/types';
+import type { SaveQuoteInput } from '@/components/landing/quote-calculator/types';
 
 // Tool to save the data to Google Sheets.
 const saveToSheetTool = ai.defineTool(
