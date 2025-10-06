@@ -81,7 +81,7 @@ export default function Home() {
             />
           </div>
           <h1 
-            className="mt-6 text-3xl sm:text-4xl md:text-5xl font-display animate-text-fade-in opacity-0 bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-200 bg-clip-text text-transparent animate-shine bg-[200%_auto]"
+            className="mt-6 text-3xl sm:text-4xl md:text-5xl font-display animate-text-fade-in opacity-0 bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-200 bg-clip-text text-transparent animate-shine bg-[200%_auto] py-2"
             style={{ animationDelay: '0.4s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
           >
             We are here WITH you
