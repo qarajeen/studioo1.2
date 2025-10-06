@@ -3,9 +3,10 @@ import Image from 'next/image';
 import { services } from './data';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, DollarSign, Repeat, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
 
@@ -24,6 +25,24 @@ const spheres = [
   { id: 7, size: 80, top: '80%', left: '90%', animation: 'float-in-2', floatAnimation: 'float-1', duration: '7s', delay: '0.6s', hint: 'purple crystal' },
   { id: 8, size: 90, top: '85%', left: '15%', animation: 'float-in-3', floatAnimation: 'float-2', duration: '10s', delay: '0.7s', hint: 'user portrait' },
 ];
+
+const partnershipModels = [
+    {
+        icon: <DollarSign className="h-8 w-8 text-primary" />,
+        title: 'Direct Payment',
+        description: 'Clear services packages at fixed prices. You get stunning visuals, and we support you on your journey.',
+    },
+    {
+        icon: <Repeat className="h-8 w-8 text-primary" />,
+        title: 'Service Exchange',
+        description: 'We serve your business in exchange for your services or products. A true win-win partnership.',
+    },
+    {
+        icon: <TrendingUp className="h-8 w-8 text-primary" />,
+        title: 'Growth Partner',
+        description: 'We provide a comprehensive package for a small stake in your profits. When you succeed, we succeed.',
+    }
+]
 
 export default function ServicesPage() {
 
@@ -75,6 +94,28 @@ We know the story because we live it too. You’re here in Dubai, building somet
 
 It’s also where we do our best work. We didn’t start this company to be just another studio. We built it to be the creative partner we wished we had.. A dedicated team that’s as invested in your journey as you are. We’re here to grow with you, from launch day to your Series A..
           </p>
+        </div>
+
+        <div className="mt-24 text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold">Choose the Path That Fits Your Growth</h2>
+            <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground">
+                We offer flexible partnership models because we believe great ideas deserve to be seen, regardless of budget.
+            </p>
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {partnershipModels.map((model, index) => (
+                    <Card key={index} className="bg-card/50 backdrop-blur-sm border-border text-center">
+                        <CardHeader>
+                            <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit mb-4 border border-primary/20">
+                                {model.icon}
+                            </div>
+                            <CardTitle>{model.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-muted-foreground">{model.description}</p>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
         </div>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
