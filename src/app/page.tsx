@@ -73,21 +73,27 @@ export default function Home() {
             <Image
               src={`${repoName}/2.png`}
               alt="Studioo Logo"
-              width={150}
-              height={50}
+              width={75}
+              height={25}
               className="mx-auto"
               priority
             />
           </div>
+          <h1 
+            className="mt-6 text-3xl sm:text-4xl md:text-5xl font-display animate-text-fade-in opacity-0"
+            style={{ animationDelay: '0.4s', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
+          >
+            We are here WITH you
+          </h1>
           <p 
             className="mt-4 text-lg sm:text-xl md:text-2xl text-muted-foreground animate-text-fade-in opacity-0"
-            style={{ animationDelay: '0.5s' }}
+            style={{ animationDelay: '0.8s' }}
           >
-            A Dubai-based creative production house, where ADHD is our superpower. We craft unforgettable visual stories that demand attention.
+            We don't just take pictures.. We invest in your vision.. Discover how our flexible and innovative payment models can help your brand grow.
           </p>
           <div 
             className="mt-8 flex flex-col sm:flex-row gap-4 justify-center animate-text-fade-in opacity-0 sm:max-w-md mx-auto"
-            style={{ animationDelay: '0.8s' }}
+            style={{ animationDelay: '1.2s' }}
           >
             <Button asChild size="lg">
               <Link href="/pricing">Get a Quote</Link>
