@@ -12,7 +12,7 @@ const SHEET_NAME = 'Sheet1'; // Make sure this is the name of your sheet
  * @param quote The quote data to append.
  * @returns A promise that resolves when the data has been appended.
  */
-export async function appendToSheet(quote: SaveQuoteİnput): Promise<void> {
+export async function appendToSheet(quote: SaveQuoteInput): Promise<void> {
   const credentials = process.env.GOOGLE_SHEETS_CREDENTIALS;
   if (!credentials) {
     console.error('GOOGLE_SHEETS_CREDENTIALS environment variable not set.');
