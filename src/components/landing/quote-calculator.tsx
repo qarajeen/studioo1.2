@@ -195,7 +195,7 @@ export function QuoteCalculator() {
             }
             setIsSubmitting(true);
             try {
-                const subTypeName = getSubTypeName(formData.serviceType, formData);
+                const subTypeName = getSubTypeName(String(formData.serviceType), formData);
 
                 await saveQuote({
                     serviceType: serviceOptions[formData.serviceType]?.name,
@@ -215,11 +215,11 @@ export function QuoteCalculator() {
                 });
                 setStep((prev) => prev + 1);
 
-            } catch (error) {
+            } catch (error: any) {
                 console.error("Failed to save quote:", error);
                 toast({
                     title: "Submission Error",
-                    description: "There was a problem saving your quote. Please try again.",
+                    description: `There was a problem saving your quote. ${error.message}`,
                     variant: "destructive",
                 });
             } finally {
