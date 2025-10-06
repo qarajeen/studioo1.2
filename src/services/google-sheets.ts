@@ -13,14 +13,23 @@ const SHEET_NAME = 'Sheet1'; // Make sure this is the name of your sheet
  * @returns A promise that resolves when the data has been appended.
  */
 export async function appendToSheet(quote: SaveQuoteInput): Promise<void> {
-  const credentials = process.env.GOOGLE_SHEETS_CREDENTIALS;
-  if (!credentials) {
+  const credentialsString = process.env.GOOGLE_SHEETS_CREDENTIALS;
+  if (!credentialsString) {
     console.error('GOOGLE_SHEETS_CREDENTIALS environment variable not set.');
     throw new Error('Server configuration error: Google Sheets credentials not found.');
   }
 
+  let credentials;
+  try {
+    credentials = JSON.parse(credentialsString);
+  } catch (e) {
+    console.error('Failed to parse GOOGLE_SHEETS_CREDENTIALS:', e);
+    throw new Error('Server configuration error: Google Sheets credentials are not valid JSON.');
+  }
+
+
   const auth = new google.auth.GoogleAuth({
-    credentials: JSON.parse(credentials),
+    credentials,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
 
