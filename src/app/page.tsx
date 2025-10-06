@@ -74,8 +74,8 @@ export default function Home() {
             <Image
               src={`${repoName}/2.png`}
               alt="Studioo Logo"
-              width={75}
-              height={25}
+              width={225}
+              height={75}
               className="mx-auto"
               priority
             />
