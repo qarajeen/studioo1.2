@@ -103,7 +103,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out',
         'text-fade-in': 'text-fade-in 1s cubic-bezier(0.215, 0.61, 0.355, 1) forwards',
-        'shine': 'shine 5s linear infinite',
+        'shine': 'shine 3s linear infinite',
       },
     },
   },
