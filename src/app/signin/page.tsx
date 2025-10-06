@@ -88,7 +88,7 @@ export default function SignInPage() {
       <div className="container mx-auto relative z-10 max-w-md">
         <Card className="backdrop-blur-sm bg-card/50 border border-border">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold">Sign In</CardTitle>
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-200 bg-clip-text text-transparent animate-shine bg-[200%_auto]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>Sign In</CardTitle>
             <CardDescription>Access your account and projects.</CardDescription>
           </CardHeader>
           <CardContent>

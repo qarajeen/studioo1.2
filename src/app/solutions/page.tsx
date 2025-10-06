@@ -125,7 +125,7 @@ export default function SolutionsPage() {
 
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold">Solutions</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-200 bg-clip-text text-transparent animate-shine bg-[200%_auto]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>Solutions</h1>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground">
             A collection of online tools to spark creativity and assist with your production workflow.
           </p>

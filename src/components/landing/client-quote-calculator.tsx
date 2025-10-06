@@ -35,7 +35,7 @@ function QuoteCalculatorLoader() {
      <div className="w-full max-w-2xl mx-auto text-center">
         <Card className="bg-card/50 backdrop-blur-sm border-border animate-fade-in-up">
             <CardHeader>
-                <CardTitle className="text-3xl font-bold">Instant Quote Calculator</CardTitle>
+                <CardTitle className="text-3xl font-bold bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-200 bg-clip-text text-transparent animate-shine bg-[200%_auto]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>Instant Quote Calculator</CardTitle>
                 <CardDescription className="text-lg text-muted-foreground pt-2">
                     Get a transparent, real-time estimate for your creative project. Select your services, customize your options, and see the price instantly.
                 </CardDescription>
