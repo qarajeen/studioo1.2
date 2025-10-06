@@ -101,7 +101,7 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-24 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold">Choose the Path That Fits Your Growth</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-200 bg-clip-text text-transparent animate-shine bg-[200%_auto]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>Choose the Path That Fits Your Growth</h2>
             <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground">
                 We offer flexible partnership models because we believe great ideas deserve to be seen, regardless of budget.
             </p>
