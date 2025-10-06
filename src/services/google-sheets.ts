@@ -26,7 +26,7 @@ export async function appendToSheet(quote: SaveQuoteInput): Promise<void> {
 
   const sheets = google.sheets({ version: 'v4', auth });
 
-  const breakdownText = quote.breakdown.map(item => `${item.name}: ${item.price}`).join('\n');
+  const breakdownText = quote.breakdown.map(item => `${item.name}: ${typeof item.price === 'number' ? item.price.toLocaleString() : item.price} AED`).join('\n');
 
   const values = [
     [
