@@ -61,8 +61,10 @@ export async function appendToSheet(quote: SaveQuoteInput): Promise<void> {
       },
     });
     console.log('Appended data to Google Sheet.');
-  } catch (err) {
+  } catch (err: any) {
     console.error('Error appending to Google Sheet:', err);
-    throw new Error('Failed to save quote to Google Sheet.');
+    // Throw a more specific error message
+    const errorMessage = err.message || 'An unknown error occurred.';
+    throw new Error(`Failed to save quote to Google Sheet: ${errorMessage}`);
   }
 }
