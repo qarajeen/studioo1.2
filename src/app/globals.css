@@ -69,6 +69,10 @@
   body {
     @apply bg-background text-foreground flex flex-col;
   }
+  button:hover svg {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+  }
 }
 
 @layer utilities {
