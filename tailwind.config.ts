@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['var(--font-body)', 'sans-serif'],
-        display: ['var(--font-luckiest-guy)', 'cursive'],
+        body: ['var(--font-body)', 'serif'],
+        display: ['var(--font-body)', 'serif'],
       },
       colors: {
         background: 'hsl(var(--background))',

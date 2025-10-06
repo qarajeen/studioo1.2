@@ -1,20 +1,15 @@
 
 import type { Metadata } from 'next';
-import { Inter, Luckiest_Guy } from 'next/font/google';
+import { IBM_Plex_Serif } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import { ClientLayout } from '@/components/layout/client-layout';
 import './globals.css';
 import { cn } from '@/lib/utils';
 
-const inter = Inter({
+const ibmPlexSerif = IBM_Plex_Serif({
   subsets: ['latin'],
+  weight: ['400', '700'],
   variable: '--font-body',
-});
-
-const luckiestGuy = Luckiest_Guy({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-luckiest-guy',
 });
 
 export const metadata: Metadata = {
@@ -29,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={cn(inter.variable, luckiestGuy.variable, "font-body")}>
+      <body className={cn(ibmPlexSerif.variable, "font-body")}>
         <ClientLayout>{children}</ClientLayout>
         <Toaster />
       </body>
