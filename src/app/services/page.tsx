@@ -88,12 +88,16 @@ export default function ServicesPage() {
 
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold">You have the vision.. <br /> We tell the story..</h1>
-          <p className="mt-4 text-sm sm:text-lg text-foreground" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
-We know the story because we live it too. You’re here in Dubai, building something that matters, pouring every dirham and late night into an exceptional product. You have a world-class vision, but the budget for a world-class visual identity isn't quite there yet. This gap, between a brilliant idea and the resources to show it off, is the most frustrating place to be..
-
-It’s also where we do our best work. We didn’t start this company to be just another studio. We built it to be the creative partner we wished we had.. A dedicated team that’s as invested in your journey as you are. We’re here to grow with you, from launch day to your Series A..
-          </p>
+            <h1 className="text-4xl sm:text-5xl font-bold" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                You have the vision.. <br /> We tell the story..
+            </h1>
+            <Card className="mt-6 bg-card/50 backdrop-blur-sm border-border p-4 sm:p-6">
+                <p className="text-sm sm:text-lg text-foreground">
+                    We know the story because we live it too. You’re here in Dubai, building something that matters, pouring every dirham and late night into an exceptional product. You have a world-class vision, but the budget for a world-class visual identity isn't quite there yet. This gap, between a brilliant idea and the resources to show it off, is the most frustrating place to be..
+                    <br /><br />
+                    It’s also where we do our best work. We didn’t start this company to be just another studio. We built it to be the creative partner we wished we had.. A dedicated team that’s as invested in your journey as you are. We’re here to grow with you, from launch day to your Series A..
+                </p>
+            </Card>
         </div>
 
         <div className="mt-24 text-center">
