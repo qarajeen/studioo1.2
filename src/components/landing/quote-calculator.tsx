@@ -6,7 +6,7 @@ import { useState, useMemo, useCallback } from "react";
 import jsPDF from "jspdf";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, RotateCcw, Download } from "lucide-react";
+import { ArrowRight, ArrowLeft, RotateCcw, Download, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
@@ -16,6 +16,7 @@ import { Step2Details } from "./quote-calculator/step-2-details";
 import { Step3Contact } from "./quote-calculator/step-3-contact";
 import { Step4Quote } from "./quote-calculator/step-4-quote";
 import { QuoteSummary } from "./quote-calculator/quote-summary";
+import { saveQuote } from "@/ai/flows/save-quote-flow";
 
 const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
 
@@ -93,6 +94,7 @@ export function QuoteCalculator() {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [validationError, setValidationError] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const { toast } = useToast();
 
     React.useEffect(() => {
@@ -141,7 +143,21 @@ export function QuoteCalculator() {
         setStep(1);
     };
 
-    const nextStep = () => {
+    const getSubTypeName = (serviceType: string, data: FormData) => {
+      if (!serviceType) return '';
+      switch (serviceType) {
+        case 'photography': return photographySubServices[data.photographySubType]?.name || '';
+        case 'video': return videoSubServices[data.videoSubType]?.name || '';
+        case 'post': return postProductionSubServices[data.postSubType]?.name || '';
+        case 'timelapse': return 'Timelapse';
+        case '360tours': return toursSubServices[data.toursSubType]?.name || '';
+        case 'photogrammetry': return photogrammetrySubServices[data.photogrammetrySubType]?.name || '';
+        case 'training': return trainingSubServices[data.trainingSubType]?.name || '';
+        default: return '';
+      }
+    };
+
+    const nextStep = async () => {
         const triggerValidationError = (message: string, title: string) => {
             toast({ title: title, description: message, variant: "destructive" });
             setValidationError(true);
@@ -177,6 +193,39 @@ export function QuoteCalculator() {
                 toast({ title: "Missing Information", description: "Please fill out your name, email, and phone number.", variant: "destructive" });
                 return;
             }
+            setIsSubmitting(true);
+            try {
+                const subTypeName = getSubTypeName(formData.serviceType, formData);
+
+                await saveQuote({
+                    serviceType: serviceOptions[formData.serviceType]?.name,
+                    subType: subTypeName,
+                    total: quoteDetails.total,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    message: formData.message,
+                    breakdown: quoteDetails.items,
+                });
+
+                toast({
+                    title: "Quote Saved!",
+                    description: "Your quote has been saved. We will be in touch shortly.",
+                    variant: "default",
+                });
+                setStep((prev) => prev + 1);
+
+            } catch (error) {
+                console.error("Failed to save quote:", error);
+                toast({
+                    title: "Submission Error",
+                    description: "There was a problem saving your quote. Please try again.",
+                    variant: "destructive",
+                });
+            } finally {
+                setIsSubmitting(false);
+            }
+            return; // Prevent advancing step twice
         }
         if (step === 4) {
             // This would be the submission logic
@@ -771,19 +820,22 @@ export function QuoteCalculator() {
                     <CardFooter className="flex items-center justify-between gap-4 p-4 sm:p-6 bg-background/80 backdrop-blur-sm mt-auto border-t">
                         <div className="hidden sm:flex gap-2 w-full sm:w-auto">
                             {step > 1 && (
-                                <Button variant="outline" onClick={prevStep} size="lg" className="w-full sm:w-auto"><ArrowLeft className="mr-2 h-5 w-5"/> Previous</Button>
+                                <Button variant="outline" onClick={prevStep} size="lg" className="w-full sm:w-auto" disabled={isSubmitting}><ArrowLeft className="mr-2 h-5 w-5"/> Previous</Button>
                             )}
                             {step > 1 && step < 4 && (
-                                <Button variant="ghost" onClick={handleReset} size="lg" className="text-muted-foreground"><RotateCcw className="mr-2 h-5 w-5" /> Reset</Button>
+                                <Button variant="ghost" onClick={handleReset} size="lg" className="text-muted-foreground" disabled={isSubmitting}><RotateCcw className="mr-2 h-5 w-5" /> Reset</Button>
                             )}
                         </div>
         
                         <div className="flex items-center justify-center gap-2 w-full sm:w-auto">
                              {step > 1 && (
-                                <Button variant="outline" onClick={prevStep} size="lg" className="flex-1 sm:hidden shadow-lg"><ArrowLeft className="mr-2 h-5 w-5"/> Back</Button>
+                                <Button variant="outline" onClick={prevStep} size="lg" className="flex-1 sm:hidden shadow-lg" disabled={isSubmitting}><ArrowLeft className="mr-2 h-5 w-5"/> Back</Button>
                             )}
                             {step < 4 ? (
-                                <Button onClick={nextStep} size="lg" className={cn("sm:w-auto shadow-lg sm:shadow-none flex-1", step === 1 && 'sm:ml-auto')}>{step === 3 ? 'See Your Quote' : 'Next'} <ArrowRight className="ml-2 h-5 w-5"/></Button>
+                                <Button onClick={nextStep} size="lg" className={cn("sm:w-auto shadow-lg sm:shadow-none flex-1", step === 1 && 'sm:ml-auto')} disabled={isSubmitting}>
+                                  {isSubmitting ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : (step === 3 ? 'See Your Quote' : 'Next')}
+                                  {!isSubmitting && step !== 3 && <ArrowRight className="ml-2 h-5 w-5"/>}
+                                </Button>
                             ) : (
                                 <Button onClick={handleReset} size="lg" className="w-full sm:w-auto shadow-lg sm:shadow-none"><RotateCcw className="mr-2 h-5 w-5" /> Start New Quote</Button>
                             )}
@@ -797,4 +849,3 @@ export function QuoteCalculator() {
         </div>
       </div>
     );
-}
