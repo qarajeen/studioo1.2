@@ -155,7 +155,7 @@ export default function ServicesPage() {
         
         <div className="mt-24">
             <div className="text-center max-w-3xl mx-auto">
-                <h2 className="text-3xl sm:text-4xl font-bold">Showcase</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-200 bg-clip-text text-transparent animate-shine bg-[200%_auto]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>Showcase</h2>
                 <p className="mt-4 text-base sm:text-lg text-muted-foreground">A glimpse into our creative world.</p>
             </div>
             <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
