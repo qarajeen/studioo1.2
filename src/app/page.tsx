@@ -66,12 +66,19 @@ export default function Home() {
         {renderSpheres(spheres)}
       </div>
       <main className="relative z-10 w-full max-w-3xl mx-auto text-center">
-          <h1 
-            className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black text-foreground animate-text-fade-in opacity-0"
+          <div 
+            className="animate-text-fade-in opacity-0"
             style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
           >
-            Studioo
-          </h1>
+            <Image
+              src={`${repoName}/2.png`}
+              alt="Studioo Logo"
+              width={600}
+              height={200}
+              className="mx-auto"
+              priority
+            />
+          </div>
           <p 
             className="mt-4 text-lg sm:text-xl md:text-2xl text-muted-foreground animate-text-fade-in opacity-0"
             style={{ animationDelay: '0.5s' }}

@@ -17,6 +17,8 @@ import { Step3Contact } from "./quote-calculator/step-3-contact";
 import { Step4Quote } from "./quote-calculator/step-4-quote";
 import { QuoteSummary } from "./quote-calculator/quote-summary";
 
+const repoName = process.env.NODE_ENV === 'production' ? '/studioo1.2' : '';
+
 const initialFormData: FormData = {
     serviceType: "",
     photographySubType: "",
@@ -506,22 +508,15 @@ export function QuoteCalculator() {
         const textColor = [51, 51, 51];
         const lightTextColor = [100, 100, 100];
         const white = [255, 255, 255];
-
-        // Set a background color for the whole page
-        doc.setFillColor(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
-        doc.rect(0, 0, pageWidth, pageHeight, 'F');
         
+        // Add logo
+        const logoUrl = `${window.location.origin}${repoName}/4.png`;
+        doc.addImage(logoUrl, 'PNG', margin, 10, 50, 17);
+
         // -- Header --
-        doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-        doc.rect(0, 0, pageWidth, 25, 'F');
-        
-        doc.setFontSize(22);
-        doc.setFont('helvetica', 'bold');
-        doc.setTextColor(white[0], white[1], white[2]);
-        doc.text("Studioo", margin, 17);
-
         doc.setFontSize(10);
         doc.setFont('helvetica', 'normal');
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
         doc.text("QUOTE", pageWidth - margin, 17, { align: 'right' });
         
         currentY = 40;
@@ -584,7 +579,7 @@ export function QuoteCalculator() {
         currentY += 30;
     
         // -- Table Header --
-        doc.setFillColor(accentColor[0], accentColor[1], accentColor[2]);
+        doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
         doc.rect(margin, currentY, pageWidth - (margin * 2), 10, 'F');
         doc.setFontSize(10);
         doc.setFont('helvetica', 'bold');
